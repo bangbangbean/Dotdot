@@ -6,6 +6,8 @@
     <string name="fp_reset">重設密碼</string>
     <string name="fp_title">手機號碼</string>
     <string name="fp_title_1">驗證碼</string>
+    <string name="fp_title_2">輸入新密碼</string>
+    <string name="fp_title_3">再次輸入</string>
     <string name="fp_comfrim">確定</string>
     ----------------------------------------------------------------------------------------------
     //註冊
