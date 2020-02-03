@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Dotdot</string>
+    //註冊
+    <string name="regist"></string>
 </resources>
+
