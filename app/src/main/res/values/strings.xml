@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Dotdot</string>
+    --------------------------------------------------------------------------------------------
+    //忘記密碼
+    <string name="fp_forgetpassword">忘記密碼</string>
+    <string name="fp_reset">重設密碼</string>
+    <string name="fp_title">手機號碼</string>
+    <string name="fp_title_1">驗證碼</string>
+    <string name="fp_comfrim">確定</string>
+    ----------------------------------------------------------------------------------------------
     //註冊
     <string name="regist"></string>
 </resources>
