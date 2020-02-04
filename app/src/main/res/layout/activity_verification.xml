@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Forgetpassword_2">
+    tools:context=".Verification">
 
     <TextView
         android:id="@+id/textView"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="568dp"
-        android:text="@string/fp_forgetpassword"
+        android:text="@string/verification"
         android:textColor="#3F51B5"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -29,8 +29,8 @@
         android:layout_height="74dp"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="@string/fp_title_2"
-        android:inputType="textPassword"
+        android:hint="@string/verification_num"
+        android:inputType="phone"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,22 +39,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="366dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/fp_title_3"
-        android:inputType="textPassword"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.222" />
-
     <Button
         android:id="@+id/registbt"
         android:layout_width="150dp"
@@ -62,7 +46,7 @@
         android:layout_marginTop="44dp"
         android:background="@drawable/bg_round_button"
         android:gravity="center"
-        android:text="@string/fp_comfrim"
+        android:text="@string/verification_button"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,5 +54,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.064" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
