@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.functions.FirebaseFunctions;
 
 public class Regist extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class Regist extends AppCompatActivity {
     private EditText passagain;
     private EditText username;
     private EditText birthday;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
