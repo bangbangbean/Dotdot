@@ -16,7 +16,6 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".MainActivity">
-            .Regist
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
