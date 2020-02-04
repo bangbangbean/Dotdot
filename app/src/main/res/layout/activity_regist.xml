@@ -25,7 +25,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/registbt"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginBottom="72dp"
@@ -47,13 +47,13 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/regist_phone"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/phone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/phone"
         android:layout_width="213dp"
         android:layout_height="45dp"
         android:layout_marginStart="88dp"
@@ -62,7 +62,7 @@
         android:layout_marginRight="88dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,7 +75,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/regist_password"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -86,7 +86,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/regist_password2"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toTopOf="@+id/passagain"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -97,11 +97,11 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/regist_username"
-        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -123,11 +123,11 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/birthday"
-        app:layout_constraintBottom_toTopOf="@+id/editText7"
+        app:layout_constraintBottom_toTopOf="@+id/birthday"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/birthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -137,14 +137,14 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/regist_birth"
-        android:inputType="textPersonName"
+        android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -159,7 +159,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/passagain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -183,7 +183,7 @@
         android:layout_marginRight="88dp"
         android:layout_marginBottom="24dp"
         android:text="@string/regist_checkbox"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/registbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent" />
