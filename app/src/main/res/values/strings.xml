@@ -28,5 +28,12 @@
     <string name="login_rg">還沒註冊?</string>
     <string name="login_or">或是</string>
     <string name="login_storeregist">店家註冊</string>
+    ----------------------------------------------------------------------------------------------
+    //帳號驗證
+    <string name="verification">帳號驗證</string>
+    <string name="verification_num">驗證碼</string>
+    <string name="verification_button">完成</string>
+    ----------------------------------------------------------------------------------------------
+    //店家註冊
 </resources>
 
