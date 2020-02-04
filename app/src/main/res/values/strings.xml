@@ -19,6 +19,12 @@
     <string name="birthday">生日</string>
     <string name="regist_birth">西元/月/日</string>
     <string name="regist_checkbox">我同意服務條款及隱私權政策</string>
-
+    ----------------------------------------------------------------------------------------------
+    //登入
+    <string name="login">登入</string>
+    <string name="login_phone">手機</string>
+    <string name="login_password">密碼</string>
+    <string name="login_fp">忘記密碼?</string>
+    <string name="login_rg">還沒註冊?</string>
 </resources>
 
