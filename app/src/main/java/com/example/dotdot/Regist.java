@@ -20,7 +20,6 @@ public class Regist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         phone=(EditText)findViewById(R.id.phone);
         password=(EditText)findViewById(R.id.password);
         passagain=(EditText)findViewById(R.id.passagain);
