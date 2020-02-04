@@ -14,7 +14,7 @@
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Forgetpassword" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity">.Regist
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
