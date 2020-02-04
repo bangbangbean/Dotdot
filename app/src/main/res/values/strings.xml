@@ -35,5 +35,12 @@
     <string name="verification_button">完成</string>
     ----------------------------------------------------------------------------------------------
     //店家註冊
+    <string name="storeregist">註冊</string>
+    <string name="storeregist_name">店名</string>
+    <string name="storeregist_address">地址</string>
+    <string name="storeregist_phone">電話</string>
+    <string name="storeregist_certificate">營業證明</string>
+    <string name="storeregist_checkbox">我同意服務條款及隱私權政策</string>
+    <string name="storeregist_join">申請加入</string>
 </resources>
 
