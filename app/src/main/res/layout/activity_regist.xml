@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="568dp"
         android:text="@string/regist"
         android:textColor="#3F51B5"
@@ -122,7 +122,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
-        android:text="@string/regist_birth"
+        android:text="@string/birthday"
         app:layout_constraintBottom_toTopOf="@+id/editText7"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -136,6 +136,7 @@
         android:layout_marginRight="88dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
+        android:hint="@string/regist_birth"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintEnd_toEndOf="parent"

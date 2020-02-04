@@ -16,7 +16,8 @@
     <string name="regist_password">密碼</string>
     <string name="regist_password2">再次輸入密碼</string>
     <string name="regist_phone">手機</string>
-    <string name="regist_birth">生日(西元/月/日)</string>
+    <string name="birthday">生日</string>
+    <string name="regist_birth">西元/月/日</string>
     <string name="regist_checkbox">我同意服務條款及隱私權政策</string>
 
 </resources>
