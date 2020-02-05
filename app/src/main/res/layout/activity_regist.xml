@@ -137,7 +137,7 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="@string/regist_birth"
-        android:inputType="time"
+        android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"

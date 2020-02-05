@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
         <activity android:name=".Verification"></activity>
+        <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
-        <activity android:name=".Login" />
-        <activity android:name=".Regist" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Forgetpassword" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login" />
+        <activity android:name=".Regist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
