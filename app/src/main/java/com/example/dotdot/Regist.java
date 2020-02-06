@@ -53,8 +53,6 @@ public class Regist extends AppCompatActivity {
         username=(EditText)findViewById(R.id.username);
         birthday=(EditText)findViewById(R.id.birthday);
 
-
-
     }
     public void Creatmember() {
 
