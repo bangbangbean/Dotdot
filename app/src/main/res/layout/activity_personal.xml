@@ -87,7 +87,7 @@
                         android:text="@string/personal_name" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"
@@ -117,7 +117,7 @@
                         android:text="@string/personal_birth" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/birthday"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"
@@ -145,7 +145,7 @@
                         android:text="@string/personal_phone"/>
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"
@@ -173,7 +173,7 @@
                         android:gravity="center_vertical|left" />
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/logoutbt"
                         android:layout_width="253dp"
                         android:layout_height="60dp"
                         android:layout_weight="2"
@@ -181,7 +181,9 @@
                         android:gravity="center"
                         android:text="@string/personal_logout"
                         android:textColor="@color/white"
-                        android:textSize="25dp" />
+                        android:textSize="25dp"
+                        android:onClick="onclick"
+                        tools:ignore="OnClick" />
 
                     <TextView
                         android:layout_width="wrap_content"

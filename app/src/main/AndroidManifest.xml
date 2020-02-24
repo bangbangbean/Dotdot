@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen">
         <activity android:name=".Personal"></activity>
+        <activity android:name=".Regist" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
@@ -17,7 +18,7 @@
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Login" />
-        <activity android:name=".Regist">
+        <activity android:name=".test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
