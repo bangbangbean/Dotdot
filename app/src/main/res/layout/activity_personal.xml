@@ -114,10 +114,10 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical|right"
                         android:paddingRight="10dp"
-                        android:text="@string/personal_birth" />
+                        android:text="@string/regist_password" />
 
                     <TextView
-                        android:id="@+id/birthday"
+                        android:id="@+id/password"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"

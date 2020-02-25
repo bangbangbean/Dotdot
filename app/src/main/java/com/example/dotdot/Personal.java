@@ -25,7 +25,7 @@ import static com.example.dotdot.Member.*;
 
 public class Personal extends AppCompatActivity {
     private TextView showusername;
-    private TextView showbirthday;
+    private TextView showpassword;
     private TextView showphone;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
@@ -34,37 +34,31 @@ public class Personal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
         showusername = (TextView) findViewById(R.id.username);
-        showbirthday = (TextView) findViewById(R.id.birthday);
+        showpassword = (TextView) findViewById(R.id.password);
         showphone = (TextView) findViewById(R.id.phone);
 
-//        memRef.whereEqualTo("name","王小名")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        String username = Member.getName();
-//                        String birthday = Member.getBirthday();
-//                        String phone = Member.getPhone();
-//
-//                        showusername.setText(username);
-//                        showbirthday.setText(birthday);
-//                        showphone.setText(phone);
-//                    }
-//                });
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        Member mem = (Member) queryDocumentSnapshots.toObjects(Member.class);
-//
-//                        String username = mem.getName();
-//                        String birthday = mem.getBirthday();
-//                        String phone = mem.getPhone();
-//
-//                        showusername.setText(username);
-//                        showbirthday.setText(birthday);
-//                        showphone.setText(phone);
-//                    }
-//                });
+    }
+
+    protected void onStart(){
+        super.onStart();
+        memRef.whereEqualTo("name","王小名")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            Member mem = documentSnapshot.toObject(Member.class);
+                            String name = mem.getName();
+                            String password = mem.getPassword();
+                            String phone = mem.getPhone();
+
+                            showusername.setText(name);
+                            showpassword.setText(password);
+                            showphone.setText(phone);
+                        }
+
+                    }
+                });
     }
 
 }

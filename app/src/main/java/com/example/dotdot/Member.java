@@ -5,6 +5,9 @@ public class Member {
     private String phone;
     private String password;
 
+    public Member() {
+
+    }
     public Member(String name,String password,String phone){
         this.name = name;
         this.phone = phone;
