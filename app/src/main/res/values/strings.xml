@@ -51,5 +51,7 @@
     <string name="personal_phone">手機 : </string>
     <string name="personal_logout">登出</string>
     <string name="title_activity_map">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_store_index">Map</string>
 </resources>
 
