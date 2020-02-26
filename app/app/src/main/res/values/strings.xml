@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Dotdot</string>
+    --------------------------------------------------------------------------------------------
+    //忘記密碼
+    <string name="fp_forgetpassword">忘記密碼</string>
+    <string name="fp_reset">重設密碼</string>
+    <string name="fp_title">手機號碼</string>
+    <string name="fp_title_1">驗證碼</string>
+    <string name="fp_title_2">輸入新密碼</string>
+    <string name="fp_title_3">再次輸入</string>
+    <string name="fp_comfrim">確定</string>
+    ----------------------------------------------------------------------------------------------
+    //註冊
+    <string name="regist">註冊</string>
+    <string name="regist_username">使用者名稱</string>
+    <string name="regist_password">密碼</string>
+    <string name="regist_password2">再次輸入密碼</string>
+    <string name="regist_phone">手機</string>
+    <string name="birthday">生日</string>
+    <string name="regist_birth">西元/月/日</string>
+    <string name="regist_checkbox">我同意服務條款及隱私權政策</string>
+    ----------------------------------------------------------------------------------------------
+    //登入
+    <string name="login">登入</string>
+    <string name="login_phone">手機</string>
+    <string name="login_password">密碼</string>
+    <string name="login_fp">忘記密碼?</string>
+    <string name="login_rg">還沒註冊?</string>
+    <string name="login_or">或是</string>
+    <string name="login_storeregist">店家註冊</string>
+    ----------------------------------------------------------------------------------------------
+    //帳號驗證
+    <string name="verification">帳號驗證</string>
+    <string name="verification_num">驗證碼</string>
+    <string name="verification_button">完成</string>
+    ----------------------------------------------------------------------------------------------
+    //店家註冊
+    <string name="storeregist">註冊</string>
+    <string name="storeregist_name">店名</string>
+    <string name="storeregist_address">地址</string>
+    <string name="storeregist_phone">電話</string>
+    <string name="storeregist_certificate">營業證明</string>
+    <string name="storeregist_checkbox">我同意服務條款及隱私權政策</string>
+    <string name="storeregist_join">申請加入</string>
+</resources>
+

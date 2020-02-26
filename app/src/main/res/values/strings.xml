@@ -42,5 +42,16 @@
     <string name="storeregist_certificate">營業證明</string>
     <string name="storeregist_checkbox">我同意服務條款及隱私權政策</string>
     <string name="storeregist_join">申請加入</string>
+    ----------------------------------------------------------------------------------------------
+    //個人資料
+    <string name="personal_account">帳戶</string>
+    <string name="personal_edit">編輯</string>
+    <string name="personal_name">姓名 : </string>
+    <string name="personal_birth">生日 : </string>
+    <string name="personal_phone">手機 : </string>
+    <string name="personal_logout">登出</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_store_index">Map</string>
 </resources>
 
