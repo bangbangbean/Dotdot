@@ -56,7 +56,6 @@ public class Personal extends AppCompatActivity {
                             showpassword.setText(password);
                             showphone.setText(phone);
                         }
-
                     }
                 });
     }
