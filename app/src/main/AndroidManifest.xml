@@ -33,15 +33,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".test"
+            >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".test" />
+
         <activity android:name=".Personal" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
@@ -51,7 +47,8 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Login" />
         <activity android:name=".Regist" />
-        <activity android:name=".test">
+        <activity android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
