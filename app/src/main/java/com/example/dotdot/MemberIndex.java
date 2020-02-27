@@ -16,7 +16,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         addmarker();
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.style));
 
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -73,6 +76,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
             options.position(latLng);
             options.title("position -" + i );
             options.snippet("hello -" + i);
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop));
             mMap.addMarker(options);
         }
 
@@ -86,7 +90,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
             public void onSuccess(Location location) {
                 if (location != null){
                     LatLng mylocation = new LatLng(location.getLatitude(),location.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation,12));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(data.fju,15));
 
                 }
             }
