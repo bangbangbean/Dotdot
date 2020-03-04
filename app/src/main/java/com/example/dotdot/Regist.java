@@ -52,11 +52,11 @@ public class Regist extends AppCompatActivity {
         registbt = (Button) findViewById(R.id.registbt);
         registbt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                inputphone=(EditText)findViewById(R.id.phone);
-                inputpassword=(EditText)findViewById(R.id.password);
-                inputpassagain=(EditText)findViewById(R.id.passagain);
-                inputname=(EditText)findViewById(R.id.username);
-                inputbirthday=(EditText)findViewById(R.id.birthday);
+                inputphone = (EditText) findViewById(R.id.phone);
+                inputpassword = (EditText) findViewById(R.id.password);
+                inputpassagain = (EditText) findViewById(R.id.passagain);
+                inputname = (EditText) findViewById(R.id.username);
+                inputbirthday = (EditText) findViewById(R.id.birthday);
 
                 String inputph = inputphone.getText().toString();
                 String inputpass = inputpassword.getText().toString();
@@ -66,51 +66,53 @@ public class Regist extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                     Member mem = documentSnapshot.toObject(Member.class);
                                     String phone = mem.getPhone();
-                                    if(phone.equals(inputph)){
-                                        onlyacc+=1;
+                                    if (phone.equals(inputph)) {
+                                        onlyacc += 1;
                                     }
                                 }
                             }
                         });
 
-                if (onlyacc != 0){
+                if (onlyacc != 0) {
                     onlyacc = 1;
-                    Toast.makeText(Regist.this,"此手機號碼已有人使用",Toast.LENGTH_SHORT).show();
-                }
-                else if(inputphone.length()==0 || inputpassword.length()==0 || inputpassagain.length()==0
-                        || inputname.length()==0){
+                    Toast.makeText(Regist.this, "此手機號碼已有人使用", Toast.LENGTH_LONG).show();
+                } else if (inputphone.length() == 0 || inputpassword.length() == 0 || inputpassagain.length() == 0
+                        || inputname.length() == 0) {
                     allinput = 1;
-                    Toast.makeText(Regist.this,"註冊欄位不得為空",Toast.LENGTH_SHORT).show();
-                }
-                else if(inputpassword.length()<8){
+                    Toast.makeText(Regist.this, "註冊欄位不得為空", Toast.LENGTH_LONG).show();
+                } else if (inputpassword.length() < 8) {
                     passlen = 1;
-                    Toast.makeText(Regist.this,"密碼長度小於8個字元",Toast.LENGTH_SHORT).show();
-                }
-                else if(!inputpass.equals(inputpassag)){
+                    Toast.makeText(Regist.this, "密碼長度小於8個字元", Toast.LENGTH_LONG).show();
+                } else if (!inputpass.equals(inputpassag)) {
                     passconfirm = 1;
-                    Toast.makeText(Regist.this,"密碼與確認密碼輸入不一致",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Regist.this, "密碼與確認密碼輸入不一致", Toast.LENGTH_LONG).show();
                 }
 
-                if (allinput==0 && onlyacc==0 && passlen==0 && passconfirm==0){
+                if (allinput == 0 && onlyacc == 0 && passlen == 0 && passconfirm == 0) {
                     //新增資料到資料庫
                     Creatmember();
 
-                    Intent intent= new Intent(Regist.this, Personal.class);
+                    Intent intent = new Intent(Regist.this, Personal.class);
                     startActivity(intent);
                 }
-                onlyacc = 0;allinput = 0;passlen = 0;;passconfirm = 0;//重製變數
+                onlyacc = 0;
+                allinput = 0;
+                passlen = 0;
+                ;
+                passconfirm = 0;//重製變數
             }
         });
     }
+
     public void Creatmember() {
         String phone = inputphone.getText().toString();
         String password = inputpassword.getText().toString();
         String name = inputname.getText().toString();
 
-        Member account = new Member(name,password,phone);
+        Member account = new Member(name, password, phone);
         memRef.add(account);
     }
 }
