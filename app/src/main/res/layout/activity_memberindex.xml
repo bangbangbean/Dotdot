@@ -10,16 +10,45 @@
     <Button
         android:id="@+id/get"
         android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/bg_round_button"
+        android:background="@drawable/dot_btn_bg"
         android:gravity="center"
         android:text="@string/getpoint"
         android:textColor="@color/white"
         android:textSize="30sp"
+        android:shadowColor="#0D1435"
+        android:shadowDx="5"
+        android:shadowDy="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:id="@+id/notice"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/notice"
+        android:shadowColor="#556CFF"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        app:layout_constraintStart_toEndOf="@id/get"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:id="@+id/home"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/home"
+        android:shadowColor="#556CFF"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        app:layout_constraintEnd_toStartOf="@id/get"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <fragment
         android:id="@+id/map"
