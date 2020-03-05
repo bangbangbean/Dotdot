@@ -60,7 +60,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         else
         {
             getMyLocation();
-            Toast.makeText(this,"Permission is allowed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"登入成功",Toast.LENGTH_LONG).show();
         }
 
         mMap.setMyLocationEnabled(true);

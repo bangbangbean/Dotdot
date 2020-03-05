@@ -16,8 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import javax.annotation.Nullable;
-
 
 public class Login extends AppCompatActivity {
 
@@ -31,18 +29,26 @@ public class Login extends AppCompatActivity {
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
         EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
-        Button loginbt = (Button) findViewById(R.id.loginbt);
-//        Button registbt = (Button) findViewById(R.id.registbt);
-//
-//        registbt.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent= new Intent(Login.this, Regist.class);
-//                startActivity(intent);
-//            }
-//        });
+        Button loginbtn = (Button) findViewById(R.id.loginbt);
+        TextView registbtn = (TextView) findViewById(R.id.registbtn);
+        TextView forgetPassbtn = (TextView) findViewById(R.id.forgetPassbtn);
+
+        registbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent= new Intent(Login.this, Regist.class);
+                startActivity(intent);
+            }
+        });
+
+        forgetPassbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent= new Intent(Login.this, Forgetpassword.class);
+                startActivity(intent);
+            }
+        });
 
 
-        loginbt.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String phone = inputPhone.getText().toString();
                 String password = inputPassword.getText().toString();
@@ -55,13 +61,11 @@ public class Login extends AppCompatActivity {
                                     Member mem = documentSnapshot.toObject(Member.class);
                                     String pass = mem.getPassword();
                                     if (pass.equals(password)){
-                                        Toast.makeText(Login.this,"登入成功",Toast.LENGTH_SHORT).show();
                                         Intent intent= new Intent(Login.this, MemberIndex.class);
                                         startActivity(intent);
                                     }else {
                                         Toast.makeText(Login.this,"登入失敗",Toast.LENGTH_LONG).show();
                                     }
-                                    Toast.makeText(Login.this,"登入失敗",Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

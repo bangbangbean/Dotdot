@@ -1,32 +1,21 @@
 package com.example.dotdot;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.UserData;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
-
-
-import io.opencensus.tags.Tag;
 
 
 public class Regist extends AppCompatActivity {
@@ -36,7 +25,6 @@ public class Regist extends AppCompatActivity {
     private EditText inputpassagain;
     private EditText inputname;
     private EditText inputbirthday;
-    private Button registbt;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
     int onlyacc = 0;//判斷帳號有沒有重複
@@ -48,9 +36,32 @@ public class Regist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regist);
+        Button registbtn = (Button) findViewById(R.id.registbtn);
+        CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
+        //隱藏註冊btn
+        registbtn.setVisibility(View.GONE);
+        //CheckBox狀態改變觸發動作
+        checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                //判斷CheckBox是否有勾選，同CheckBox.isChecked()
+                if(isChecked)
+                {
+                    //CheckBox狀態 : 已勾選，顯示註冊btn
+                    registbtn.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    //CheckBox狀態 : 未勾選，隱藏註冊btn
+                    registbtn.setVisibility(View.GONE);
+                }
+            }
+        });
 
-        registbt = (Button) findViewById(R.id.registbt);
-        registbt.setOnClickListener(new View.OnClickListener() {
+
+        registbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 inputphone = (EditText) findViewById(R.id.phone);
                 inputpassword = (EditText) findViewById(R.id.password);
@@ -106,6 +117,7 @@ public class Regist extends AppCompatActivity {
             }
         });
     }
+
 
     public void Creatmember() {
         String phone = inputphone.getText().toString();

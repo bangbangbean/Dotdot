@@ -25,7 +25,7 @@
 
 
     <Button
-        android:id="@+id/registbt"
+        android:id="@+id/registbtn"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginBottom="72dp"
@@ -114,7 +114,7 @@
         android:layout_marginRight="88dp"
         android:layout_marginBottom="24dp"
         android:text="@string/storeregist_checkbox"
-        app:layout_constraintBottom_toTopOf="@+id/registbt"
+        app:layout_constraintBottom_toTopOf="@+id/registbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent" />
