@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.FullScreen">
+        android:theme="@style/AppTheme.FullScreen"
+        android:networkSecurityConfig="@xml/network_security_config">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -30,10 +31,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index"></activity>
-        <activity android:name=".test"></activity>
+        <activity android:name=".StoreIndex" android:label="@string/title_activity_store_index" />
+        <activity android:name=".test" />
         <activity android:name=".Personal" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
@@ -41,11 +40,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Login" />
         <activity android:name=".Regist" />
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+        <activity android:name=".MemberIndex" android:label="@string/title_activity_maps" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

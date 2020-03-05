@@ -29,6 +29,7 @@ public class Personal extends AppCompatActivity {
     private TextView showphone;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +40,14 @@ public class Personal extends AppCompatActivity {
 
     }
 
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
-        memRef.whereEqualTo("name","王小名")
+        memRef.whereEqualTo("name", "王小名")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Member mem = documentSnapshot.toObject(Member.class);
                             String name = mem.getName();
                             String password = mem.getPassword();
@@ -56,7 +57,6 @@ public class Personal extends AppCompatActivity {
                             showpassword.setText(password);
                             showphone.setText(phone);
                         }
-
                     }
                 });
     }

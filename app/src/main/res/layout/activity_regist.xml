@@ -154,6 +154,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="密碼長度至少8個字元"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -186,6 +187,7 @@
         app:layout_constraintBottom_toTopOf="@+id/registbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

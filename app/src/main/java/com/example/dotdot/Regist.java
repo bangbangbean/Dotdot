@@ -10,11 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.BitSet;
 import java.util.HashMap;
@@ -26,12 +31,18 @@ import io.opencensus.tags.Tag;
 
 public class Regist extends AppCompatActivity {
 
-    private EditText phone;
-    private EditText password;
-    private EditText passagain;
-    private EditText username;
-    private EditText birthday;
+    private EditText inputphone;
+    private EditText inputpassword;
+    private EditText inputpassagain;
+    private EditText inputname;
+    private EditText inputbirthday;
     private Button registbt;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference memRef = db.collection("Member");
+    int onlyacc = 0;//判斷帳號有沒有重複
+    int allinput = 0;//所有欄位都已填寫
+    int passconfirm = 0;//密碼跟確認密碼輸入一致
+    int passlen = 0;//密碼長度至少8個
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,72 +52,67 @@ public class Regist extends AppCompatActivity {
         registbt = (Button) findViewById(R.id.registbt);
         registbt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Creatmember();
-                Intent intent= new Intent(Regist.this, Forgetpassword.class);
-                startActivity(intent);
+                inputphone = (EditText) findViewById(R.id.phone);
+                inputpassword = (EditText) findViewById(R.id.password);
+                inputpassagain = (EditText) findViewById(R.id.passagain);
+                inputname = (EditText) findViewById(R.id.username);
+                inputbirthday = (EditText) findViewById(R.id.birthday);
+
+                String inputph = inputphone.getText().toString();
+                String inputpass = inputpassword.getText().toString();
+                String inputpassag = inputpassagain.getText().toString();
+
+                memRef.get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                    Member mem = documentSnapshot.toObject(Member.class);
+                                    String phone = mem.getPhone();
+                                    if (phone.equals(inputph)) {
+                                        onlyacc += 1;
+                                    }
+                                }
+                            }
+                        });
+
+                if (onlyacc != 0) {
+                    onlyacc = 1;
+                    Toast.makeText(Regist.this, "此手機號碼已有人使用", Toast.LENGTH_LONG).show();
+                } else if (inputphone.length() == 0 || inputpassword.length() == 0 || inputpassagain.length() == 0
+                        || inputname.length() == 0) {
+                    allinput = 1;
+                    Toast.makeText(Regist.this, "註冊欄位不得為空", Toast.LENGTH_LONG).show();
+                } else if (inputpassword.length() < 8) {
+                    passlen = 1;
+                    Toast.makeText(Regist.this, "密碼長度小於8個字元", Toast.LENGTH_LONG).show();
+                } else if (!inputpass.equals(inputpassag)) {
+                    passconfirm = 1;
+                    Toast.makeText(Regist.this, "密碼與確認密碼輸入不一致", Toast.LENGTH_LONG).show();
+                }
+
+                if (allinput == 0 && onlyacc == 0 && passlen == 0 && passconfirm == 0) {
+                    //新增資料到資料庫
+                    Creatmember();
+
+                    Intent intent = new Intent(Regist.this, Personal.class);
+                    startActivity(intent);
+                }
+                onlyacc = 0;
+                allinput = 0;
+                passlen = 0;
+                ;
+                passconfirm = 0;//重製變數
             }
         });
-
-        phone=(EditText)findViewById(R.id.phone);
-        password=(EditText)findViewById(R.id.password);
-        passagain=(EditText)findViewById(R.id.passagain);
-        username=(EditText)findViewById(R.id.username);
-        birthday=(EditText)findViewById(R.id.birthday);
-
     }
+
     public void Creatmember() {
+        String phone = inputphone.getText().toString();
+        String password = inputpassword.getText().toString();
+        String name = inputname.getText().toString();
 
-//        boolean pho = false;//手機號碼驗證
-//        boolean pass = false;//密碼驗證
-//
-//        int reg=0;
-//        int nu=0;
-//        int pas=0;
-//        int pasch=0;
-//        for (int i =0;i<password.getTextSize();i=i+1){
-//            if (account.equals(accr.get(i))){
-//                pho=true;
-//                break;
-//            }
-//        }
-//
-////            test.setText("帳號是: "+account+"\n"+"信箱是: "+email+"\n"+"密碼是: "+pass+"\n"+"確認密碼是: "+chpass);
-//
-//        if(reg==1){
-//            test2.setText("Warning : 註冊帳號已有人使用");
-//        }
-//        else if ( phone.length()==0 || account.length()==0 || pass.length()==0 || chpass.length()==0){
-//            nu=1;
-//            test2.setText(" Warning : 註冊欄位不得為空");
-//
-//        }
-//        else if (pass.length()<6){
-//            pas=1;
-//            test2.setText("Warning : 密碼至少為6碼");
-//        }
-//        else if (pass.equals(chpass)==false){
-//            pasch=1;
-//            test2.setText("Warning : 密碼與確認密碼不符");
-//        }
-
-        String phonee=phone.getText().toString();
-        String birthdayy=birthday.getText().toString();
-        String passwordd=password.getText().toString();
-        String usernamee=username.getText().toString();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String,Object> Member = new HashMap<>();
-        Member.put("birth",birthdayy);
-        Member.put("password",passwordd);
-        Member.put("name",usernamee);
-        Member.put("phone",phonee);
-        db.collection("Member")
-                .add(Member)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentReference> task) {
-
-                    }
-                });
+        Member account = new Member(name, password, phone);
+        memRef.add(account);
     }
 }

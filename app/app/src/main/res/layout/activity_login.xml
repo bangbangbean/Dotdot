@@ -46,7 +46,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/login_phone"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -74,7 +74,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/login_password"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -88,7 +88,7 @@
         android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/loginbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -106,7 +106,7 @@
         app:layout_constraintEnd_toStartOf="@+id/editText11"
         app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/loginbt"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
