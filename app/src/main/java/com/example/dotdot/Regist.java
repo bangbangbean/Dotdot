@@ -95,7 +95,7 @@ public class Regist extends AppCompatActivity {
                     //新增資料到資料庫
                     Creatmember();
 
-                    Intent intent = new Intent(Regist.this, Personal.class);
+                    Intent intent = new Intent(Regist.this, Login.class);
                     startActivity(intent);
                 }
                 onlyacc = 0;

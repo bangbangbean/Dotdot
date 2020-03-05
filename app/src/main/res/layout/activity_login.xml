@@ -33,7 +33,7 @@
         android:text="@string/login"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText11"
+        app:layout_constraintBottom_toTopOf="@+id/registbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
@@ -103,14 +103,14 @@
         android:inputType="textPersonName"
         android:text="@string/login_fp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText11"
+        app:layout_constraintEnd_toStartOf="@+id/registbt"
         app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginbt"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText11"
+        android:id="@+id/registbt"
         android:layout_width="92dp"
         android:layout_height="44dp"
         android:layout_marginEnd="72dp"

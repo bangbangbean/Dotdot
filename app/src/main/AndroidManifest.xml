@@ -40,9 +40,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Regist" />
+        <activity android:name=".Login" />
         <activity android:name=".MemberIndex" android:label="@string/title_activity_maps" />
-        <activity android:name=".Login">
+        <activity android:name=".Regist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

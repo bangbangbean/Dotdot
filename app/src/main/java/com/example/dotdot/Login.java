@@ -32,7 +32,14 @@ public class Login extends AppCompatActivity {
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
         EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
         Button loginbt = (Button) findViewById(R.id.loginbt);
-
+//        Button registbt = (Button) findViewById(R.id.registbt);
+//
+//        registbt.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent= new Intent(Login.this, Regist.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         loginbt.setOnClickListener(new View.OnClickListener() {
