@@ -28,7 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 
-public class MemberIndex extends FragmentActivity implements OnMapReadyCallback {
+public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, PopupMenu.OnMenuItemClickListener {
 
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION =1;
@@ -117,8 +117,16 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         }
     }
 
+    public void showPopup(View v){
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener( this);
+        popup.inflate(R.menu.menu_test);
+        popup.show();
+    }
 
 
-
-
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        return false;
+    }
 }
