@@ -24,6 +24,7 @@ public class test extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference accountRef = db.collection("Member").document();
     private CollectionReference memRef = db.collection("Member");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +41,11 @@ public class test extends AppCompatActivity {
         super.onStart();
 //        memRef.addSnapshotListener(this,new EventListener<QuerySnapshot>() {
 //            @Override
-//            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+//            public void onEvent(QuerySnapshot queryDocumentSnapshots,FirebaseFirestoreException e) {
 //                if (e != null) {
 //                    return;
 //                }
-//                String data = "";
+//               String data = "";
 //                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
 //                    Member mem = documentSnapshot.toObject(Member.class);
 //
@@ -63,11 +64,13 @@ public class test extends AppCompatActivity {
         String name = nameinput.getText().toString();
         String password = passwordinput.getText().toString();
         String phone = phoneinput.getText().toString();
+
         Member account = new Member(name,password,phone);
-        memRef.add(account);
+
+        memRef.document("BFyN264km5dWWtTPYivZ").collection("loyalty_card").add(account);
     }
     public void getAccount(View v){
-        memRef.get()
+        memRef.document("BFyN264km5dWWtTPYivZ").collection("loyalty_card").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -83,4 +86,5 @@ public class test extends AppCompatActivity {
                     }
                 });
     }
+
 }
