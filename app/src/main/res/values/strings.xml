@@ -53,5 +53,8 @@
     <string name="title_activity_map">Map</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_store_index">Map</string>
+    ----------------------------------------------------------------------------------------------
+    //地圖
+    <string name="getpoint">Dot!</string>
 </resources>
 
