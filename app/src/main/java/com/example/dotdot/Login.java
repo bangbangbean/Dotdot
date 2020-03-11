@@ -28,14 +28,22 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
-        EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
+        EditText inputPhone = (EditText) findViewById(R.id.inputStore);
         Button loginbtn = (Button) findViewById(R.id.loginbt);
         TextView registbtn = (TextView) findViewById(R.id.registbtn);
         TextView forgetPassbtn = (TextView) findViewById(R.id.forgetPassbtn);
+        TextView storebtn = (TextView)findViewById(R.id.storebtn);
 
         registbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent= new Intent(Login.this, Regist.class);
+                startActivity(intent);
+            }
+        });
+
+        storebtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent= new Intent(Login.this, Storeregist.class);
                 startActivity(intent);
             }
         });

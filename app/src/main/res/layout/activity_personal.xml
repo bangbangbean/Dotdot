@@ -87,7 +87,7 @@
                         android:text="@string/personal_name" />
 
                     <TextView
-                        android:id="@+id/username"
+                        android:id="@+id/inputPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"
@@ -145,7 +145,7 @@
                         android:text="@string/personal_phone"/>
 
                     <TextView
-                        android:id="@+id/phone"
+                        android:id="@+id/inputStore"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.4"

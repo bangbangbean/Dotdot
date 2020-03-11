@@ -41,19 +41,14 @@ public class Regist extends AppCompatActivity {
         //隱藏註冊btn
         registbtn.setVisibility(View.GONE);
         //CheckBox狀態改變觸發動作
-        checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener()
-        {
+        checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //判斷CheckBox是否有勾選，同CheckBox.isChecked()
-                if(isChecked)
-                {
+                if(isChecked) {
                     //CheckBox狀態 : 已勾選，顯示註冊btn
                     registbtn.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     //CheckBox狀態 : 未勾選，隱藏註冊btn
                     registbtn.setVisibility(View.GONE);
                 }
@@ -63,10 +58,10 @@ public class Regist extends AppCompatActivity {
 
         registbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                inputphone = (EditText) findViewById(R.id.phone);
+                inputphone = (EditText) findViewById(R.id.inputStore);
                 inputpassword = (EditText) findViewById(R.id.password);
                 inputpassagain = (EditText) findViewById(R.id.passagain);
-                inputname = (EditText) findViewById(R.id.username);
+                inputname = (EditText) findViewById(R.id.inputPhone);
                 inputbirthday = (EditText) findViewById(R.id.birthday);
 
                 String inputph = inputphone.getText().toString();
@@ -112,7 +107,6 @@ public class Regist extends AppCompatActivity {
                 onlyacc = 0;
                 allinput = 0;
                 passlen = 0;
-                ;
                 passconfirm = 0;//重製變數
             }
         });

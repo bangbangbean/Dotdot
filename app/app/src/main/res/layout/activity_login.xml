@@ -46,7 +46,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/login_phone"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
+        app:layout_constraintBottom_toTopOf="@+id/inputStore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

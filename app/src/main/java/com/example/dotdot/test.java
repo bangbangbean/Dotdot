@@ -1,32 +1,18 @@
 package com.example.dotdot;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.provider.DocumentsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 
 
 public class test extends AppCompatActivity {
@@ -45,7 +31,7 @@ public class test extends AppCompatActivity {
 
         nameinput = findViewById(R.id.name);
         passwordinput = findViewById(R.id.password);
-        phoneinput = findViewById(R.id.phone);
+        phoneinput = findViewById(R.id.inputStore);
         getinfo = findViewById(R.id.getinfo);
     }
 
