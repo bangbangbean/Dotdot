@@ -2,6 +2,7 @@ package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.sql.Timestamp;
 
 
 public class test extends AppCompatActivity {
@@ -66,23 +69,29 @@ public class test extends AppCompatActivity {
         String phone = phoneinput.getText().toString();
 
         Member account = new Member(name,password,phone);
+        SharedPreferences session = getSharedPreferences("save_useraccount",MODE_PRIVATE);
+        SharedPreferences.Editor editor=session.edit();
+        String who = session.getString("user_id","目前沒人登入");
 
-        memRef.document("BFyN264km5dWWtTPYivZ").collection("loyalty_card").add(account);
+        memRef.document(who).collection("record").add(account);
     }
     public void getAccount(View v){
-        memRef.document("BFyN264km5dWWtTPYivZ").collection("loyalty_card").get()
+        SharedPreferences session = getSharedPreferences("save_useraccount",MODE_PRIVATE);
+        SharedPreferences.Editor editor=session.edit();
+        String who = session.getString("user_id","目前沒人登入");
+        memRef.document(who).collection("record").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        String date = "";
+                        String data = "";
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                             Member mem = documentSnapshot.toObject(Member.class);
                             String name = mem.getName();
                             String password = mem.getPassword();
                             String phone = mem.getPhone();
-                            date += "name:" + name + "\npassword:" + password + "\nphone:" + phone + "\n\n" ;
+                            data += "name:" + name + "\npassword:" + password + "\nphone:" + phone + "\n\n" ;
                         }
-                        getinfo.setText(date);
+                        getinfo.setText(data);
                     }
                 });
     }
