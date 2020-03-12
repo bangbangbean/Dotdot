@@ -33,9 +33,8 @@
 
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index"
-            ></activity>
-
+            android:label="@string/title_activity_store_index"></activity>
+        <activity android:name=".test"></activity>
         <activity android:name=".Personal" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
@@ -43,19 +42,17 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".test" />
+        <activity android:name=".Login" />
         <activity android:name=".Regist" />
-        <activity android:name=".Login"
-            >
+        <activity
+            android:name=".MemberIndex"
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>
