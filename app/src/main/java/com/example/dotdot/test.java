@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.sql.Timestamp;
+
 
 public class test extends AppCompatActivity {
     private EditText nameinput;
@@ -71,13 +73,13 @@ public class test extends AppCompatActivity {
         SharedPreferences.Editor editor=session.edit();
         String who = session.getString("user_id","目前沒人登入");
 
-        memRef.document(who).collection("loyalty_card").add(account);
+        memRef.document(who).collection("record").add(account);
     }
     public void getAccount(View v){
         SharedPreferences session = getSharedPreferences("save_useraccount",MODE_PRIVATE);
         SharedPreferences.Editor editor=session.edit();
         String who = session.getString("user_id","目前沒人登入");
-        memRef.document(who).collection("loyalty_card").get()
+        memRef.document(who).collection("record").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

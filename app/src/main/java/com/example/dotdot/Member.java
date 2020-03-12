@@ -32,7 +32,6 @@ public class Member {
     public String getPhone() {
         return phone;
     }
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
+
 }

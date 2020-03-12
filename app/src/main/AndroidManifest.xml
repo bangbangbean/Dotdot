@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dotdot">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -32,8 +33,9 @@
 
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index" />
-        <activity android:name=".test" />
+            android:label="@string/title_activity_store_index"
+            ></activity>
+
         <activity android:name=".Personal" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
@@ -41,14 +43,16 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Login">
+        <activity android:name=".test" />
+        <activity android:name=".Regist" />
+        <activity android:name=".Login"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Regist" />
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps" />

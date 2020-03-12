@@ -27,6 +27,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
         final SharedPreferences.Editor editor = session.edit();
 

@@ -24,12 +24,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 import java.util.ArrayList;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, PopupMenu.OnMenuItemClickListener {
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference accountRef = db.collection("Member").document();
+    private CollectionReference memRef = db.collection("Member");
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION =1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
@@ -52,6 +60,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.style));
+        mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
+
 
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
