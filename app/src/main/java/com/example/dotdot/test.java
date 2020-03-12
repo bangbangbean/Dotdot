@@ -83,15 +83,15 @@ public class test extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        String date = "";
+                        String data = "";
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                             Member mem = documentSnapshot.toObject(Member.class);
                             String name = mem.getName();
                             String password = mem.getPassword();
                             String phone = mem.getPhone();
-                            date += "name:" + name + "\npassword:" + password + "\nphone:" + phone + "\n\n" ;
+                            data += "name:" + name + "\npassword:" + password + "\nphone:" + phone + "\n\n" ;
                         }
-                        getinfo.setText(date);
+                        getinfo.setText(data);
                     }
                 });
     }
