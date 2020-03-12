@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/get"
+        android:id="@+id/btn_dot"
         android:layout_width="150dp"
         android:layout_height="64dp"
         android:layout_marginBottom="40dp"
@@ -35,7 +35,7 @@
         android:shadowDy="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/get"
+        app:layout_constraintStart_toEndOf="@id/btn_dot"
         />
 
     <Button
@@ -48,7 +48,7 @@
         android:shadowDx="2"
         android:shadowDy="2"
 
-        app:layout_constraintEnd_toStartOf="@id/get"
+        app:layout_constraintEnd_toStartOf="@id/btn_dot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
 
