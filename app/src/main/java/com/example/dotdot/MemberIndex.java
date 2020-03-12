@@ -2,12 +2,15 @@ package com.example.dotdot;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.TableLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -28,11 +31,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 
-public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, PopupMenu.OnMenuItemClickListener {
+public class MemberIndex extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION =1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
+    Button home;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,17 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         mapFragment.getMapAsync(this);
 
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+
+        home = (Button) findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext() , PopActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
@@ -117,16 +133,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         }
     }
 
-    public void showPopup(View v){
-        PopupMenu popup = new PopupMenu(this, v);
-        popup.setOnMenuItemClickListener( this);
-        popup.inflate(R.menu.menu_test);
-        popup.show();
-    }
 
 
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        return false;
-    }
 }
