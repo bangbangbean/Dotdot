@@ -22,9 +22,10 @@
 
     <style name="AppTheme.CreatCoupon">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
         <item name="android:windowBackground">@drawable/bg_frame</item>
         <item name="android:windowNoTitle">true</item>
+
     </style>
 
     <style name="AppTheme.PopMe">

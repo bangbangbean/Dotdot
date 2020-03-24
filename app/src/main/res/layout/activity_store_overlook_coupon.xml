@@ -32,7 +32,7 @@
         android:background="@color/black" />
 
     <Button
-        android:id="@+id/creatCoupon"
+        android:id="@+id/creatBtn"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginLeft="100dp"

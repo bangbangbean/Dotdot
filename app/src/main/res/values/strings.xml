@@ -66,10 +66,13 @@
     <string name="loyalty_card_color">選擇顏色</string>
     <string name="loyalty_card_save">儲&#160;存&#160;&#160;!</string>
     ----------------------------------------------------------------------------------------------
-    //店家新增集點卡
+    //店家新增優惠卷
     <string name="coupon_title">優惠卷設定</string>
     <string name="coupon_creat">+&#160;新增</string>
-
-
+    <string name="coupon_content">優惠內容</string>
+    <string name="coupon_need">兌換所需點數</string>
+    <string name="coupon_timeRange">活動期限</string>
+    <string name="coupon_save">新&#160;增&#160;&#160;!</string>
+    <string name="coupon_back">先&#160;不&#160;要&#160;&#160;!</string>
 </resources>
 
