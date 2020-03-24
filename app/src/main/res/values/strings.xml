@@ -61,9 +61,14 @@
     //店家新增集點卡
     <string name="loyalty_card_title">集點卡設定</string>
     <string name="loyalty_card_rate">金錢點數比</string>
-    <string name="loyalty_card_dot">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;1&#160;&#160;&#160;&#160;點&#160;&#160;&#160;&#160;&#160;:</string>
+    <string name="loyalty_card_dot">&#160;&#160;&#160;&#160;&#160;&#160;&#160;1&#160;&#160;&#160;&#160;點&#160;&#160;&#160;&#160;&#160;:</string>
     <string name="loyalty_card_dollar">元</string>
     <string name="loyalty_card_color">選擇顏色</string>
+    <string name="loyalty_card_save">儲&#160;存&#160;&#160;!</string>
+    ----------------------------------------------------------------------------------------------
+    //店家新增集點卡
+    <string name="coupon_title">優惠卷設定</string>
+    <string name="coupon_creat">+&#160;新增</string>
 
 
 </resources>
