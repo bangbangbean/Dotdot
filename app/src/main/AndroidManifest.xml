@@ -55,10 +55,13 @@
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Regist" />
+        <activity android:name=".StoreOverlookCoupon"/>
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".StoreOverlookCoupon">
+        <activity
+            android:name=".TransactionRecord">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

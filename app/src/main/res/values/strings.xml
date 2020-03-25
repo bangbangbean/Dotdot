@@ -55,7 +55,7 @@
     //地圖
     <string name="getpoint">Dot!</string>
     <string name="title_activity_map">Map</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">DotDot</string>
     <string name="title_activity_store_index">Map</string>
     ----------------------------------------------------------------------------------------------
     //店家新增集點卡
@@ -65,6 +65,16 @@
     <string name="loyalty_card_dollar">元</string>
     <string name="loyalty_card_color">選擇顏色</string>
     <string name="loyalty_card_save">儲&#160;存&#160;&#160;!</string>
+    -----------------------------------------------------------------------------------------------
+    //會員交易紀錄
+    <string name="recordTxt">交易紀錄</string>
+    <string name="get">獲得</string>
+    <string name="use">使用</string>
+    <string name="coupon">優惠券</string>
+    <string name="dodo">點</string>
+    <string name="zhang">張</string>
+    <string name="bear">熊賀炒飯</string>
+
     ----------------------------------------------------------------------------------------------
     //店家新增優惠卷
     <string name="coupon_title">優惠卷設定</string>
