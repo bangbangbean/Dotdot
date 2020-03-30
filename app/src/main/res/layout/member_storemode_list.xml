@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="416dp"
-        android:layout_height="165dp"
+        android:layout_width="393dp"
+        android:layout_height="164dp"
         android:background="@drawable/bg_frame"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
