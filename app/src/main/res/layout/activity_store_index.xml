@@ -35,8 +35,7 @@
         android:shadowDy="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_dot"
-        />
+        app:layout_constraintStart_toEndOf="@id/btn_dot"/>
 
     <Button
         android:layout_width="72dp"
@@ -47,13 +46,9 @@
         android:shadowColor="#556CFF"
         android:shadowDx="2"
         android:shadowDy="2"
-
         app:layout_constraintEnd_toStartOf="@id/btn_dot"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        />
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <fragment
         android:id="@+id/map"
