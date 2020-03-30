@@ -43,7 +43,7 @@
         android:layout_height="72dp"
         android:id="@+id/home"
         android:layout_marginBottom="35dp"
-        android:background="@drawable/peo"
+        android:background="@drawable/ic_people"
         android:shadowColor="#556CFF"
         android:shadowDx="2"
         android:shadowDy="2"

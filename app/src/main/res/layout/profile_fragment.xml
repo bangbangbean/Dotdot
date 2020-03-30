@@ -4,18 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Personal">
+    tools:context=".Profile"
+    android:background="@drawable/personal_bg">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="725dp"
-        android:layout_height="908dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915"
-        app:srcCompat="@drawable/personal_bg" />
+
 
     <TextView
         android:id="@+id/textView7"
@@ -127,7 +119,7 @@
         android:gravity="center"
         android:text="@string/personal_edit"
         android:textColor="@color/white"
-        android:textSize="40dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.839"
@@ -152,4 +144,3 @@
         app:layout_constraintVertical_bias="0.705" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

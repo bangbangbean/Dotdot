@@ -1,9 +1,13 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -11,24 +15,28 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class Personal extends AppCompatActivity {
+public class Profile extends Fragment {
+
     private TextView showusername;
     private TextView showpassword;
     private TextView showphone;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
+    private View view;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal);
-        showusername = (TextView) findViewById(R.id.inputPhone);
-        showpassword = (TextView) findViewById(R.id.password);
-        showphone = (TextView) findViewById(R.id.inputStore);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.profile_fragment, container, false);
+        showusername = (TextView)view.findViewById(R.id.inputPhone);
+        showpassword = (TextView) view.findViewById(R.id.password);
+        showphone = (TextView) view.findViewById(R.id.inputStore);
+        return view;
     }
 
-    protected void onStart() {
+
+    @Override
+    public void onStart() {
         super.onStart();
         memRef.whereEqualTo("name", "王小名")
                 .get()
@@ -48,5 +56,4 @@ public class Personal extends AppCompatActivity {
                     }
                 });
     }
-
 }

@@ -3,12 +3,18 @@ package com.example.dotdot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class PopActivity extends Activity {
+
+
+    Button btn_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,16 @@ public class PopActivity extends Activity {
         params.y = 25;
 
         getWindow().setAttributes(params);
+
+
+        btn_profile = findViewById(R.id.profilee);
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(PopActivity.this,botnav.class);
+                startActivity(p);
+            }
+        });
 
     }
 }
