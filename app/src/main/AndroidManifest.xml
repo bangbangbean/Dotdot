@@ -10,6 +10,9 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -48,26 +51,32 @@
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index" />
         <activity android:name=".test" />
+        <activity android:name=".Login" />
+        <activity android:name=".Personal" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Login" />
         <activity android:name=".Regist" />
         <activity android:name=".StoreOverlookCoupon"/>
+
+        <activity android:name=".Collectioncard"
+             />
         <activity
             android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".TransactionRecord">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TransactionRecord">
-        </activity>
+
     </application>
 
 </manifest>

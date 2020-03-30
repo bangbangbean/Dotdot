@@ -3,6 +3,7 @@ package com.example.dotdot;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,11 +32,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -47,11 +51,16 @@ import java.util.ArrayList;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+     GoogleMap mMap;
+
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference note = db.collection("Member").document("BFyN264km5dWWtTPYivZ")
+            .collection("loyalty_card").document("3fVoEdfNqgmBlwjgAFMQ");
     Button home;
     Button btn_dot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +75,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
 
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +101,16 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
 
 
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
+
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
+
+
+
 
 
 /** this code is used to get the permission/ check the permission allow or not*/
@@ -116,6 +126,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
 
         mMap.setMyLocationEnabled(true);
 
+
+
     }
 
 
@@ -124,9 +136,25 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         for (int i = 0; i < list.size(); i++) {
             LatLng latLng = list.get(i);
             MarkerOptions options = new MarkerOptions();
+            if(i == 0){
+                options.title("FJU");
+            }
+            else if( i == 1){
+                options.title("椒麻雞大王");
+                note.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Loyalty_card mem = documentSnapshot.toObject(Loyalty_card.class);
+                            String qq = mem.getPoints_owned();
+                            int qqq = Integer.valueOf(qq);
+                            options.snippet(qq);
+                        }
+                    }
+                });
+
+            }
             options.position(latLng);
-            options.title("position -" + i);
-            options.snippet("hello -" + i);
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop));
             mMap.addMarker(options);
         }
