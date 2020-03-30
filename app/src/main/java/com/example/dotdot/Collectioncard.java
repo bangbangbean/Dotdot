@@ -1,6 +1,6 @@
 package com.example.dotdot;
 
-import android.content.SharedPreferences;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -15,13 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Collectioncard extends AppCompatActivity {
-    private static final String KEY_TITLE = "ttitle";
-    private static final String KEY_POINTS = "ppoints";
-
     private TextView title;
     private TextView points;
     private TextView dot1;
@@ -34,7 +28,6 @@ public class Collectioncard extends AppCompatActivity {
     private TextView dot8;
     private TextView dot9;
     private TextView dot10;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storemem = db.collection("store");
     private DocumentReference note = db.collection("Member").document("BFyN264km5dWWtTPYivZ")
@@ -43,9 +36,6 @@ public class Collectioncard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.collectioncard);
-        SharedPreferences session1 = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = session1.edit();
         dot1 = (TextView) findViewById(R.id.Dot1);
         dot2 = (TextView) findViewById(R.id.Dot2);
         dot3 = (TextView) findViewById(R.id.Dot3);
@@ -64,8 +54,6 @@ public class Collectioncard extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-
-
         note.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

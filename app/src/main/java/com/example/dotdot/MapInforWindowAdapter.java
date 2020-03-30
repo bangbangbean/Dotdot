@@ -29,13 +29,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference accountRef = db.collection("Member").document();
-    private DocumentReference pointmem = db.collection("store").document(
-            "nQnT8AAt4NYIRYZFZfAR");
+    private DocumentReference note = db.collection("Member").document("BFyN264km5dWWtTPYivZ")
+            .collection("loyalty_card").document("3fVoEdfNqgmBlwjgAFMQ");
     private Context context;
-    private TextView Message;
-
-
     public MapInforWindowAdapter(Context context) {
         this.context = context;
 
@@ -56,14 +52,12 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
     public View getInfoContents(Marker marker) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_infor_map, null);
-
         TextView tvTitle = view.findViewById(R.id.tvTitle);
+        TextView Message1 = view.findViewById(R.id.tvMessage1);
         tvTitle.setText(marker.getTitle());
 
 
 
         return view;
     }
-
-
 }
