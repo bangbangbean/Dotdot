@@ -52,7 +52,7 @@
             android:label="@string/title_activity_store_index" />
         <activity android:name=".test" />
         <activity android:name=".Login" />
-        <activity android:name=".Personal" />
+
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
@@ -62,13 +62,13 @@
         <activity android:name=".Regist" />
         <activity android:name=".StoreOverlookCoupon"/>
 
-        <activity android:name=".Collectioncard"
+        <activity
+            android:name=".TransactionRecord"/>
              />
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".TransactionRecord">
+        <activity android:name=".Collectioncard">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
