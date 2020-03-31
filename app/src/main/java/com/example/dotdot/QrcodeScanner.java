@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -21,23 +23,34 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 
 public class QrcodeScanner extends Activity {
-
+//QRcode-----------------------------------------------------
     SurfaceView surfaceView;
     TextView textViewBarCodeValue;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
-    String intentData = "";
+    String whoData = "";   //掃描到的會員QR
+//FireStore---------------------------------------------------
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_scanner);
 
+        //固定Session---------------------------------------
+        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = session.edit();
+        editor.putString("user_id", "nQnT8AAt4NYIRYZFZfAR"); //椒麻雞大王
+        editor.commit();
+
+        //執行QR Scanner------------------------------------------
         initComponents();
     }
     private void initComponents() {
@@ -103,9 +116,13 @@ public class QrcodeScanner extends Activity {
         textViewBarCodeValue.post(new Runnable() {
             @Override
             public void run() {
-                intentData = barCode.valueAt(0).displayValue;
-                textViewBarCodeValue.setText(intentData);
-//                copyToClipBoard(intentData);
+                whoData = barCode.valueAt(0).displayValue;
+                textViewBarCodeValue.setText(whoData);
+                if (whoData != null){
+                    Intent k = new Intent(getApplicationContext(), QrcodeScannerNext.class);
+                    startActivity(k);
+                }
+//                copyToClipBoard(whoData);
             }
         });
     }
