@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -51,13 +52,16 @@ import java.util.ArrayList;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback {
 
-     GoogleMap mMap;
+    GoogleMap mMap;
 
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private DocumentReference note = db.collection("Member").document("BFyN264km5dWWtTPYivZ")
             .collection("loyalty_card").document("3fVoEdfNqgmBlwjgAFMQ");
+    private DocumentReference note1 = db.collection("Member").document("BFyN264km5dWWtTPYivZ");
+
     Button home;
     Button btn_dot;
 
@@ -74,16 +78,16 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //-----------------------左下功能列----------------------------------------------------------
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext() , PopActivity.class);
+                Intent i = new Intent(getApplicationContext(), PopActivity.class);
                 startActivity(i);
             }
         });
-
 
         //------------------------QRcode-----------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
@@ -99,8 +103,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
     }
 
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -108,9 +110,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
 
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
-
-
-
 
 
 /** this code is used to get the permission/ check the permission allow or not*/
@@ -127,7 +126,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         mMap.setMyLocationEnabled(true);
 
 
-
     }
 
 
@@ -136,24 +134,24 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         for (int i = 0; i < list.size(); i++) {
             LatLng latLng = list.get(i);
             MarkerOptions options = new MarkerOptions();
-            if(i == 0){
+            if (i == 0) {
                 options.title("FJU");
-            }
-            else if( i == 1){
+            } else if (i == 1) {
                 options.title("椒麻雞大王");
-                note.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                note1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-                            Loyalty_card mem = documentSnapshot.toObject(Loyalty_card.class);
-                            String qq = mem.getPoints_owned();
-                            int qqq = Integer.valueOf(qq);
+                            Member mem = documentSnapshot.toObject(Member.class);
+                            String qq = mem.getName();
                             options.snippet(qq);
+
                         }
                     }
                 });
 
             }
+
             options.position(latLng);
             options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop));
             mMap.addMarker(options);
@@ -189,7 +187,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
             }
         }
     }
-
 
 
 }

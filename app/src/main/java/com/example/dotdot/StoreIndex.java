@@ -2,9 +2,12 @@ package com.example.dotdot;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -23,9 +26,10 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION =1;
-
     // this variable get for the location in mobile
     private FusedLocationProviderClient mfusedLocationProviderClient;
+
+    Button btn_dot;
 
 
     @Override
@@ -33,14 +37,28 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
+        //地圖--------------------------------------------------------------------------------------
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-    }
 
+        //QRcode Scanner----------------------------------------------------------------------------
+        btn_dot = (Button) findViewById(R.id.btn_dot);
+
+        btn_dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(getApplicationContext(), QrcodeScanner.class);
+                startActivity(j);
+            }
+        });
+
+        //------------------------------------------------------------------------------------------
+
+    }
+    //GMAP地圖--------------------------------------------------------------------------------------
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -90,5 +108,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             }
         }
     }
+    //----------------------------------------------------------------------------------------------
+
 }
 
