@@ -1,12 +1,12 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -14,8 +14,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.sql.Timestamp;
 
 
 public class test extends AppCompatActivity {
@@ -27,6 +25,8 @@ public class test extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference accountRef = db.collection("Member").document();
     private CollectionReference memRef = db.collection("Member");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

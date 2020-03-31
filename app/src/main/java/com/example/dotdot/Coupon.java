@@ -21,6 +21,7 @@ public class Coupon {
         this.couponTitle = couponTitle;
     }
 
+
     public Date getCreatTime() {
         return creatTime;
     }
