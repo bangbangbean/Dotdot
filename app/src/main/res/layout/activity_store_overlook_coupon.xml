@@ -7,48 +7,60 @@
     android:orientation="vertical"
     tools:context=".StoreOverlookCoupon">
 
+
     <TextView
         android:id="@+id/title"
-        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
-        android:layout_width="251dp"
-        android:layout_height="53dp"
+        android:layout_marginTop="25dp"
         android:text="@string/coupon_title"
         android:textAllCaps="false"
         android:textColor="#3F51B5"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="40dp">
-    <TextView
-        android:id="@+id/storeName"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="-5dp"
-        android:background="@color/black" />
+        <TextView
+            android:id="@+id/storeName"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="-5dp"
+            android:text="@string/coupon_title"
+            android:textSize="32sp" />
 
-    <Button
-        android:id="@+id/creatBtn"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:background="@drawable/dot_btn_bg"
-        android:text="@string/coupon_creat"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        <Button
+            android:id="@+id/creatBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="90dp"
+            android:background="@drawable/dot_btn_bg"
+            android:text="@string/coupon_creat"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/line"
-        android:layout_width="230dp"
+        android:layout_width="320dp"
         android:layout_height="2dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="25dp"
         android:background="#D8878484" />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </LinearLayout>

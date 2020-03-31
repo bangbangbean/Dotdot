@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -58,10 +60,17 @@ public class StoreCreatCoupon extends Activity {
         setContentView(R.layout.activity_store_creat_coupon);
 
         Button creatBtn = (Button) findViewById(R.id.creatBtn);
+        Button backBtn = (Button)findViewById(R.id.backBtn);
         creatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 creatCoupon();
                 Intent intent = new Intent(StoreCreatCoupon.this, StoreOverlookCoupon.class);
+                startActivity(intent);
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext() , StoreOverlookCoupon.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +83,7 @@ public class StoreCreatCoupon extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .8));
+        getWindow().setLayout((int) (width * .8), (int) (height * .9));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -88,7 +97,6 @@ public class StoreCreatCoupon extends Activity {
 
         et_startTime = findViewById(R.id.et_startTime);
         et_endTime = findViewById(R.id.et_endTime);
-
         et_startTime.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 switch (view.getId()) {
@@ -211,7 +219,14 @@ public class StoreCreatCoupon extends Activity {
     }
 
     public void creatCoupon() {
-        Coupon coupon = new Coupon(getDateFromString(beginning),getDateFromString(ending));
+        EditText couponTitle = (EditText)findViewById(R.id.couponTitle);
+        AutoCompleteTextView couponContent = (AutoCompleteTextView)findViewById(R.id.couponContent);
+        EditText dotNeed = (EditText)findViewById(R.id.dotNeed);
+
+        String title = couponTitle.getText().toString();
+        String content = couponContent.getText().toString();
+        String need = dotNeed.getText().toString();
+        Coupon coupon = new Coupon(getDateFromString(beginning),getDateFromString(ending),title,content,need);
         couponRef.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
                 .add(coupon);
     }

@@ -36,9 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <!--ACTIVITIES-->
-        <activity
-            android:name=".StoreCreatCoupon"
-            android:theme="@style/AppTheme.CreatCoupon"/>
+
         <activity
             android:name=".PopActivity"
             android:theme="@style/AppTheme.Pop" />
@@ -57,15 +55,17 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Login" />
         <activity android:name=".Regist" />
-        <activity android:name=".StoreOverlookCoupon"/>
+        <activity android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index"/>
         <activity android:name=".TransactionRecord"/>
         <activity android:name=".StoreCreatLoyaltyCard"/>
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps" />
-
-        <activity android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index">
+        <activity
+            android:name=".StoreCreatCoupon"
+            android:theme="@style/AppTheme.CreatCoupon"/>
+        <activity android:name=".StoreOverlookCoupon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

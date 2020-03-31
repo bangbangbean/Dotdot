@@ -3,6 +3,7 @@ package com.example.dotdot;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -17,13 +18,11 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QrcodeCreate extends Activity {
 
-    String Phone = "0979569828";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_create);
-
         getCode();
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -45,9 +44,12 @@ public class QrcodeCreate extends Activity {
     public void getCode(){
         ImageView ivCode=(ImageView)findViewById(R.id.codeView);
         BarcodeEncoder encoder = new BarcodeEncoder();
+        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = session.edit();
+        String who = session.getString("user_id","目前沒人登入");
         try{
             Bitmap bit;
-            bit = encoder.encodeBitmap(Phone, BarcodeFormat.QR_CODE,250,250);
+            bit = encoder.encodeBitmap(who, BarcodeFormat.QR_CODE,250,250);
             ivCode.setImageBitmap(bit);
         }catch (WriterException e){
             e.printStackTrace();
