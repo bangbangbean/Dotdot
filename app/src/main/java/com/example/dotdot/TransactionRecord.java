@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
@@ -38,18 +40,14 @@ public class TransactionRecord extends Activity {
                 if (buttonView.isChecked()){
                     //顯示店家模式紀錄
                     listView.setAdapter((StoreAdapter) new StoreAdapter());
-                    //點擊觸發事件
-                    //listView.setOnItemClickListener(onClickListView);
-                    //
-//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener){
-//                        public void onItemClick(AdapterView<?>adapter,View v, int position){
-//                            ItemClicked item = adapter.getItemAtPosition(position);
-//
-//                            Intent intent = new Intent(Activity.this,destinationActivity.class);
-//                            //based on item add info to intent
-//                            startActivity(intent);
-//                        }
-//                    }
+                    //點擊觸發事件_跳出選定店家紀錄
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent i = new Intent(getApplicationContext() , member_storemode_record.class);
+                            startActivity(i);
+                        }
+                    });
                 }
                 else {
                     //顯示清單模式紀錄
@@ -151,14 +149,4 @@ public class TransactionRecord extends Activity {
             return v;
         }
     }
-
-//    private AdapterView.OnClickListener onClickListView = new AdapterView.OnItemClickListener(){
-//
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//        }
-//    };
-
-
 }

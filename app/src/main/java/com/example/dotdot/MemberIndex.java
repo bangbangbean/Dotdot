@@ -74,6 +74,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //-----------------------左下功能列----------------------------------------------------------
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +84,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                 startActivity(i);
             }
         });
-
 
         //------------------------QRcode-----------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);

@@ -105,7 +105,7 @@ public class QrcodeScanner extends Activity {
             public void run() {
                 intentData = barCode.valueAt(0).displayValue;
                 textViewBarCodeValue.setText(intentData);
-                copyToClipBoard(intentData);
+//                copyToClipBoard(intentData);
             }
         });
     }
@@ -123,11 +123,11 @@ public class QrcodeScanner extends Activity {
         initialiseDetectorsAndSources();
     }
 
-    private void copyToClipBoard(String text){
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("QR code Scanner", text);
-        clipboard.setPrimaryClip(clip);
-    }
+//    private void copyToClipBoard(String text){
+//        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//        ClipData clip = ClipData.newPlainText("QR code Scanner", text);
+//        clipboard.setPrimaryClip(clip);
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

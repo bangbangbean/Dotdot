@@ -15,7 +15,6 @@
         android:layout_marginEnd="105dp"
         android:layout_marginRight="105dp"
         android:background="@drawable/qr"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
