@@ -42,11 +42,12 @@ public class QrcodeCreate extends Activity {
     }
 
     public void getCode(){
+        String who = "iICTR1JL4eAG4B3QBi1S";
         ImageView ivCode=(ImageView)findViewById(R.id.codeView);
         BarcodeEncoder encoder = new BarcodeEncoder();
-        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = session.edit();
-        String who = session.getString("user_id","目前沒人登入");
+//        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
+//        final SharedPreferences.Editor editor = session.edit();
+//        String who = session.getString("user_id","目前沒人登入");
         try{
             Bitmap bit;
             bit = encoder.encodeBitmap(who, BarcodeFormat.QR_CODE,250,250);

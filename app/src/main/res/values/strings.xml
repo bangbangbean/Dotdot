@@ -96,5 +96,11 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_botnav">botnav</string>
     -----------------------------------------------------------------------------------------------
+    //Store QR
+    <string name="input_money">輸入金額&#160;:</string>
+    <string name="confirm">確認</string>
+    <string name="finish">完成!</string>
+    <string name="finish1">成功給予</string>
+
 </resources>
 

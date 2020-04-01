@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QrcodeScannerFinal"
+    android:background="@drawable/popqrcod_bg">
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="119dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/finish1"
+        android:textSize="24sp"
+
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/finishbtn"
+        android:layout_width="110dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_round_button"
+        android:text="@string/finish"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/point_given" />
+
+    <TextView
+        android:id="@+id/point_given"
+        android:layout_width="122dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="32dp"
+        android:textColor="#2839CC"
+        android:textSize="100sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/textView28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView27" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/dodo"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/finishbtn"
+        app:layout_constraintStart_toEndOf="@id/point_given" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

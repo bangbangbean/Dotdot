@@ -3,7 +3,6 @@ package com.example.dotdot;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +26,7 @@ public class botnav extends AppCompatActivity{
             case R.id.shipping:
                 selectedFragment = new frag2();
                 break;
-            case R.id.money:
+            case R.id.consume:
                 selectedFragment = new frag2();
                 break;
             case R.id.setting:

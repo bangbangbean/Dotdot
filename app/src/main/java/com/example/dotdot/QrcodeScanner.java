@@ -44,12 +44,6 @@ public class QrcodeScanner extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_scanner);
 
-        //固定Session---------------------------------------
-        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = session.edit();
-        editor.putString("user_id", "nQnT8AAt4NYIRYZFZfAR"); //椒麻雞大王
-        editor.commit();
-
         //執行QR Scanner------------------------------------------
         initComponents();
     }
@@ -120,7 +114,18 @@ public class QrcodeScanner extends Activity {
                 textViewBarCodeValue.setText(whoData);
                 if (whoData != null){
                     Intent k = new Intent(getApplicationContext(), QrcodeScannerNext.class);
+                    k.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+
+                    //將值帶入下一頁
+                    Bundle bundle = new Bundle();
+                    bundle.putString("whoData",whoData);//會員資料
+
+                    //將Bundle物件assign給intent
+                    k.putExtras(bundle);
+
                     startActivity(k);
+
                 }
 //                copyToClipBoard(whoData);
             }

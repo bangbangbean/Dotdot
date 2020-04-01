@@ -8,9 +8,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,9 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CouponContent"
-            android:theme="@style/AppTheme.CouponContent"/>
-        <activity android:name=".QrcodeScannerNext" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -41,6 +36,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
         <activity
+            android:name=".CouponContent"
+            android:theme="@style/AppTheme.CouponContent"/>
+        <activity
             android:name=".StoreCreatCoupon"
             android:theme="@style/AppTheme.CreatCoupon" />
         <activity
@@ -52,6 +50,12 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
+        <activity
+            android:name=".MemberIndex"
+            android:label="@string/title_activity_maps"/>
+        <activity
+            android:name=".QrcodeScannerFinal"
+            android:theme="@style/AppTheme.PopMe"/>
         <activity android:name=".QrcodeScanner" />
         <activity android:name=".Collectioncard" />
         <activity android:name=".botnav" />
@@ -65,14 +69,14 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Regist" />
         <activity android:name=".StoreCreatLoyaltyCard" />
+        <activity android:name=".TransactionRecord" />
         <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps" />
+            android:name=".QrcodeScannerNext"
+            android:theme="@style/AppTheme.PopMe"/>
+        <activity android:name=".StoreOverlookCoupon" />
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index" />
-        <activity android:name=".TransactionRecord" />
-        <activity android:name=".StoreOverlookCoupon">
+            android:label="@string/title_activity_store_index">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
