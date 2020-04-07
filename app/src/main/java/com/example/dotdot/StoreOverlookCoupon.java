@@ -41,19 +41,20 @@ public class StoreOverlookCoupon extends AppCompatActivity {
 
     private void setUpRecyclerView() {
 
-        Query query = couponRef;
+        Query query = couponRef.orderBy("deadLine", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
                 .build();
         adapter = new CouponAdapter(options);
 
-        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = coupon.edit();
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
+        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = coupon.edit();
 
         adapter.setOnItemClickListener(new CouponAdapter.OnItemClickListener() {
             @Override

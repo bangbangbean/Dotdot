@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,8 @@ public class Profile extends Fragment {
     private CollectionReference memRef = db.collection("Member");
     private View view;
 
+   
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,10 +37,12 @@ public class Profile extends Fragment {
         return view;
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+
         memRef.whereEqualTo("name", "王小名")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -56,4 +61,25 @@ public class Profile extends Fragment {
                     }
                 });
     }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        memRef.whereEqualTo("name", "王小名")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+//                            Member mem = documentSnapshot.toObject(Member.class);
+//                            String name = mem.getName();
+//                            String password = mem.getPassword();
+//                            String phone = mem.getPhone();
+//
+//                            showusername.setText(name);
+//                            showpassword.setText(password);
+//                            showphone.setText(phone);
+//                        }
+//                    }
+//                });
+//    }
 }

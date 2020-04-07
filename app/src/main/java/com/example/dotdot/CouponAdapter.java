@@ -1,5 +1,6 @@
 package com.example.dotdot;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapter.CouponHolder> {
 
@@ -29,6 +32,28 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
         couponHolder.couponPoint.setText(coupon.getDotNeed());
         couponHolder.startTime.setText(sdf.format(coupon.getCreatTime()));
         couponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
+        String deadline = sdf.format(coupon.getDeadLine());
+        Date dt = new Date();
+        String nowdt = sdf.format(dt);
+        if(compareDate(nowdt,deadline)==false){
+            couponHolder.listBackground.setBackgroundColor(Color.rgb(211,210,210));
+        }
+    }
+
+    public boolean compareDate(String nowDate, String compareDate) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        try {
+            Date now = df.parse(nowDate);
+            Date compare = df.parse(compareDate);
+            if (now.before(compare)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @NonNull
@@ -52,6 +77,7 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
             couponPoint = itemView.findViewById(R.id.couponPoint);
             startTime = itemView.findViewById(R.id.startTime);
             endTime = itemView.findViewById(R.id.endTime);
+            listBackground = itemView.findViewById(R.id.listBackground);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
