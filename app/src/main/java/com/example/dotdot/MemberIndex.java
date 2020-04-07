@@ -154,8 +154,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                         if (documentSnapshot.exists()) {
                             Member mem = documentSnapshot.toObject(Member.class);
                             String qq = mem.getName();
-                            options.snippet(qq);
 
+                            options.snippet(qq);
                         }
                     }
                 });
