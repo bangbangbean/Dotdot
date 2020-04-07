@@ -7,7 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +43,8 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         collectioncardHolder.coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
 
             }
         });
@@ -80,7 +85,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = getAdapterPosition();
+
                 }
             });
 
@@ -98,6 +103,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             dot10 = itemView.findViewById(R.id.Dot10);
             coupon = itemView.findViewById(R.id.coupon);
         }
+
 
     }
 

@@ -39,7 +39,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_botnav);
+            setContentView(R.layout.activity_couponmanagement);
 
             bottomNavigationView = findViewById(R.id.nav);
             bottomNavigationView.inflateMenu(R.menu.main_menu);
