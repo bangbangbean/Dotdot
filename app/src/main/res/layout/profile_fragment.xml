@@ -16,8 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92"
-        app:srcCompat="@drawable/personal_bg" />
+        app:layout_constraintVertical_bias="0.92"/>
 
     <TextView
         android:id="@+id/textView7"
@@ -34,15 +33,14 @@
         app:layout_constraintVertical_bias="0.07" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/image_view"
         android:layout_width="107dp"
         android:layout_height="102dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"
-        app:srcCompat="@drawable/bg_round_button" />
+        app:layout_constraintVertical_bias="0.219" />
 
     <TextView
         android:id="@+id/inputPhone"
@@ -138,7 +136,7 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button4"
         android:layout_width="254dp"
         android:layout_height="40dp"
         android:background="@drawable/bg_round_button"

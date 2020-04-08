@@ -9,7 +9,7 @@
                 android:color="#8e8e8e"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/storemode"
+    <item android:drawable="@drawable/listmode"
         android:left="12dp"
         android:right="12dp"
         android:top="12dp"

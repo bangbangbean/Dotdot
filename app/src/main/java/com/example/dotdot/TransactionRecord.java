@@ -1,37 +1,43 @@
 package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class TransactionRecord extends Activity {
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
-    private ListView listView;
+public class TransactionRecord extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
     private Switch modeSwitch = null;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference memref = db.collection("Member").document(
+            "iICTR1JL4eAG4B3QBi1S").collection("record");
+
+    private CollectionReference memref2 = db.collection("Member").document(
+            "iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+
+    private RecordAdapter adapter;
+    private Loyalty_cardAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_record);
 
+        setUpRecyclerView();
+        setUpRecyclerView2();
+
         modeSwitch = (Switch)findViewById(R.id.modeSwitch);
 
-        listView =(ListView)findViewById(R.id.recordList);
+        recyclerView =(RecyclerView) findViewById(R.id.recycler_view);
 
         //利用Switch切換模式
         modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -39,114 +45,68 @@ public class TransactionRecord extends Activity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isChecked()){
                     //顯示店家模式紀錄
-                    listView.setAdapter((StoreAdapter) new StoreAdapter());
+                    recyclerView.setAdapter(adapter);
                     //點擊觸發事件_跳出選定店家紀錄
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent i = new Intent(getApplicationContext() , member_storemode_record.class);
-                            startActivity(i);
-                        }
-                    });
+//                    recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                            Intent i = new Intent(getApplicationContext() , member_storemode_record.class);
+//                            startActivity(i);
+//                        }
+//                    });
                 }
                 else {
                     //顯示清單模式紀錄
-                    listView.setAdapter(new TransactionRecord.ListAdapter());
+                    recyclerView.setAdapter(adapter2);
                 }
             }
         });
 
     }
 
-    //自訂Adapter(清單模式)
-    private class ListAdapter extends BaseAdapter{
 
-        @Override
-        public int getCount() {
-            return 3;
-        }
 
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
 
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
+    private void setUpRecyclerView() {
+        Query query = memref;
+        FirestoreRecyclerOptions<Record> options = new FirestoreRecyclerOptions.Builder<Record>()
+                .setQuery(query, Record.class)
+                .build();
 
-        class holder{
-            public TextView yearmonth, day, th, time, storeName, obj, situation;
-        }
+        adapter = new RecordAdapter(options);
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = convertView;
-            holder holder;
-            if (v == null) {
-                v = LayoutInflater.from(getApplicationContext()).inflate(R.layout.member_listmode_list, null);
-                holder = new ListAdapter.holder();
-                holder.yearmonth = (TextView) findViewById(R.id.yearmonth);
-                holder.day = (TextView) findViewById(R.id.day);
-                holder.th = (TextView) findViewById(R.id.th);
-                holder.time = (TextView) findViewById(R.id.time);
-                holder.storeName = (TextView) findViewById(R.id.storeName);
-                holder.obj = (TextView) findViewById(R.id.obj);
-                holder.situation = (TextView) findViewById(R.id.situation);
-                v.setTag(holder);
-            } else{
-                holder = (ListAdapter.holder) v.getTag();
-            }
-            return v;
-        }
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
-    //自訂Adapter(店家模式)
-    private class StoreAdapter extends BaseAdapter{
 
-        @Override
-        public int getCount() {
-            return 1;
-        }//顯示數量
+    private void setUpRecyclerView2() {
+        Query query = memref2;
+        FirestoreRecyclerOptions<Loyalty_card> options = new FirestoreRecyclerOptions.Builder<Loyalty_card>()
+                .setQuery(query, Loyalty_card.class)
+                .build();
 
+        adapter2 = new Loyalty_cardAdapter(options);
 
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        class Viewholder{
-            public TextView memberRecStoreName, get, use, coupon, getDot, useDot, getCoupon
-                    , textView22, textView24, textView26;
-        }
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = convertView;
-            Viewholder holder;
-            if (v == null) {
-                v = LayoutInflater.from(getApplicationContext()).inflate(R.layout.member_storemode_list, null);
-                holder = new Viewholder();
-                holder.memberRecStoreName = (TextView) findViewById(R.id.memberRecStoreName);
-                holder.get = (TextView) findViewById(R.id.get);
-                holder.use = (TextView) findViewById(R.id.use);
-                holder.coupon = (TextView) findViewById(R.id.coupon);
-                holder.getDot = (TextView) findViewById(R.id.getDot);
-                holder.useDot = (TextView) findViewById(R.id.useDot);
-                holder.getCoupon = (TextView) findViewById(R.id.getCoupon);
-                holder.textView22 = (TextView) findViewById(R.id.textView22);
-                holder.textView24 = (TextView) findViewById(R.id.textView24);
-                holder.textView26 = (TextView) findViewById(R.id.textView26);
-
-                v.setTag(holder);
-            } else{
-                holder = (Viewholder) v.getTag();
-            }
-            return v;
-        }
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter2);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+        adapter2.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+        adapter2.stopListening();
+    }
+
 }

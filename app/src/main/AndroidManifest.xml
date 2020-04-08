@@ -52,7 +52,7 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".QrcodeScanner" />
         <activity android:name=".Collectioncard" />
-        <activity android:name=".botnav" />
+        <activity android:name=".StoreOverlookCoupon" />
         <activity android:name=".test" />
         <activity android:name=".Login" />
         <activity android:name=".Verification" />
@@ -69,8 +69,8 @@
         <activity
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index"/>
-        <activity android:name=".TransactionRecord"/>
-        <activity android:name=".StoreOverlookCoupon">
+        <activity android:name=".botnav"/>
+        <activity android:name=".TransactionRecord">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

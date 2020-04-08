@@ -2,8 +2,6 @@ package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,5 +46,14 @@ public class botnav extends AppCompatActivity{
         bottomNavigationView.setItemIconTintList(null);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile()).commit();
+
     }
+
+
+
+
+
+
+
+
 }

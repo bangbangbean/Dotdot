@@ -5,8 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,6 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Profile extends Fragment {
 
+
     private TextView showusername;
     private TextView showpassword;
     private TextView showphone;
@@ -24,10 +24,20 @@ public class Profile extends Fragment {
     private CollectionReference memRef = db.collection("Member");
     private View view;
 
-    @Nullable
+
+
+
+
+    public Profile() {
+    }
+
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView( inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.profile_fragment, container, false);
+
         showusername = (TextView)view.findViewById(R.id.inputPhone);
         showpassword = (TextView) view.findViewById(R.id.password);
         showphone = (TextView) view.findViewById(R.id.inputStore);
@@ -56,4 +66,10 @@ public class Profile extends Fragment {
                     }
                 });
     }
+
+
+
+
 }
+
+

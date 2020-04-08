@@ -87,10 +87,10 @@ public class test extends AppCompatActivity {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                             Member mem = documentSnapshot.toObject(Member.class);
                             String name = mem.getName();
-                            String password = mem.getPassword();
-                            String phone = mem.getPhone();
-                            data += "name:" + name + "\npassword:" + password + "\nphone:" + phone + "\n\n" ;
-                        }
+//                            String password = mem.getPassword();
+//                            String phone = mem.getPhone();
+                            data += "name:" + name  + "\n\n" ;
+                        }//+ "\npassword:" + password + "\nphone:" + phone
                         getinfo.setText(data);
                     }
                 });
