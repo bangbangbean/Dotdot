@@ -1,6 +1,7 @@
 package com.example.dotdot;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -21,7 +23,6 @@ public class StoreOverlookCoupon extends AppCompatActivity {
             .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
 
     private CouponAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class StoreOverlookCoupon extends AppCompatActivity {
 
     private void setUpRecyclerView() {
 
-        Query query = couponRef;
+        Query query = couponRef.orderBy("deadLine", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
                 .build();
@@ -50,6 +51,22 @@ public class StoreOverlookCoupon extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
+        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = coupon.edit();
+
+        adapter.setOnItemClickListener(new CouponAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Coupon coupon = documentSnapshot.toObject(Coupon.class);
+                String title = coupon.getCouponTitle();
+                editor.putString("user_id", title);
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), CouponContent.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

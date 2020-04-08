@@ -25,18 +25,51 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/notice"
+        android:id="@+id/notification"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginBottom="35dp"
-        android:background="@drawable/not"
+        android:background="@drawable/ic_notification"
         android:shadowColor="#556CFF"
         android:shadowDx="2"
         android:shadowDy="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_dot"
-        />
+        app:layout_constraintStart_toEndOf="@id/btn_dot">
+
+    </Button>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/num"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        app:cardBackgroundColor="#FA5959"
+        app:cardCornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/notification"
+        app:layout_constraintTop_toTopOf="@+id/notification">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/notification_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:layout_width="72dp"

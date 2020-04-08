@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
-    android:layout_gravity="center_horizontal"
-    app:cardBackgroundColor="#4DC4CDFF"
+    android:layout_marginLeft="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/background"
+        android:id="@+id/listBackground"
+        android:background="#4DC4CDFF"
         android:layout_width="500dp"
-        android:layout_height="170dp"
-        android:ellipsize="end"
-        android:textSize="20dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"></TextView>
 
     <TextView
         android:id="@+id/couponTitle"
-        android:layout_width="320dp"
-        android:layout_height="100dp"
+        android:layout_width="340dp"
+        android:layout_height="70dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="@+id/background"
+        android:layout_marginTop="30dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
+        app:layout_constraintEnd_toEndOf="@+id/listBackground"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toTopOf="@+id/background"
-        app:layout_constraintVertical_bias="0.0"></TextView>
+        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintVertical_bias="0.0"
+        android:singleLine="true"></TextView>
 
     <TextView
         android:id="@+id/couponPoint"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="@+id/background"
+        android:gravity="center_horizontal"
+        android:textColor="#E61818"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
+        app:layout_constraintEnd_toEndOf="@+id/listBackground"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/background"
-        app:layout_constraintTop_toTopOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintTop_toTopOf="@+id/listBackground"
         app:layout_constraintVertical_bias="0.0"></TextView>
 
     <TextView
@@ -68,33 +74,58 @@
 
     <TextView
         android:id="@+id/startTime"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="@+id/background"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/background"
+        android:layout_marginRight="200dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
+        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/listBackground"
         app:layout_constraintTop_toBottomOf="@+id/couponTitle"
         app:layout_constraintVertical_bias="0.0"></TextView>
 
     <TextView
         android:id="@+id/endTime"
-        android:layout_width="200dp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="@+id/background"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
+        app:layout_constraintEnd_toEndOf="@+id/listBackground"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintStart_toStartOf="@+id/listBackground"
         app:layout_constraintTop_toBottomOf="@+id/couponPoint"
         app:layout_constraintVertical_bias="0.0"></TextView>
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:text="~"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
+        app:layout_constraintEnd_toStartOf="@+id/endTime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/startTime" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="可兌換時間 :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/startTime"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/couponTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

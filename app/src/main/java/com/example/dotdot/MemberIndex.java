@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -52,8 +51,7 @@ import java.util.ArrayList;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback {
 
-    GoogleMap mMap;
-
+    private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,7 +62,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
 
     Button home;
     Button btn_dot;
-
+    Button btn_notificaiton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +78,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
 
         //-----------------------左下功能列----------------------------------------------------------
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        //------------------------action-----------------------------------------------------------
         home = (Button) findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,9 +89,9 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
             }
         });
 
+
         //------------------------QRcode-----------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
-
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +99,18 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                 startActivity(j);
             }
         });
+
+        //------------------------Notification-----------------------------------------------------------
+        btn_notificaiton = findViewById(R.id.notification);
+        btn_notificaiton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent n = new Intent(getApplicationContext() , notification.class);
+                startActivity(n);
+            }
+        });
+
+
 
     }
 
@@ -108,7 +120,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
-
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
 
 
@@ -124,7 +135,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
         }
 
         mMap.setMyLocationEnabled(true);
-
 
     }
 
@@ -144,8 +154,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback 
                         if (documentSnapshot.exists()) {
                             Member mem = documentSnapshot.toObject(Member.class);
                             String qq = mem.getName();
-                            options.snippet(qq);
 
+                            options.snippet(qq);
                         }
                     }
                 });

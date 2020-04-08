@@ -2,15 +2,15 @@ package com.example.dotdot;
 
 public class StoreLoyaltyCard{
     private String color;
-    private String money;
+    private String Threshold;
     StoreLoyaltyCard storeloyaltycard;
 
     public StoreLoyaltyCard() {
     }
 
-    public StoreLoyaltyCard(String color, String money) {
+    public StoreLoyaltyCard(String color, String Threshold) {
         this.color = color;
-        this.money = money;
+        this.Threshold = Threshold;
     }
 
     public String getColor() {
@@ -21,12 +21,12 @@ public class StoreLoyaltyCard{
         this.color = color;
     }
 
-    public String getMoney() {
-        return money;
+    public String getThreshold() {
+        return Threshold;
     }
 
-    public void setMoney(String money) {
-        this.money = money;
+    public void setThreshold(String Threshold) {
+        this.Threshold = Threshold;
     }
 
 }

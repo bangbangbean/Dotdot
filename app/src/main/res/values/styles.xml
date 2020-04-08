@@ -16,6 +16,7 @@
 
     <style name="AppTheme.Pop">
         <item name="android:windowIsTranslucent">true</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowBackground">@drawable/pop_bg</item>
     </style>
@@ -25,7 +26,13 @@
         <item name="android:windowCloseOnTouchOutside">false</item>
         <item name="android:windowBackground">@drawable/bg_frame</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
 
+    <style name="AppTheme.CouponContent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowBackground">@drawable/coupon_frame</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.PopMe">
@@ -37,6 +44,23 @@
 
     <style name="titlestyle">
         <item name="android:textSize">0dp</item>
+    </style>
+
+    //test
+    <style name='Linearlayout_Style'>
+        <item name='android:orientation'>vertical</item>
+        <item name='android:gravity'>center</item>
+        <item name='android:clickable'>true</item>
+        <item name='android:onClick'>LayoutOnclick</item>
+    </style>
+    <style name="tab_menu_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 

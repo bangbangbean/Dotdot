@@ -23,7 +23,7 @@
         android:title="優惠券"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/money"
+        android:id="@+id/consume"
         android:enabled="true"
         android:icon="@drawable/ic_record"
         android:title="交易紀錄"

@@ -55,6 +55,18 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         TextView Message1 = view.findViewById(R.id.tvMessage1);
         tvTitle.setText(marker.getTitle());
+        note.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Member mem = documentSnapshot.toObject(Member.class);
+                    String qq = mem.getName();
+
+                    Message1.setText(qq);
+                }
+            }
+        });
+        Message1.setText(marker.getSnippet());
 
 
 
