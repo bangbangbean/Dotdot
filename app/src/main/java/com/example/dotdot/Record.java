@@ -12,7 +12,7 @@ public class Record {
         //empty constructor needed
     }
 
-    public Record(Date date, String StoreName, String Object, String Situation) {
+    public Record(Date time, String StoreName, String Object, String Situation) {
         this.time = time;
         this.store = store;
         this.object = object;
@@ -21,6 +21,10 @@ public class Record {
 
     public Date getTime() {
         return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getStore() {

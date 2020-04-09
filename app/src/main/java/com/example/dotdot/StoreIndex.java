@@ -8,6 +8,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -21,16 +22,32 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference memRef = db.collection("store");
+    private CollectionReference note = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR")
+            .collection("record");
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION =1;
     // this variable get for the location in mobile
     private FusedLocationProviderClient mfusedLocationProviderClient;
 
     Button btn_dot;
-    Button btn_notificaiton;
+    private TextView Storetitle;
+    private TextView Mon;
+    private TextView Pointsgives;
+
+
 
 
     @Override
@@ -38,14 +55,50 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
-        //--------------------------地圖------------------------------------------------------------
+        //地圖--------------------------------------------------------------------------------------
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //---------------------QRcode Scanner-------------------------------------------------------
+        Storetitle = findViewById(R.id.storetitle);
+
+        memRef.document("nQnT8AAt4NYIRYZFZfAR").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Store mem = documentSnapshot.toObject(Store.class);
+                    String name = mem.getName();
+                    Storetitle.setText(name);
+
+                }
+            }
+        });
+
+
+        Mon = findViewById(R.id.mom);
+        note.document("AVJrnemUBtsWym0dllip").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM");
+                    Record rec = documentSnapshot.toObject(Record.class);
+                    Date record = rec.getTime();
+                    String mon = String.valueOf(record);
+                    Mon.setText(mon);
+                   // Mon.setText(sdf.format(record));
+
+                }
+            }
+        });
+
+        Pointsgives = findViewById(R.id.pointsgive);
+
+
+
+
+        //QRcode Scanner----------------------------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
 
         btn_dot.setOnClickListener(new View.OnClickListener() {
@@ -53,18 +106,10 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 Intent j = new Intent(getApplicationContext(), QrcodeScanner.class);
                 startActivity(j);
-            } 
-        });
-
-        //------------------------Notification----------------------------------------------------
-        btn_notificaiton = findViewById(R.id.storeNotification);
-        btn_notificaiton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent n = new Intent(getApplicationContext() , StoreNotification.class);
-                startActivity(n);
             }
         });
+
+        //------------------------------------------------------------------------------------------
 
     }
     //GMAP地圖--------------------------------------------------------------------------------------

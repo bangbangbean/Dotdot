@@ -2,20 +2,27 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#4DC4CDFF"
+    app:cardBackgroundColor="#ffffff"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="101dp"
+        android:layout_width="380dp"
+        android:layout_height="100dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_frame2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,15 +36,11 @@
 
 
                 <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="154dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
                     android:id="@+id/yearmonth"
                     android:layout_width="397dp"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -54,6 +57,7 @@
                 android:layout_width="80dp"
                 android:layout_height="56dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="30sp" />
 
@@ -63,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/hao"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -70,6 +75,7 @@
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -81,13 +87,15 @@
                 <TextView
                     android:id="@+id/storeName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/obj"
                     android:layout_width="100dp"
                     android:layout_height="49dp"
                     android:gravity="center_vertical"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -100,7 +108,10 @@
                 android:textColor="#3F54C9"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+
         </LinearLayout>
 
     </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
