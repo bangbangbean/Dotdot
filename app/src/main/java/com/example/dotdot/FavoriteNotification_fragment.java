@@ -22,7 +22,7 @@ public class FavoriteNotification_fragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference noticeRef = db.collection("Notice");
-    private NoticeAdapter adapter;
+//    private NoticeAdapter adapter;
 
 
 
@@ -34,39 +34,39 @@ public class FavoriteNotification_fragment extends Fragment {
 
 
     }
+//
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//       // setUpRecyclerView();
+//    }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+//    private void setUpRecyclerView(){
+//
+//        Query query = noticeRef.orderBy("priority", Query.Direction.DESCENDING);
+//
+//        FirestoreRecyclerOptions<notice_note> options = new FirestoreRecyclerOptions.Builder<notice_note>()
+//                .setQuery(query , notice_note.class)
+//                .build();
+//        adapter = new NoticeAdapter(options);
+//
+//        RecyclerView recyclerview = getView().findViewById(R.id.fav_recycler);
+//        recyclerview.setHasFixedSize(true);
+//        recyclerview.setLayoutManager(new LinearLayoutManager(FavoriteNotification_fragment.this));
+//        recyclerview.setAdapter(adapter);
+//
+//    }
 
-        setUpRecyclerView();
-    }
-
-    private void setUpRecyclerView(){
-
-        Query query = noticeRef.orderBy("priority", Query.Direction.DESCENDING);
-
-        FirestoreRecyclerOptions<notice_note> options = new FirestoreRecyclerOptions.Builder<notice_note>()
-                .setQuery(query , notice_note.class)
-                .build();
-        adapter = new NoticeAdapter(options);
-
-        RecyclerView recyclerview = getView().findViewById(R.id.fav_recycler);
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(new LinearLayoutManager(FavoriteNotification_fragment.this));
-        recyclerview.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        adapter.stopListening();
+//    }
 }

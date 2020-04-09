@@ -27,12 +27,10 @@ public class Collectioncard extends AppCompatActivity {
 
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference storemem = db.collection("store");
+
     private CollectionReference note = db.collection("Member").document(
             "iICTR1JL4eAG4B3QBi1S")
             .collection("loyalty_card");
-    private CollectionReference couponRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
 
 
     @Override
@@ -40,7 +38,6 @@ public class Collectioncard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.collectioncard);
         setUpRecyclerView();
-
 
 
     }
@@ -70,7 +67,6 @@ public class Collectioncard extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-
 
 
 }

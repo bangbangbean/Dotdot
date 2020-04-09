@@ -64,14 +64,14 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Regist" />
         <activity android:name=".StoreCreatLoyaltyCard" />
-        <activity android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index" />
+        <activity android:name=".TransactionRecord"  />
         <activity
             android:name=".QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe"/>
         <activity android:name=".StoreOverlookCoupon" />
-        <activity
-            android:name=".TransactionRecord">
+        <activity android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
