@@ -1,7 +1,5 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
                                     String documentId = mem.getDocumentId();
                                     String pass = mem.getPassword();
                                     if (pass.equals(password)) {
-                                        editor.putString("user_id", documentId);
+                                        editor.putString("user_id", "iICTR1JL4eAG4B3QBi1S");
                                         editor.commit();
                                         Intent intent = new Intent(Login.this, test.class);
                                         startActivity(intent);

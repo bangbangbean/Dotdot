@@ -7,7 +7,7 @@
     tools:context=".StoreCreatLoyaltyCard">
 
     <TextView
-        android:id="@+id/listBackground"
+        android:id="@+id/listBg"
         android:layout_width="450dp"
         android:layout_height="650dp"
         android:background="@drawable/bg_frame"
@@ -30,7 +30,7 @@
         android:textColor="#3F51B5"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/listBackground"
+        app:layout_constraintBottom_toTopOf="@+id/listBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,11 +45,11 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -60,11 +60,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot1"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -75,11 +75,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot2"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -90,11 +90,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot3"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -105,11 +105,11 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -120,10 +120,10 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
         app:layout_constraintTop_toBottomOf="@+id/dot1"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -135,8 +135,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot6"
         app:layout_constraintTop_toBottomOf="@+id/dot2"
@@ -150,8 +150,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/empty_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot7"
         app:layout_constraintTop_toBottomOf="@+id/dot3"
@@ -165,8 +165,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/empty_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/dot8"
         app:layout_constraintTop_toBottomOf="@+id/dot4"
@@ -180,8 +180,8 @@
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
         android:background="@drawable/empty_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/dot9"
         app:layout_constraintTop_toBottomOf="@+id/dot5"
@@ -196,11 +196,11 @@
         android:text="@string/loyalty_card_rate"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
-        app:layout_constraintTop_toTopOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
+        app:layout_constraintTop_toTopOf="@+id/listBg"
         app:layout_constraintVertical_bias="0.404" />
 
     <TextView
@@ -210,8 +210,8 @@
         android:layout_marginBottom="30dp"
         android:background="#D8878484"
         app:layout_constraintBottom_toTopOf="@+id/dot3"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
-        app:layout_constraintStart_toStartOf="@+id/listBackground" />
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
+        app:layout_constraintStart_toStartOf="@+id/listBg" />
 
     <TextView
         android:id="@+id/textView11"
@@ -220,9 +220,9 @@
         android:layout_marginBottom="8dp"
         android:background="#DA0707"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/listBackground" />
+        app:layout_constraintStart_toStartOf="@+id/listBg" />
 
     <TextView
         android:id="@+id/textView12"
@@ -231,10 +231,10 @@
         android:layout_marginTop="10dp"
         android:text="@string/loyalty_card_dot"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.138"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -244,8 +244,8 @@
         android:layout_height="65dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
@@ -260,10 +260,10 @@
         android:layout_marginRight="35dp"
         android:text="@string/loyalty_card_dollar"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -277,8 +277,8 @@
         android:text="@string/loyalty_card_color"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
@@ -292,10 +292,10 @@
         android:layout_marginLeft="55dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/blue_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listBackground"
+        app:layout_constraintStart_toStartOf="@+id/listBg"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -307,8 +307,8 @@
         android:layout_marginLeft="26dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/yellow_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/blueDot"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
@@ -322,8 +322,8 @@
         android:layout_marginLeft="27dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/red_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/yellowDot"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
@@ -339,8 +339,8 @@
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
         android:background="@drawable/green_dot"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/redDot"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
@@ -356,8 +356,8 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/listBackground"
-        app:layout_constraintEnd_toEndOf="@+id/listBackground"
-        app:layout_constraintStart_toStartOf="@+id/listBackground" />
+        app:layout_constraintBottom_toBottomOf="@+id/listBg"
+        app:layout_constraintEnd_toEndOf="@+id/listBg"
+        app:layout_constraintStart_toStartOf="@+id/listBg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

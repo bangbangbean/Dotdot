@@ -1,12 +1,10 @@
 package com.example.dotdot;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,65 +14,63 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class StoreOverlookCoupon extends AppCompatActivity {
+import java.util.Date;
 
+public class MemberOverlookCoupon extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference couponRef = db.collection("store")
             .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
-    private CouponAdapter adapter;
+    private MemCouponAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_overlook_coupon);
-
+        setContentView(R.layout.activity_member_overlook_coupon);
         setUpRecyclerView();
-
-        Button creatCoupon = (Button) findViewById(R.id.creatBtn);
-        creatCoupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StoreCreatCoupon.class);
-                startActivity(intent);
-            }
-        });
     }
 
-    private void setUpRecyclerView() {
 
-        Query query = couponRef.orderBy("deadLine", Query.Direction.DESCENDING);
+    private void setUpRecyclerView() {
+        Date dt = new Date();
+        Query query = couponRef.whereGreaterThan("deadLine",dt)
+                .orderBy("deadLine", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
                 .build();
-        adapter = new CouponAdapter(options);
+        adapter = new MemCouponAdapter(options);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-
+        //coupon的title名稱
         SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
         final SharedPreferences.Editor editor = coupon.edit();
 
-        adapter.setOnItemClickListener(new CouponAdapter.OnItemClickListener() {
+        //coupon的亂碼Id
+        SharedPreferences couponId = getSharedPreferences("save_coupon", MODE_PRIVATE);
+        final SharedPreferences.Editor editorId = couponId.edit();
+
+        //store的亂碼Id
+        SharedPreferences store = getSharedPreferences("save_coupon", MODE_PRIVATE);
+        final SharedPreferences.Editor storeEditor = store.edit();
+
+        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
-                String title = coupon.getCouponTitle();
-                editor.putString("user_id", title);
+                editor.putString("user_id", coupon.getCouponTitle());
                 editor.commit();
-                Intent intent = new Intent(getApplicationContext(), CouponContent.class);
+                Intent intent = new Intent(getApplicationContext(), MemCouponContent.class);
                 startActivity(intent);
             }
         });
     }
-
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
     }
-
     @Override
     protected void onStop() {
         super.onStop();

@@ -21,6 +21,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.Date;
+
 public class QrcodeScannerNext extends Activity {
 
     private EditText consume;
@@ -62,6 +64,7 @@ public class QrcodeScannerNext extends Activity {
         who = session.getString("user_id","目前沒人登入");
 
         //------------------------------------------------------------
+
         consume = (EditText)findViewById(R.id.consume);//消費金額
         btn = (Button)findViewById(R.id.confirmbtn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +90,6 @@ public class QrcodeScannerNext extends Activity {
 
 
                         Intent h = new Intent(getApplicationContext(), QrcodeScannerFinal.class);
-                        h.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
                         Bundle bundle = new Bundle();
                         bundle.putString("point_given",points_given);
@@ -96,25 +97,27 @@ public class QrcodeScannerNext extends Activity {
 
                         startActivity(h);
 
-                        addStoreRecord(); //新增店家點數紀錄
-                        addMemberRec(); //新增會員點數紀錄
-                        addCardPoint();//增加點卡點數
+//                        addStoreRecord(); //新增店家點數紀錄
+//                        addMemberRec(); //新增會員點數紀錄
+//                        addCardPoint();//增加點卡點數
                         }
                 });
     }
 
     public void addStoreRecord(){
+        Date dt = new Date(); //當下時間
         //Bundle-----------------------------------------------------
         //取的intent中的bundle物件
         Bundle bundle66 =this.getIntent().getExtras();
         String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
         //String whoData = "iICTR1JL4eAG4B3QBi1S";//test
 
-        StorePointRec rec = new StorePointRec(whoData,points_given);
+        StorePointRec rec = new StorePointRec(whoData,points_given,dt);
         stoRef.document(who).collection("record").add(rec);
     }
 
     public void addMemberRec(){
+        Date dt = new Date();//當下時間
         //Bundle-----------------------------------------------------
         //取的intent中的bundle物件
         Bundle bundle66 =this.getIntent().getExtras();
@@ -122,11 +125,12 @@ public class QrcodeScannerNext extends Activity {
         String points_get = points_given;
         //String whoData = "iICTR1JL4eAG4B3QBi1S";//test
 
-        MemberPointRec rec = new MemberPointRec(points_get, who);
+        MemberPointRec rec = new MemberPointRec(points_get, who, dt);
         memRef.document(whoData).collection("record").add(rec);
     }
 
     public void addCardPoint(){
+        Date dt = new Date();
         //Bundle-----------------------------------------------------
         //取的intent中的bundle物件
         Bundle bundle66 =this.getIntent().getExtras();
