@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tab_layou"
+        android:id="@+id/tab_bar"
         app:tabIndicatorColor="@color/com_facebook_blue"
         app:tabTextColor="@color/gray"
         app:tabSelectedTextColor="@color/black"/>
@@ -18,8 +18,8 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager"
-        android:layout_below="@id/tab_layou"/>
+        android:id="@+id/views_pager"
+        android:layout_below="@id/tab_bar"/>
 
 
 </RelativeLayout>

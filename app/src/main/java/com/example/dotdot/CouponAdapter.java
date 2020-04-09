@@ -22,7 +22,7 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
     private OnItemClickListener listener;
 
     public CouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
-        super(options);
+            super(options);
     }
 
     @Override

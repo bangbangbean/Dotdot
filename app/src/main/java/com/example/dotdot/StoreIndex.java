@@ -30,6 +30,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FusedLocationProviderClient mfusedLocationProviderClient;
 
     Button btn_dot;
+    Button btn_notificaiton;
 
 
     @Override
@@ -37,14 +38,14 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
-        //地圖--------------------------------------------------------------------------------------
+        //--------------------------地圖------------------------------------------------------------
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //QRcode Scanner----------------------------------------------------------------------------
+        //---------------------QRcode Scanner-------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
 
         btn_dot.setOnClickListener(new View.OnClickListener() {
@@ -52,10 +53,18 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 Intent j = new Intent(getApplicationContext(), QrcodeScanner.class);
                 startActivity(j);
-            }
+            } 
         });
 
-        //------------------------------------------------------------------------------------------
+        //------------------------Notification----------------------------------------------------
+        btn_notificaiton = findViewById(R.id.storeNotification);
+        btn_notificaiton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent n = new Intent(getApplicationContext() , StoreNotification.class);
+                startActivity(n);
+            }
+        });
 
     }
     //GMAP地圖--------------------------------------------------------------------------------------
