@@ -1,22 +1,13 @@
 package com.example.dotdot;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
-import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -37,7 +28,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         int qqq = Integer.valueOf(qq);
         if (qqq == 4){
             collectioncardHolder.dot1.setBackgroundColor(Color.rgb(239,114,158));
-
 
         }
         collectioncardHolder.coupon.setOnClickListener(new View.OnClickListener() {

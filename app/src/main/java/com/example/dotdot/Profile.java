@@ -39,8 +39,6 @@ public class Profile extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         memRef.whereEqualTo("name", "王小名")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

@@ -1,5 +1,7 @@
 package com.example.dotdot;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Date;
 
 public class Coupon {
@@ -8,6 +10,7 @@ public class Coupon {
     private String couponTitle;
     private Date creatTime;
     private Date deadLine;
+    private String documentId;
     Coupon coupon;
 
     public Coupon() {
@@ -20,7 +23,14 @@ public class Coupon {
         this.deadLine = deadLine;
         this.couponTitle = couponTitle;
     }
+    @Exclude
+    public String getDocumentId(){
+        return documentId;
+    }
 
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
 
     public Date getCreatTime() {
         return creatTime;
