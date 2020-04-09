@@ -1,15 +1,19 @@
 package com.example.dotdot;
 import com.google.firebase.database.Exclude;
+
+import java.util.Date;
+
 public class MemberPointRec {
     private String points_get;
     private String store;
-    private String time;
+    private Date time;
 
     public MemberPointRec(){}
 
-    public MemberPointRec(String points_get, String store){
+    public MemberPointRec(String points_get, String store, Date time){
         this.points_get = points_get;
         this.store = store;
+        this.time = time;
     }
 
     public String getPoint_get() {
@@ -28,11 +32,11 @@ public class MemberPointRec {
         this.store = store;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 }

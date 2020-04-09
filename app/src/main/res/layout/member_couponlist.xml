@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/listBg"
+            android:layout_width="380dp"
+            android:layout_height="115dp"
+            android:background="#4DC4CDFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"></TextView>
+
+        <TextView
+            android:id="@+id/couponTitle"
+            android:layout_width="260dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@+id/listBg"
+            app:layout_constraintEnd_toEndOf="@+id/listBg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/listBg"
+            app:layout_constraintTop_toTopOf="@+id/listBg"
+            app:layout_constraintVertical_bias="0.0"></TextView>
+
+        <TextView
+            android:id="@+id/couponPoint"
+            android:layout_width="77dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_horizontal"
+            android:textColor="#E61818"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/listBg"
+            app:layout_constraintEnd_toEndOf="@+id/listBg"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/listBg"
+            app:layout_constraintTop_toTopOf="@+id/listBg"
+            app:layout_constraintVertical_bias="0.266"></TextView>
+
+        <TextView
+            android:id="@+id/dot"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="點"
+            android:textColor="#3F51B5"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/couponPoint"
+            app:layout_constraintEnd_toEndOf="@+id/listBg"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/couponPoint"
+            app:layout_constraintTop_toTopOf="@+id/couponPoint"
+            app:layout_constraintVertical_bias="1.0"></TextView>
+
+        <TextView
+            android:id="@+id/endTime"
+            android:layout_width="130dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/listBg"
+            app:layout_constraintEnd_toEndOf="@+id/listBg"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/listBg"
+            app:layout_constraintTop_toBottomOf="@+id/couponPoint"></TextView>
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginLeft="104dp"
+            android:layout_marginTop="12dp"
+            android:text="兌換優惠券截止日 :"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/couponTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

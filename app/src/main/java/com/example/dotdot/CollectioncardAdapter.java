@@ -2,7 +2,6 @@ package com.example.dotdot;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -163,17 +162,17 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         private TextView dot9;
         private TextView dot10;
         private Button coupon;
-        private Context context;
 
         public CollectioncardHolder(@NonNull View itemView) {
             super(itemView);
-            this.context = context;
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                 }
             });
+
             Title = itemView.findViewById(R.id.Title);
             points = itemView.findViewById(R.id.points);
             dot1 = itemView.findViewById(R.id.Dot1);

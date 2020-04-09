@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/notice"
+        android:id="@+id/storeNotification"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginBottom="35dp"

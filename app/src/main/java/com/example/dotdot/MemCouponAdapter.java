@@ -1,6 +1,5 @@
 package com.example.dotdot;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,26 +16,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapter.CouponHolder> {
+public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCouponAdapter.MemCouponHolder> {
+    private MemCouponAdapter.OnItemClickListener listener;
 
-    private OnItemClickListener listener;
-
-    public CouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
-            super(options);
+    public MemCouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
+        super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull CouponHolder couponHolder, int i, @NonNull Coupon coupon) {
+    protected void onBindViewHolder(@NonNull MemCouponHolder memCouponHolder, int i, @NonNull Coupon coupon) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        couponHolder.couponTitle.setText(coupon.getCouponTitle());
-        couponHolder.couponPoint.setText(coupon.getDotNeed());
-        couponHolder.startTime.setText(sdf.format(coupon.getCreatTime()));
-        couponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
+        memCouponHolder.couponTitle.setText(coupon.getCouponTitle());
+        memCouponHolder.couponPoint.setText(coupon.getDotNeed());
+        memCouponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
         String deadline = sdf.format(coupon.getDeadLine());
         Date dt = new Date();
         String nowdt = sdf.format(dt);
         if (compareDate(nowdt, deadline) == false) {
-            couponHolder.listBackground.setBackgroundColor(Color.rgb(211, 210, 210));
+
         }
     }
 
@@ -58,26 +55,22 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
 
     @NonNull
     @Override
-    public CouponHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_couponlist,
+    public MemCouponHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_couponlist,
                 parent, false);
-        return new CouponHolder(v);
+        return new MemCouponAdapter.MemCouponHolder(v);
     }
 
-    class CouponHolder extends RecyclerView.ViewHolder {
+    public class MemCouponHolder extends RecyclerView.ViewHolder {
         private TextView couponTitle;
         private TextView couponPoint;
-        private TextView startTime;
         private TextView endTime;
-        private TextView listBackground;
 
-        public CouponHolder(@NonNull View itemView) {
+        public MemCouponHolder(@NonNull View itemView) {
             super(itemView);
             couponTitle = itemView.findViewById(R.id.couponTitle);
             couponPoint = itemView.findViewById(R.id.couponPoint);
-            startTime = itemView.findViewById(R.id.startTime);
             endTime = itemView.findViewById(R.id.endTime);
-            listBackground = itemView.findViewById(R.id.listBg);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,14 +81,15 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
                     }
                 }
             });
+
         }
     }
-
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(MemCouponAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 }
+

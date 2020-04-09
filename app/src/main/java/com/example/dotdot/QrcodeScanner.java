@@ -114,8 +114,8 @@ public class QrcodeScanner extends Activity {
                 textViewBarCodeValue.setText(whoData);
                 if (whoData != null){
                     Intent k = new Intent(getApplicationContext(), QrcodeScannerNext.class);
-                    k.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+//                    k.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+//                            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
                     //將值帶入下一頁
                     Bundle bundle = new Bundle();
