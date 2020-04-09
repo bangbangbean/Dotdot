@@ -66,7 +66,7 @@ public class TransactionRecord extends AppCompatActivity {
 
 
     private void setUpRecyclerView() {
-        Query query = memref;
+        Query query = memref.orderBy("time", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Record> options = new FirestoreRecyclerOptions.Builder<Record>()
                 .setQuery(query, Record.class)
                 .build();

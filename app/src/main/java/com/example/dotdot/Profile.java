@@ -41,7 +41,7 @@ public class Profile extends Fragment {
 
 
 
-        memRef.whereEqualTo("name", "王小名")
+        memRef.whereEqualTo("name", "邱冠儒")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

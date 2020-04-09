@@ -6,11 +6,13 @@
     android:layout_height="wrap_content">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="393dp"
+        android:layout_width="380dp"
         android:layout_height="164dp"
         android:background="@drawable/bg_frame"
         android:orientation="vertical"
@@ -28,6 +30,7 @@
                 android:layout_width="225dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -83,6 +86,7 @@
                 android:layout_width="87dp"
                 android:layout_height="74dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -93,7 +97,8 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/dodo" />
+                android:text="@string/dodo"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/useDot"
@@ -101,6 +106,7 @@
                 android:layout_height="57dp"
                 android:layout_weight="1"
                 android:background="@drawable/border_record"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -111,7 +117,8 @@
                 android:layout_height="33dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/dodo" />
+                android:text="@string/dodo"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/getCoupon"
@@ -121,7 +128,8 @@
                 android:background="@drawable/border_record"
                 android:gravity="center"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/textView26"
@@ -129,7 +137,8 @@
                 android:layout_height="37dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/zhang" />
+                android:text="@string/zhang"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
     </LinearLayout>
