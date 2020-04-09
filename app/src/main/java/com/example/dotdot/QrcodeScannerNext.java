@@ -97,9 +97,9 @@ public class QrcodeScannerNext extends Activity {
 
                         startActivity(h);
 
-//                        addStoreRecord(); //新增店家點數紀錄
-//                        addMemberRec(); //新增會員點數紀錄
-//                        addCardPoint();//增加點卡點數
+                        addStoreRecord(); //新增店家點數紀錄
+                        addMemberRec(); //新增會員點數紀錄
+                        addCardPoint();//增加集點卡點數
                         }
                 });
     }
@@ -123,7 +123,6 @@ public class QrcodeScannerNext extends Activity {
         Bundle bundle66 =this.getIntent().getExtras();
         String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
         String points_get = points_given;
-        //String whoData = "iICTR1JL4eAG4B3QBi1S";//test
 
         MemberPointRec rec = new MemberPointRec(points_get, who, dt);
         memRef.document(whoData).collection("record").add(rec);

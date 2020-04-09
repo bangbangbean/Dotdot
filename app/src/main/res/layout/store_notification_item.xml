@@ -8,12 +8,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="85dp">
+        android:layout_height="61dp">
 
         <TextView
             android:id="@+id/notiTitle"
-            android:layout_width="398dp"
-            android:layout_height="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="TextView"
             android:textSize="24sp"
@@ -21,17 +21,17 @@
 
         <TextView
             android:id="@+id/notiTime"
-            android:layout_width="293dp"
-            android:layout_height="40dp"
+            android:layout_width="178dp"
+            android:layout_height="22dp"
             android:layout_below="@+id/notiTitle"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
 
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="-1dp"
             android:layout_marginRight="-1dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="2dp"
             android:textColor="#B8B0B0"
             android:textSize="18sp"
             android:textStyle="bold|italic" />
