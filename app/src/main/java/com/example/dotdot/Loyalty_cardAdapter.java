@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class Loyalty_cardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, Loyalty_cardAdapter.Loyalty_cardHolder> {
+    private OnItemClickListener listener;
 
     public Loyalty_cardAdapter(@NonNull FirestoreRecyclerOptions<Loyalty_card> options) {
         super(options);
@@ -47,6 +49,22 @@ public class Loyalty_cardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, 
             textViewstore = itemView.findViewById(R.id.memberRecStoreName);
             textViewcoupon = itemView.findViewById(R.id.getCoupon);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
+    }
+
+    public interface  OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(Loyalty_cardAdapter.OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -47,13 +51,7 @@ public class TransactionRecord extends AppCompatActivity {
                     //顯示店家模式紀錄
                     recyclerView.setAdapter(adapter);
                     //點擊觸發事件_跳出選定店家紀錄
-//                    recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                            Intent i = new Intent(getApplicationContext() , member_storemode_record.class);
-//                            startActivity(i);
-//                        }
-//                    });
+
                 }
                 else {
                     //顯示清單模式紀錄
@@ -93,6 +91,21 @@ public class TransactionRecord extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
+
+        SharedPreferences loyalty_card = getSharedPreferences("loyalty_card", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = loyalty_card.edit();
+
+        adapter2.setOnItemClickListener(new Loyalty_cardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
+                String store = loyalty_card.getStore();
+                editor.putString("user_id", store);
+                editor.commit();
+                Intent intent = new Intent(getApplicationContext(), member_storemode_record.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -108,5 +121,6 @@ public class TransactionRecord extends AppCompatActivity {
         adapter.stopListening();
         adapter2.stopListening();
     }
+
 
 }

@@ -53,7 +53,7 @@ public class FavoriteNotification_fragment extends Fragment {
 
         RecyclerView recyclerview = getView().findViewById(R.id.fav_recycler);
         recyclerview.setHasFixedSize(true);
-       // recyclerview.setLayoutManager(new LinearLayoutManager(FavoriteNotification_fragment.this));
+        recyclerview.setLayoutManager(new LinearLayoutManager(FavoriteNotification_fragment.this));
         recyclerview.setAdapter(adapter);
 
     }

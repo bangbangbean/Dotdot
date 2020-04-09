@@ -8,14 +8,15 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="309dp"
-        android:layout_height="534dp"
+        android:layout_width="320dp"
+        android:layout_height="150dp"
         android:background="@drawable/bg_frame"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="350dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +29,6 @@
                 android:layout_height="55dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/bear"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -91,7 +91,6 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:gravity="center"
-                android:text="10"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -110,7 +109,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/border_record"
                 android:gravity="center"
-                android:text="4"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -129,7 +127,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/border_record"
                 android:gravity="center"
-                android:text="1"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
