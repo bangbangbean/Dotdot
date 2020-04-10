@@ -8,7 +8,6 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,21 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".StoreNotiSending"></activity>
+        <activity
+            android:name=".QrcodeScannerNext"
+            android:theme="@style/AppTheme.PopMe"/>
         <activity
             android:name=".ConfirmExchange"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
             android:name=".MemCouponContent"
             android:theme="@style/AppTheme.CouponContent" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
@@ -87,11 +80,11 @@
         <activity android:name=".TransactionRecord" />
         <activity android:name=".Collectioncard" />
         <activity
-            android:name=".QrcodeScannerNext"
-            android:theme="@style/AppTheme.PopMe" />
-        <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index">
+            android:label="@string/title_activity_store_index"/>
+        <activity
+            android:name=".StoreNotiSending"
+            android:theme="@style/AppTheme.Pop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

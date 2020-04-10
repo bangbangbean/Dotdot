@@ -6,7 +6,7 @@
     android:padding="10dp">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/newbtn"
         android:layout_width="235dp"
         android:layout_height="38dp"
         android:layout_alignParentEnd="true"

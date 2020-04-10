@@ -42,7 +42,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     // this variable get for the location in mobile
     private FusedLocationProviderClient mfusedLocationProviderClient;
 
-    Button btn_dot;
+    Button btn_dot, btn_noti;
     private TextView Storetitle;
     private TextView Mon;
     private TextView Pointsgives;
@@ -61,9 +61,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
         Storetitle = findViewById(R.id.storetitle);
-
         memRef.document("nQnT8AAt4NYIRYZFZfAR").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -71,12 +69,9 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     Store mem = documentSnapshot.toObject(Store.class);
                     String name = mem.getName();
                     Storetitle.setText(name);
-
                 }
             }
         });
-
-
         Mon = findViewById(R.id.mom);
         note.document("AVJrnemUBtsWym0dllip").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -95,9 +90,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         Pointsgives = findViewById(R.id.pointsgive);
 
-
-
-
         //QRcode Scanner----------------------------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
 
@@ -110,6 +102,14 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         });
 
         //------------------------------------------------------------------------------------------
+        btn_noti = (Button) findViewById(R.id.storeNotification);
+        btn_noti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(getApplicationContext(), StoreNotification.class);
+                startActivity(k);
+            }
+        });
 
     }
     //GMAP地圖--------------------------------------------------------------------------------------

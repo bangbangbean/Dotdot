@@ -1,9 +1,11 @@
 package com.example.dotdot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,11 +25,14 @@ import org.jetbrains.annotations.Contract;
 
 import java.text.SimpleDateFormat;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class StoreNotificationSend extends Fragment {
 
     private View PrivateView;
     private RecyclerView notiList;
     private StoreNotiSend_Adapter adapter;
+    private Button btn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notiRef = db.collection("store")
@@ -39,6 +44,7 @@ public class StoreNotificationSend extends Fragment {
         PrivateView = inflater.inflate(R.layout.store_notification_send , container , false);
         notiList = (RecyclerView) PrivateView.findViewById(R.id.StoreNotiRecyclerView);
         setUpRecyclerView();
+
         return PrivateView;
     }
 
@@ -57,6 +63,14 @@ public class StoreNotificationSend extends Fragment {
     public void onStart() {
         super.onStart();
         adapter.startListening();
+        btn = (Button)PrivateView.findViewById(R.id.newbtn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent h = new Intent(getApplicationContext(), StoreNotiSending.class);
+                startActivity(h);
+            }
+        });
     }
 
     @Override

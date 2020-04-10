@@ -6,4 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".StoreNotiSending">
 
+    <EditText
+        android:id="@+id/sendTitle"
+        android:layout_width="430dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855" />
+
+    <EditText
+        android:id="@+id/sendContxt"
+        android:layout_width="430dp"
+        android:layout_height="75dp"
+        android:ems="10"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="74dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:text="@string/titlee"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/sendTitle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="67dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:text="@string/contx"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/sendContxt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/sendImg"
+        android:layout_width="430dp"
+        android:layout_height="194dp"
+        android:src="@drawable/ic_add_box_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.689"
+        app:srcCompat="@drawable/ic_add_box_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="70dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:text="@string/ima"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/sendImg"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sendBtn"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/bg_round_button"
+        android:text="@string/send"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendImg"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

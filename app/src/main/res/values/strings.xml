@@ -104,6 +104,10 @@
     -----------------------------------------------------------------------------------------------
     //Store notification
     <string name="newone">新增!</string>
+    <string name="titlee">標題</string>
+    <string name="contx">內容</string>
+    <string name="ima">圖片</string>
+    <string name="send">發送!</string>
 
 </resources>
 
