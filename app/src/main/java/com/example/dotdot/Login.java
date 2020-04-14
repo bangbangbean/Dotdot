@@ -28,8 +28,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = session.edit();
+        SharedPreferences memberSession = getSharedPreferences("save_useraccount", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = memberSession.edit();
 
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
@@ -69,12 +69,11 @@ public class Login extends AppCompatActivity {
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
+
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                     Member mem = documentSnapshot.toObject(Member.class);
-                                    mem.setDocumentId(documentSnapshot.getId());
-
-                                    String documentId = mem.getDocumentId();
+                                    String documentId = documentSnapshot.getId();
                                     String pass = mem.getPassword();
                                     if (pass.equals(password)) {
                                         editor.putString("user_id", "iICTR1JL4eAG4B3QBi1S");

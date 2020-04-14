@@ -61,7 +61,7 @@ public class StoreOverlookCoupon extends AppCompatActivity {
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 String title = coupon.getCouponTitle();
-                editor.putString("user_id", title);
+                editor.putString("coupon_title", title);
                 editor.commit();
                 Intent intent = new Intent(getApplicationContext(), CouponContent.class);
                 startActivity(intent);

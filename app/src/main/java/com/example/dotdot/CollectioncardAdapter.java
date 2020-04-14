@@ -1,29 +1,22 @@
 package com.example.dotdot;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
-import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, CollectioncardAdapter.CollectioncardHolder> {
 
+    private OnItemClickListener listener;
 
     public CollectioncardAdapter(@NonNull FirestoreRecyclerOptions<Loyalty_card> options) {
         super(options);
@@ -33,8 +26,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
     protected void onBindViewHolder(@NonNull CollectioncardHolder collectioncardHolder, int i, @NonNull Loyalty_card loyalty_card) {
         collectioncardHolder.Title.setText(loyalty_card.getStore());
         collectioncardHolder.points.setText(loyalty_card.getPoints_owned());
-        String qq = loyalty_card.getPoints_owned();
-        int qqq = Integer.valueOf(qq);
+        int qqq = Integer.parseInt(loyalty_card.getPoints_owned());;
         if (qqq == 1){
 
 //            final Resources myResources = collectioncardHolder.context.getResources();
@@ -110,7 +102,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             collectioncardHolder.dot8.setBackgroundColor(Color.rgb(239,114,158));
             collectioncardHolder.dot9.setBackgroundColor(Color.rgb(239,114,158));
         }
-        else if(qqq == 10){
+        else if(qqq >= 10){
             collectioncardHolder.dot1.setBackgroundColor(Color.rgb(239,114,158));
             collectioncardHolder.dot2.setBackgroundColor(Color.rgb(239,114,158));
             collectioncardHolder.dot3.setBackgroundColor(Color.rgb(239,114,158));
@@ -127,13 +119,8 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             @Override
             public void onClick(View view) {
 
-
-
             }
         });
-
-
-
     }
 
 
@@ -165,14 +152,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
 
         public CollectioncardHolder(@NonNull View itemView) {
             super(itemView);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-
             Title = itemView.findViewById(R.id.Title);
             points = itemView.findViewById(R.id.points);
             dot1 = itemView.findViewById(R.id.Dot1);
@@ -186,9 +165,23 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             dot9 = itemView.findViewById(R.id.Dot9);
             dot10 = itemView.findViewById(R.id.Dot10);
             coupon = itemView.findViewById(R.id.coupon);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
-
-
+    }
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 }

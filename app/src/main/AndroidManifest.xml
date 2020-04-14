@@ -8,6 +8,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -15,6 +16,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -24,16 +26,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.FullScreen"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="n">
+        <activity android:name=".CouponBelongMember"></activity>
         <activity
             android:name=".QrcodeScannerNext"
-            android:theme="@style/AppTheme.PopMe"/>
+            android:theme="@style/AppTheme.PopMe" />
         <activity
             android:name=".ConfirmExchange"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
             android:name=".MemCouponContent"
             android:theme="@style/AppTheme.CouponContent" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
@@ -68,7 +73,7 @@
         <activity android:name=".StoreOverlookCoupon" />
         <activity android:name=".botnav" />
         <activity android:name=".test" />
-        <activity android:name=".Login" />
+        <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
@@ -76,15 +81,16 @@
         <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Regist" />
-        <activity android:name=".StoreCreatLoyaltyCard" />
+        <activity android:name=".Login" />
         <activity android:name=".TransactionRecord" />
-        <activity android:name=".Collectioncard" />
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index"/>
+            android:label="@string/title_activity_store_index" />
         <activity
             android:name=".StoreNotiSending"
-            android:theme="@style/AppTheme.Pop">
+            android:theme="@style/AppTheme.Pop" />
+        <activity android:name=".MemberOverlookCoupon" />
+        <activity android:name=".Collectioncard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

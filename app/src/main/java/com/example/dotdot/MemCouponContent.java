@@ -2,7 +2,6 @@ package com.example.dotdot;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -22,8 +21,8 @@ import java.text.SimpleDateFormat;
 
 public class MemCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
+
+    private CollectionReference couponRef = db.collection("store");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +37,15 @@ public class MemCouponContent extends Activity {
                 startActivity(intent);
             }
         });
-
         //coupon的title名稱
-        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        String whichCoupon = coupon.getString("user_id", "沒選到Coupon");
+        String whichCoupon = getSharedPreferences("save_coupon", MODE_PRIVATE)
+                .getString("coupon_title", "沒選到Coupon");
+        //store的亂碼Id
+        String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("store_id", "沒選擇店家");
 
-
-
-        couponRef.whereEqualTo("couponTitle",whichCoupon)
+        couponRef.document(storeId).collection("coupon")
+                .whereEqualTo("couponTitle",whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

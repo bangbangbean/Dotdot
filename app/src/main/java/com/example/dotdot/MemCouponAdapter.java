@@ -91,5 +91,6 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
     public void setOnItemClickListener(MemCouponAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }
 

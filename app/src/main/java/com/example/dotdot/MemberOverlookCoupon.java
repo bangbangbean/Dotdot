@@ -18,8 +18,7 @@ import java.util.Date;
 
 public class MemberOverlookCoupon extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
+    private CollectionReference couponRef = db.collection("store");
     private MemCouponAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,15 @@ public class MemberOverlookCoupon extends Activity {
 
 
     private void setUpRecyclerView() {
+
+
+        //store的亂碼Id
+         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("store_id", "沒選擇店家");
+
         Date dt = new Date();
-        Query query = couponRef.whereGreaterThan("deadLine",dt)
+        Query query = couponRef.document(storeId).collection("coupon")
+                .whereGreaterThan("deadLine",dt)
                 .orderBy("deadLine", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
@@ -44,23 +50,22 @@ public class MemberOverlookCoupon extends Activity {
         recyclerView.setAdapter(adapter);
 
         //coupon的title名稱
-        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = coupon.edit();
+        SharedPreferences couponpref = getSharedPreferences("save_coupon", MODE_PRIVATE);
 
-        //coupon的亂碼Id
-        SharedPreferences couponId = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        final SharedPreferences.Editor editorId = couponId.edit();
+        //coupon的Id名稱
+        SharedPreferences couponIdpref = getSharedPreferences("save_couponId", MODE_PRIVATE);
 
-        //store的亂碼Id
-        SharedPreferences store = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        final SharedPreferences.Editor storeEditor = store.edit();
 
         adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
-                editor.putString("user_id", coupon.getCouponTitle());
-                editor.commit();
+                couponpref.edit()
+                        .putString("coupon_title", coupon.getCouponTitle())
+                        .apply();
+                couponIdpref.edit()
+                        .putString("coupon_id",documentSnapshot.getId())
+                        .apply();
                 Intent intent = new Intent(getApplicationContext(), MemCouponContent.class);
                 startActivity(intent);
             }

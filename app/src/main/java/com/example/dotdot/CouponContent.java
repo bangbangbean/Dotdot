@@ -30,7 +30,7 @@ public class CouponContent extends Activity {
 
         //coupon的title
         SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        String whichCoupon = coupon.getString("user_id", "沒選到Coupon");
+        String whichCoupon = coupon.getString("coupon_title", "沒選到Coupon");
 
         couponRef.whereEqualTo("couponTitle",whichCoupon)
                 .get()
