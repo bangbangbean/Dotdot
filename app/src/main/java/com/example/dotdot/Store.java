@@ -8,16 +8,20 @@ public class Store {
     private String address;
     private String Threshold;
     private String documentId;
+
+    //private Double LatitudeLongitude;
     Store store;
 
     public Store() {
     }
 
-    public Store(String name,String phone,String Threshold){
+    public Store(String name,String phone,String Threshold ){
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.Threshold = Threshold;
+
+        //this.LatitudeLongitude = LatitudeLongitude;
     }
     @Exclude
     public String getDocumentId(){
@@ -44,10 +48,13 @@ public class Store {
         this.documentId = documentId;
     }
 
+
     public String getName() {
         return name;
     }
     public String getPhone() { return phone; }
     public String getAddress() { return address; }
     public String getThreshold(){return Threshold;}
+
+   // public Double getLatitudeLongitude(){return LatitudeLongitude;}
 }

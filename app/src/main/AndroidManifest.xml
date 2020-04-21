@@ -60,9 +60,9 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps" />
+        <activity android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index"
+             />
         <activity
             android:name=".QrcodeScannerFinal"
             android:theme="@style/AppTheme.PopMe" />
@@ -88,9 +88,9 @@
         <activity
             android:name=".QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe"/>
-        <activity
-            android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index" >
+        <activity android:name=".MemberIndex"
+        android:label="@string/title_activity_maps"
+             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
