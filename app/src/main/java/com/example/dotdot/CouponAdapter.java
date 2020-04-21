@@ -29,7 +29,7 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
     protected void onBindViewHolder(@NonNull CouponHolder couponHolder, int i, @NonNull Coupon coupon) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         couponHolder.couponTitle.setText(coupon.getCouponTitle());
-        couponHolder.couponPoint.setText(coupon.getDotNeed());
+        couponHolder.couponPoint.setText(Integer.toString(coupon.getDotNeed()));
         couponHolder.startTime.setText(sdf.format(coupon.getCreatTime()));
         couponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
         String deadline = sdf.format(coupon.getDeadLine());

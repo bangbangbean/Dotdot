@@ -1,9 +1,9 @@
 package com.example.dotdot;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,7 +21,7 @@ public class botnav extends AppCompatActivity{
                 selectedFragment = new Profile();
                 break;
             case R.id.shopping:
-                selectedFragment = new frag2();
+                selectedFragment = new Collectioncard();
                 break;
             case R.id.shipping:
                 selectedFragment = new frag2();

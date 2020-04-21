@@ -26,9 +26,9 @@ import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class MemberOverlookCoupon extends Fragment {
+public class MemberOwnedCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store");
+    private CollectionReference couponRef = db.collection("Coupon");
     private MemCouponAdapter adapter;
     private View view;
 
@@ -36,7 +36,7 @@ public class MemberOverlookCoupon extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_member_overlook_coupon, container, false);
+        view = inflater.inflate(R.layout.activity_member_owned_coupon, container, false);
         setUpRecyclerView();
 
         //跳轉頁到MemberCanExchangeCoupon

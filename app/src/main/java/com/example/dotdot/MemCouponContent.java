@@ -44,7 +44,9 @@ public class MemCouponContent extends Activity {
         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
-        couponRef.document(storeId).collection("coupon")
+        String id = storeId;
+
+        couponRef.document(id).collection("coupon")
                 .whereEqualTo("couponTitle",whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -58,7 +60,7 @@ public class MemCouponContent extends Activity {
                             TextView deadLine = (TextView)findViewById(R.id.deadLine);
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             title.setText(coupon.getCouponTitle());
-                            point.setText(coupon.getDotNeed());
+                            point.setText(Integer.toString(coupon.getDotNeed()));
                             content.setText(coupon.getCouponContent());
                             deadLine.setText(sdf.format(coupon.getDeadLine()));
                         }

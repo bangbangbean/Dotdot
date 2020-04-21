@@ -46,7 +46,7 @@ public class CouponContent extends Activity {
                             TextView deadLine = (TextView)findViewById(R.id.deadLine);
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             title.setText(coupon.getCouponTitle());
-                            point.setText(coupon.getDotNeed());
+                            point.setText(Integer.toString(coupon.getDotNeed()));
                             content.setText(coupon.getCouponContent());
                             creatTime.setText(sdf.format(coupon.getCreatTime()));
                             deadLine.setText(sdf.format(coupon.getDeadLine()));

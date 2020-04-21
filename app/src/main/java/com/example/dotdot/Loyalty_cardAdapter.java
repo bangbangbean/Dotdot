@@ -23,8 +23,8 @@ public class Loyalty_cardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, 
     protected void onBindViewHolder(@NonNull Loyalty_cardHolder loyalty_cardholder, int position, @NonNull Loyalty_card loyalty_card) {
         loyalty_cardholder.textViewstore.setText(loyalty_card.getStore());
         loyalty_cardholder.textViewpoints_owned.setText(loyalty_card.getPoints_owned());
-        loyalty_cardholder.textViewpoints_use.setText(loyalty_card.getPoints_use());
-        loyalty_cardholder.textViewcoupon.setText(loyalty_card.getCoupon());
+//        loyalty_cardholder.textViewpoints_use.setText(loyalty_card.getPoints_use());
+//        loyalty_cardholder.textViewcoupon.setText(loyalty_card.getCoupon());
     }
 
     @NonNull

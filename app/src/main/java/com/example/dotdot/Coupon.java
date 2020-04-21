@@ -5,7 +5,7 @@ import com.google.firebase.database.Exclude;
 import java.util.Date;
 
 public class Coupon {
-    private String dotNeed;
+    private Integer dotNeed;
     private String couponContent;
     private String couponTitle;
     private Date creatTime;
@@ -16,7 +16,7 @@ public class Coupon {
     public Coupon() {
 
     }
-    public Coupon(Date creatTime, Date deadLine,String couponTitle,String couponContent,String dotNeed){
+    public Coupon(Date creatTime, Date deadLine,String couponTitle,String couponContent,Integer dotNeed){
         this.dotNeed = dotNeed;
         this.couponContent = couponContent;
         this.creatTime = creatTime;
@@ -32,27 +32,11 @@ public class Coupon {
         this.documentId = documentId;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public Date getDeadLine() {
-        return deadLine;
-    }
-
-    public void setDeadLine(Date deadLine) {
-        this.deadLine = deadLine;
-    }
-
-    public String getDotNeed() {
+    public Integer getDotNeed() {
         return dotNeed;
     }
 
-    public void setDotNeed(String dotNeed) {
+    public void setDotNeed(Integer dotNeed) {
         this.dotNeed = dotNeed;
     }
 
@@ -72,4 +56,19 @@ public class Coupon {
         this.couponTitle = couponTitle;
     }
 
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
+    }
+
+    public Date getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(Date deadLine) {
+        this.deadLine = deadLine;
+    }
 }

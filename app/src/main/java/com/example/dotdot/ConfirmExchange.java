@@ -27,7 +27,7 @@ import java.util.Map;
 public class ConfirmExchange extends Activity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store");
+    private CollectionReference storeRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
     private CollectionReference addCouponRef = db.collection("Coupon");
     private DocumentReference loyaltyCardRef = db.collection("Member").document("iICTR1JL4eAG4B3QBi1S");
@@ -35,7 +35,7 @@ public class ConfirmExchange extends Activity {
     int memberPointOwned;
     int storeDotNeed;
     String loyalty_card_id;
-    String coupon_id ;
+    String coupon_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class ConfirmExchange extends Activity {
         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
-        couponRef.document(storeId).collection("coupon")
+        storeRef.document(storeId).collection("coupon")
                 .whereEqualTo("couponTitle", whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -76,8 +76,8 @@ public class ConfirmExchange extends Activity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Coupon coupon = documentSnapshot.toObject(Coupon.class);
-                            couponPoint.setText(coupon.getDotNeed());
-                            storeDotNeed = Integer.parseInt(coupon.getDotNeed());
+                            couponPoint.setText(Integer.toString(coupon.getDotNeed()));
+                            storeDotNeed = coupon.getDotNeed();
                         }
                     }
                 });
@@ -121,58 +121,52 @@ public class ConfirmExchange extends Activity {
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
                                         //新增資料到已有的Coupon中
                                         coupon_id = documentSnapshot.getId();
-                                        Map<Object,Object> ownedCoupon = new HashMap<>();
-                                        ownedCoupon.put("store_couponId",CouponId);
-                                        ownedCoupon.put("storeId",storeId);
-                                        ownedCoupon.put("time",new Date());
+                                        Map<Object, Object> ownedCoupon = new HashMap<>();
+                                        ownedCoupon.put("store_couponId", CouponId);
+                                        ownedCoupon.put("storeId", storeId);
+                                        ownedCoupon.put("time", new Date());
                                         addCouponRef.document(coupon_id)
                                                 .collection("Owned_coupon").add(ownedCoupon);
 
                                         //修改會員剩餘的點數
-                                        Map<Object,Object> upData = new HashMap<>();
-                                        upData.put("points_owned",Integer.toString(total));
-                                        upData.put("storeId",storeId);
+                                        Map<Object, Object> upData = new HashMap<>();
+                                        upData.put("points_owned", Integer.toString(total));
+                                        upData.put("store", storeId);
                                         loyaltyCardRef.collection("loyalty_card").document(loyalty_card_id)
-                                                .set(upData);
+                                                .set(upData, SetOptions.merge());
 
                                         //新增資料到DotUseRecord
-                                        Map<Object,Object> dotUseRecord = new HashMap<>();
-                                        dotUseRecord.put("store_couponId",CouponId);
-                                        dotUseRecord.put("storeId",storeId);
-                                        dotUseRecord.put("pointUesd",storeDotNeed);
-                                        dotUseRecord.put("time",new Date());
+                                        Map<Object, Object> dotUseRecord = new HashMap<>();
+                                        dotUseRecord.put("store_couponId", CouponId);
+                                        dotUseRecord.put("storeId", storeId);
+                                        dotUseRecord.put("pointUsed", storeDotNeed);
+                                        dotUseRecord.put("time", new Date());
                                         DotUseRecordRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
                                                 .document(loyalty_card_id).collection("DotUseRecord")
                                                 .add(dotUseRecord);
 
+                                        //新增資料到店家紀錄
+                                        Map<Object, Object> couponBeenExchange = new HashMap<>();
+                                        couponBeenExchange.put("store_couponId", CouponId);
+                                        couponBeenExchange.put("time", new Date());
+                                        storeRef.document(storeId).collection("couponBeenExchange")
+                                                .add(couponBeenExchange);
                                     }
                                 }
                             })
-                            .addOnFailureListener(new OnFailureListener() {
+                            .addOnFailureListener(new OnFailureListener() {//如果會員沒有領取過集點卡
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
 
-                                    addCouponRef.add("eBd4gJSxZQiamKAbEH0P");//記得改成改活的
-
-                                    Map<Object,Object> ownedCoupon = new HashMap<>();
-                                    ownedCoupon.put("store_couponId",CouponId);
-                                    ownedCoupon.put("store",storeId);
-                                    ownedCoupon.put("time",new Date());
-                                    //新增資料到Coupon中
-                                    addCouponRef.document("好棒棒").collection("Owned_coupon").add(ownedCoupon);
-
-                                    //修改會員剩餘的點數
-                                    Loyalty_card loyaltycard = new Loyalty_card(Integer.toString(total),storeId);
-                                    loyaltyCardRef.collection("loyalty_card").document(loyalty_card_id)
-                                            .set(loyaltycard, SetOptions.merge());
                                 }
                             });
 
                 }
+                
             }
         });
 

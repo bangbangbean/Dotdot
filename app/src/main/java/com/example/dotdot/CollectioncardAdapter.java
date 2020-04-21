@@ -32,7 +32,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
 //            final Resources myResources = collectioncardHolder.context.getResources();
 //            final Drawable dotone = myResources.getDrawable(R.drawable.pink_dot);
 //            collectioncardHolder.dot1.setBackground(dotone);
-             collectioncardHolder.dot1.setBackgroundColor(Color.rgb(239,114,158));
+            collectioncardHolder.dot1.setBackgroundColor(Color.rgb(239,114,158));
 
         }
 

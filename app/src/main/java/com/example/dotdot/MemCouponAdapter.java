@@ -12,9 +12,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCouponAdapter.MemCouponHolder> {
     private MemCouponAdapter.OnItemClickListener listener;
@@ -27,30 +25,8 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
     protected void onBindViewHolder(@NonNull MemCouponHolder memCouponHolder, int i, @NonNull Coupon coupon) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         memCouponHolder.couponTitle.setText(coupon.getCouponTitle());
-        memCouponHolder.couponPoint.setText(coupon.getDotNeed());
+        memCouponHolder.couponPoint.setText(Integer.toString(coupon.getDotNeed()));
         memCouponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
-        String deadline = sdf.format(coupon.getDeadLine());
-        Date dt = new Date();
-        String nowdt = sdf.format(dt);
-        if (compareDate(nowdt, deadline) == false) {
-
-        }
-    }
-
-    public boolean compareDate(String nowDate, String compareDate) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        try {
-            Date now = df.parse(nowDate);
-            Date compare = df.parse(compareDate);
-            if (now.before(compare)) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
     @NonNull
@@ -93,4 +69,3 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
     }
 
 }
-

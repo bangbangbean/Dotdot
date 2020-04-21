@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -41,10 +40,10 @@ public class member_storemode_record extends Activity {
                             TextView points_use = (TextView)findViewById(R.id.useDot);
                             TextView coupon = (TextView)findViewById(R.id.getCoupon);
 
-                            store.setText(loyalty_card.getStore());
-                            points_owned.setText(loyalty_card.getPoints_owned());
-                            points_use.setText(loyalty_card.getPoints_use());
-                            coupon.setText(loyalty_card.getCoupon());
+//                            store.setText(loyalty_card.getStore());
+//                            points_owned.setText(loyalty_card.getPoints_owned());
+//                            points_use.setText(loyalty_card.getPoints_use());
+//                            coupon.setText(loyalty_card.getCoupon());
                         }
 
                     }

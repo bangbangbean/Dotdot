@@ -216,7 +216,7 @@ public class StoreCreatCoupon extends Activity {
 
         String title = couponTitle.getText().toString();
         String content = couponContent.getText().toString();
-        String need = dotNeed.getText().toString();
+        Integer need = Integer.parseInt(dotNeed.getText().toString());
         Coupon coupon = new Coupon(getDateFromString(beginning),getDateFromString(ending),title,content,need);
         couponRef.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
                 .add(coupon);
