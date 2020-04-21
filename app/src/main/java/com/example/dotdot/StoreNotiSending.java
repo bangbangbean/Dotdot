@@ -50,7 +50,7 @@ public class StoreNotiSending extends Activity {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
         params.x = 0;
-        params.y = 25;
+        params.y = -110;
 
         getWindow().setAttributes(params);
         //--------------------------------------------------------------------------
@@ -70,9 +70,8 @@ public class StoreNotiSending extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addStoreNoti();
-                Intent intent = new Intent(StoreNotiSending.this, StoreIndex.class);
-                startActivity(intent);
+                addStoreNoti();//新增通知
+                finish();
             }
         });
 
@@ -86,6 +85,7 @@ public class StoreNotiSending extends Activity {
         Note_store_noit noti = new Note_store_noit(tit, dt, con, who);
         notiRef.document(who).collection("Notice").add(noti);
         notisRef.add(noti);
+
     }
 }
 

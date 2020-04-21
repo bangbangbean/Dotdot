@@ -125,7 +125,6 @@ public class QrcodeScanner extends Activity {
                     k.putExtras(bundle);
 
                     startActivity(k);
-
                 }
 //                copyToClipBoard(whoData);
             }

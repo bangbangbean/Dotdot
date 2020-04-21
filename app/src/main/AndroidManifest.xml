@@ -8,7 +8,6 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -28,19 +27,15 @@
         android:theme="@style/AppTheme.FullScreen"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MemberOwnedCoupon"></activity>
-        <activity android:name=".MemberCanExchangeCoupon" />
-        <activity android:name=".CouponBelongMember" />
         <activity
-            android:name=".QrcodeScannerNext"
-            android:theme="@style/AppTheme.PopMe" />
+            android:name=".StoreNotiSending"
+            android:theme="@style/AppTheme.Pop"/>
         <activity
             android:name=".ConfirmExchange"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
             android:name=".MemCouponContent"
             android:theme="@style/AppTheme.CouponContent" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
@@ -66,8 +61,15 @@
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
         <activity
+            android:name=".MemberIndex"
+            android:label="@string/title_activity_maps" />
+        <activity
             android:name=".QrcodeScannerFinal"
             android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".MemberOwnedCoupon"/>
+        <activity android:name=".MemberCanExchangeCoupon" />
+        <activity android:name=".CouponBelongMember" />
+        <activity android:name=".MemberOverlookCoupon" />
         <activity android:name=".QrcodeScanner" />
         <activity android:name=".StoreOverlookCoupon" />
         <activity android:name=".botnav" />
@@ -82,22 +84,17 @@
         <activity android:name=".Regist" />
         <activity android:name=".Login" />
         <activity android:name=".TransactionRecord" />
+        <activity android:name=".Collectioncard"/>
+        <activity
+            android:name=".QrcodeScannerNext"
+            android:theme="@style/AppTheme.PopMe"/>
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index" />
-        <activity
-            android:name=".StoreNotiSending"
-            android:theme="@style/AppTheme.Pop" />
-        <activity android:name=".MemberOverlookCoupon" />
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_store_index" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -113,7 +113,7 @@ public class QrcodeScannerNext extends Activity {
         //String whoData = "iICTR1JL4eAG4B3QBi1S";//test
 
         StorePointRec rec = new StorePointRec(whoData,points_given,dt);
-        stoRef.document(who).collection("record").add(rec);
+        stoRef.document(who).collection("giveDotRecord").add(rec);
     }
 
     public void addMemberRec(){
@@ -125,7 +125,19 @@ public class QrcodeScannerNext extends Activity {
         String points_get = points_given;
 
         MemberPointRec rec = new MemberPointRec(points_get, who, dt);
-        memRef.document(whoData).collection("record").add(rec);
+        memRef.document(whoData).collection("loyalty_card")
+                .whereEqualTo("store",who)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            String oo = documentSnapshot.getId();
+                            memRef.document(whoData).collection("loyalty_card")
+                                    .document(oo).collection("DotGetRecord").add(rec);
+                        }
+                    }
+                });
     }
 
     public void addCardPoint(){
