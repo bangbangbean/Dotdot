@@ -79,7 +79,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     Store mem = documentSnapshot.toObject(Store.class);
                     String name = mem.getName();
                     Storetitle.setText(name);
-
                 }
             }
         });
@@ -95,9 +94,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     Date record = rec.getTime();
                     String mon = sdf.format(record);
                     Mon.setText(mon+"月");
-
-
-
                 }
             }
         });
@@ -116,10 +112,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
                     Pointsgives = findViewById(R.id.pointsgive);
                     Pointsgives.setText(point);
-
-
-
-
                 }
 
 
@@ -129,10 +121,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
 
         //QRcode Scanner----------------------------------------------------------------------------
-        btn_dot = (Button)
-
-                findViewById(R.id.btn_dot);
-
+        btn_dot = (Button) findViewById(R.id.btn_dot);
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,10 +138,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             }
         });
     }
-    //------------------------------------------------------------------------------------------
-
-
-
 
     //GMAP地圖--------------------------------------------------------------------------------------
     @Override

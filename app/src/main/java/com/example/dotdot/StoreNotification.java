@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -20,8 +21,6 @@ public class StoreNotification extends AppCompatActivity implements TabLayout.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_notification);
-
-
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -37,6 +36,8 @@ public class StoreNotification extends AppCompatActivity implements TabLayout.On
         params.y = -180;
 
         getWindow().setAttributes(params);
+
+        ExpandableViewHoldersUtil.getInstance().init().setNeedExplanedOnlyOne(false);
 
         init();
 
