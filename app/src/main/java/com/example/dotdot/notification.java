@@ -54,7 +54,7 @@ public class notification extends AppCompatActivity implements TabLayout.OnTabSe
         //設定TabLayout點選事件
         tabLayout.setOnTabSelectedListener(this);
 
-        //fragments.add(new FavoriteNotification_fragment());
+        fragments.add(new FavoriteNotification_fragment());
         fragments.add(new NormalNotification_fragment());
 
         viewPagerAdapter=new notificationAdapter(getSupportFragmentManager(),titles,fragments);

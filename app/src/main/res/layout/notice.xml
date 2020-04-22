@@ -12,7 +12,8 @@
         android:id="@+id/tab_layou"
         app:tabIndicatorColor="@color/com_facebook_blue"
         app:tabTextColor="@color/gray"
-        app:tabSelectedTextColor="@color/black"/>
+        app:tabSelectedTextColor="@color/black"
+        android:background="@color/white"/>
 
 
     <androidx.viewpager.widget.ViewPager

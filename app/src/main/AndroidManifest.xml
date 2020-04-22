@@ -9,7 +9,6 @@
     -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -60,9 +59,15 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".MemberIndex"
-            android:label="@string/title_activity_maps"
-             />
+        <activity
+            android:name=".MemberIndex"
+            android:label="@string/title_activity_maps">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".QrcodeScannerFinal"
             android:theme="@style/AppTheme.PopMe" />
@@ -97,4 +102,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
