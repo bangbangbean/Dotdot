@@ -53,6 +53,8 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private TextView Storetitle;
     private TextView Mon;
     private TextView Pointsgives;
+    Button btn_notificaiton;
+
 
 
     @Override
@@ -138,8 +140,18 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 startActivity(j);
             }
         });
+        btn_notificaiton = findViewById(R.id.storeNotification);
+        btn_notificaiton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent n = new Intent(getApplicationContext() , StoreNotification.class);
+                startActivity(n);
+            }
+        });
     }
     //------------------------------------------------------------------------------------------
+
+
 
 
     //GMAP地圖--------------------------------------------------------------------------------------

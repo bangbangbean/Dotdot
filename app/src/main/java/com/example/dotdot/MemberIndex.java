@@ -143,45 +143,86 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
     }
 
-    public void addmarker() {
-
-        //記得改成session
-        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    public void addmarker(){
+        note.document("BxskPfoZCfztCUSuDUOu").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+                    MarkerOptions options = new MarkerOptions();
+                    String title = poi.getStore();
+                    String point = poi.getPoints_owned();
+                    options.title(title);
+                    options.snippet(point);
+                    options.position(data.chicken);
+                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    mMap.addMarker(options);
 
-
-                    ArrayList<LatLng> list = data.getPositions();
-                    for (int i = 0; i < list.size(); i++) {
-                        LatLng latLng = list.get(i);
-                        MarkerOptions options = new MarkerOptions();
-                        if (i == 0) {
-                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
-                            String title = poi.getStore();
-                            String point = poi.getPoints_owned();
-                            options.title(title);
-                            options.snippet(point);
-                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-                        } else if (i == 1) {
-                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
-                            String title = poi.getStore();
-                            String point = poi.getPoints_owned();
-                            options.title(title);
-                            options.snippet(point);
-                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-
-
-                        }
-
-                        options.position(latLng);
-                        mMap.addMarker(options);
-                    }
                 }
+
             }
         });
+        note.document("luyQa2eRYr3k4q22hq7T").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+                    MarkerOptions options1 = new MarkerOptions();
+                    String title = poi.getStore();
+                    String point = poi.getPoints_owned();
+                    options1.title(title);
+                    options1.snippet(point);
+                    options1.position(data.loc1);
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+                    mMap.addMarker(options1);
+
+                }
+
+            }
+        });
+
     }
 
+
+//    public void addmarker() {
+//
+//        //記得改成session
+//        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+//
+//
+//                    ArrayList<LatLng> list = data.getPositions();
+//                    for (int i = 0; i < list.size(); i++) {
+//                        LatLng latLng = list.get(i);
+//                        MarkerOptions options = new MarkerOptions();
+//                        if (i == 0) {
+//                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
+//                            String title = poi.getStore();
+//                            String point = poi.getPoints_owned();
+//                            options.title(title);
+//                            options.snippet(point);
+//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+//                        } else if (i == 1) {
+//                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
+//                            String title = poi.getStore();
+//                            String point = poi.getPoints_owned();
+//                            options.title(title);
+//                            options.snippet(point);
+//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+//
+//
+//                        }
+//
+//                        options.position(latLng);
+//                        mMap.addMarker(options);
+//                    }
+//                }
+//            }
+//        });
+//    }
+//
 
     @SuppressLint("MissingPermission")
     private void getMyLocation() {
@@ -216,7 +257,11 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onInfoWindowClick(Marker marker) {
 
-
+        Intent intent = new Intent(MemberIndex.this, Collectioncard.class);
 
     }
+
+
+
+
 }
