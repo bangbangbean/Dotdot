@@ -35,6 +35,7 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
 
     private Context context;
+
     public MapInforWindowAdapter(Context context) {
         this.context = context;
 
@@ -46,15 +47,8 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     @Override
     public View getInfoWindow(Marker marker) {
-        return null;
-    }
-
-
-
-    @Override
-    public View getInfoContents(Marker marker) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.item_infor_map, null);
+
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         TextView Message1 = view.findViewById(R.id.tvMessage1);
         TextView dot1 = view.findViewById(R.id.Dot1);
@@ -71,49 +65,40 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
         tvTitle.setText(marker.getTitle());
         Message1.setText(marker.getSnippet());
         String point = marker.getSnippet();
-        System.out.println(point);
         int points = Integer.valueOf(point);
 
 
-        if(points == 1){
+        if (points == 1) {
 
             dot1.setBackgroundResource(R.drawable.pink_dot);
-        }
-
-        else if(points == 2){
+        } else if (points == 2) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
-        }
-
-        else if(points == 3){
+        } else if (points == 3) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
-        }
-        else if(points == 4){
+        } else if (points == 4) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
             dot4.setBackgroundResource(R.drawable.pink_dot);
 
-        }
-        else if(points == 5){
+        } else if (points == 5) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
             dot4.setBackgroundResource(R.drawable.pink_dot);
             dot5.setBackgroundResource(R.drawable.pink_dot);
 
-        }
-        else if(points == 6){
+        } else if (points == 6) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
             dot4.setBackgroundResource(R.drawable.pink_dot);
             dot5.setBackgroundResource(R.drawable.pink_dot);
             dot6.setBackgroundResource(R.drawable.pink_dot);
-        }
-        else if(points == 7){
+        } else if (points == 7) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
@@ -121,8 +106,7 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
             dot5.setBackgroundResource(R.drawable.pink_dot);
             dot6.setBackgroundResource(R.drawable.pink_dot);
             dot7.setBackgroundResource(R.drawable.pink_dot);
-        }
-        else if(points == 8){
+        } else if (points == 8) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
@@ -132,9 +116,7 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
             dot7.setBackgroundResource(R.drawable.pink_dot);
             dot8.setBackgroundResource(R.drawable.pink_dot);
 
-        }
-
-        else if(points == 9){
+        } else if (points == 9) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
@@ -146,8 +128,7 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
             dot9.setBackgroundResource(R.drawable.pink_dot);
 
 
-        }
-        else if(points >= 10){
+        } else if (points >= 10) {
             dot1.setBackgroundResource(R.drawable.pink_dot);
             dot2.setBackgroundResource(R.drawable.pink_dot);
             dot3.setBackgroundResource(R.drawable.pink_dot);
@@ -161,6 +142,15 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         }
 
+
         return view;
+    }
+
+
+    @Override
+    public View getInfoContents(Marker marker) {
+
+
+        return null;
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,16 +25,20 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.opencensus.tags.Tag;
 
 public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,7 +72,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         Storetitle = findViewById(R.id.storetitle);
-
+        //記得改成session
         memRef.document("nQnT8AAt4NYIRYZFZfAR").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -75,41 +80,35 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     Store mem = documentSnapshot.toObject(Store.class);
                     String name = mem.getName();
                     Storetitle.setText(name);
+
                 }
             }
         });
         //--------------------------------------------------------------------------------------
-        //月份--------------------------------------------------------------------------------------
+        //當月月份
         Mon = findViewById(R.id.mom);
-        note.document("YrwbzDW809Z1ANn3z9zz").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM");
-                    storerecord rec = documentSnapshot.toObject(storerecord.class);
-                    Date record = rec.getTime();
-                    String mon = sdf.format(record);
-                    Mon.setText(mon+"月");
-                }
-            }
-        });
-
+        SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        String date = sdf.format(new java.util.Date());
+        Mon.setText(date + "月");
+        //判斷時間
         Date dt = new Date();
         dt.equals("2020-05-01 00:00:00");
 
-        note.whereGreaterThan("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        note.whereGreaterThan("time", dt).orderBy("time").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots ) {
+                int point1sum = 0;
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
 
                     storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
                     String point = rec.getPoints_given();
                     int point1 = Integer.valueOf(point);
-
-                    Pointsgives = findViewById(R.id.pointsgive);
-                    Pointsgives.setText(point);
+                    point1sum += point1;
                 }
-
+                Pointsgives = findViewById(R.id.pointsgive);
+                Pointsgives.setText(Integer.toString(point1sum));
+                System.out.println(point1sum);
 
             }
         });
@@ -129,7 +128,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         btn_notificaiton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent n = new Intent(getApplicationContext() , StoreNotification.class);
+                Intent n = new Intent(getApplicationContext(), StoreNotification.class);
                 startActivity(n);
             }
         });
@@ -139,6 +138,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        addmarker();
 
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -154,6 +154,16 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         mMap.setMyLocationEnabled(true);
     }
 
+
+    public void addmarker() {
+
+        MarkerOptions options = new MarkerOptions();
+        options.position(storerecord.chicken);
+        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+        mMap.addMarker(options);
+
+    }
+
     @SuppressLint("MissingPermission")
     private void getMyLocation() {
         mfusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -161,7 +171,9 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             public void onSuccess(Location location) {
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 18));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
+
+
                 }
             }
         });

@@ -38,10 +38,9 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference memRef = db.collection("store");
-
     private CollectionReference note = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+    //記得改成session
 
 
     Button home;
@@ -120,7 +119,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
     }
 
-    public void addmarker(){
+    public void addmarker() {
+
         note.document("BxskPfoZCfztCUSuDUOu").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -131,7 +131,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     String point = poi.getPoints_owned();
                     options.title(title);
                     options.snippet(point);
-                    options.position(data.chicken);
+                    options.position(storerecord.chicken);
                     options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
                     mMap.addMarker(options);
 
@@ -139,6 +139,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
             }
         });
+
         note.document("luyQa2eRYr3k4q22hq7T").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -149,8 +150,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     String point = poi.getPoints_owned();
                     options1.title(title);
                     options1.snippet(point);
-                    options1.position(data.loc1);
-                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+                    options1.position(storerecord.loc1);
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
                     mMap.addMarker(options1);
 
                 }
@@ -161,46 +162,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     }
 
 
-//    public void addmarker() {
-//
-//        //記得改成session
-//        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-//
-//
-//                    ArrayList<LatLng> list = data.getPositions();
-//                    for (int i = 0; i < list.size(); i++) {
-//                        LatLng latLng = list.get(i);
-//                        MarkerOptions options = new MarkerOptions();
-//                        if (i == 0) {
-//                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
-//                            String title = poi.getStore();
-//                            String point = poi.getPoints_owned();
-//                            options.title(title);
-//                            options.snippet(point);
-//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-//                        } else if (i == 1) {
-//                            Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
-//                            String title = poi.getStore();
-//                            String point = poi.getPoints_owned();
-//                            options.title(title);
-//                            options.snippet(point);
-//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-//
-//
-//                        }
-//
-//                        options.position(latLng);
-//                        mMap.addMarker(options);
-//                    }
-//                }
-//            }
-//        });
-//    }
-//
-
     @SuppressLint("MissingPermission")
     private void getMyLocation() {
         mfusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -209,7 +170,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(data.chicken, 15));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 17));
 
                 }
             }
@@ -237,8 +198,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         Intent intent = new Intent(MemberIndex.this, Collectioncard.class);
 
     }
-
-
 
 
 }

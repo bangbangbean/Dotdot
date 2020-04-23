@@ -82,16 +82,16 @@
         <activity android:name=".Regist" />
         <activity android:name=".Login" />
         <activity android:name=".TransactionRecord" />
-        <activity android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index"/>
+        <activity android:name=".MemberIndex"
+        android:label="@string/title_activity_maps" />
         <activity
             android:name=".QRcode.QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe"/>
         <activity
             android:name=".Collectioncard"/>
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+        <activity android:name=".StoreIndex"
+        android:label="@string/title_activity_store_index"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

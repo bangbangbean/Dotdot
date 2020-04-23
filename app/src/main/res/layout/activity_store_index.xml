@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/view4"
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_width="576dp"
+        android:layout_height="287dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bgskyblue"
         android:elevation="2dp"
@@ -21,24 +21,26 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="1dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="72dp"
         android:background="@color/gray"
         android:elevation="3dp"
-        app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toBottomOf="@+id/storetitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map" />
 
     <TextView
         android:id="@+id/storetitle"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="28dp"
         android:elevation="3dp"
         android:gravity="center"
         android:textColor="@color/gray"
-        android:textSize="24dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,14 +48,15 @@
 
     <TextView
         android:id="@+id/mom"
-        android:layout_width="63dp"
-        android:layout_height="52dp"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:elevation="3dp"
         android:textColor="@color/blue"
-        android:textSize="26dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -61,7 +64,7 @@
         android:id="@+id/word2"
         android:layout_width="66dp"
         android:layout_height="36dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:elevation="3dp"
         android:text="共發送"
         android:textSize="22dp"
@@ -70,60 +73,58 @@
 
     <TextView
         android:id="@+id/pointsgive"
-        android:layout_width="130dp"
+        android:layout_width="150dp"
         android:layout_height="130dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
         android:layout_marginTop="60dp"
         android:elevation="3dp"
+        android:gravity="center"
         android:textColor="@color/darkblue"
-        android:textSize="88dp"
+        android:textSize="110dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
         android:id="@+id/word1"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="173dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="185dp"
         android:elevation="3dp"
         android:text="點"
-        android:textSize="36dp"
+        android:textSize="45dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/couponsgive"
+        app:layout_constraintStart_toEndOf="@+id/pointsgive"
         app:layout_constraintTop_toTopOf="@+id/view4" />
 
     <TextView
         android:id="@+id/couponsgive"
-        android:layout_width="130dp"
+        android:layout_width="150dp"
         android:layout_height="130dp"
-        android:layout_marginStart="368dp"
-        android:layout_marginLeft="368dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginLeft="340dp"
         android:layout_marginTop="60dp"
         android:elevation="3dp"
+        android:text="41"
         android:textColor="@color/darkblue"
-        android:textSize="88dp"
+        android:textSize="110dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
+
     <TextView
         android:id="@+id/wordWarning"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="172dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="185dp"
         android:elevation="3dp"
         android:text="張"
-        android:textSize="36dp"
+        android:textSize="45dp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/couponsgive"
         app:layout_constraintTop_toTopOf="@+id/view4" />
-
 
     <Button
         android:id="@+id/btn_dot"
@@ -177,6 +178,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:context=".MemberIndex"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="73dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

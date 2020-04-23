@@ -30,12 +30,7 @@ public class data {
     public static final LatLng chicken = new LatLng(25.034434, 121.430992);
 
 
-    public static ArrayList<LatLng> getPositions() {
-        ArrayList<LatLng> list = new ArrayList<>();
-        list.add(loc1);
-        list.add(chicken);
 
-        return list;
-    }
+
 
 }
