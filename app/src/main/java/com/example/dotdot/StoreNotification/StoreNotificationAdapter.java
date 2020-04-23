@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.StoreNotification;
 
 import android.view.ViewGroup;
 

@@ -1,6 +1,4 @@
-package com.example.dotdot;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.dotdot.QRcode;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.dotdot.R;
+import com.example.dotdot.StoreIndex;
 
 public class QrcodeScannerFinal extends Activity {
 

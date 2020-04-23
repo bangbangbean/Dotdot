@@ -12,7 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, CollectioncardAdapter.CollectioncardHolder> {
 
@@ -108,8 +115,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         });
     }
 
-
-
     @NonNull
     @Override
     public CollectioncardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -119,8 +124,39 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         return new CollectioncardHolder(v);
     }
 
-    class CollectioncardHolder extends RecyclerView.ViewHolder {
+    public void myLoveItem(int position){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference memRef = db.collection("Member");
 
+        String id = getSnapshots().getSnapshot(position).getId();
+        memRef.document("iICTR1JL4eAG4B3QBi1S")//須改活
+                .collection("loyalty_card")
+                .document(id)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        LoyaltyCard loyaltyCard = documentSnapshot.toObject(LoyaltyCard.class);
+                        Boolean f = loyaltyCard.getFavorite();
+                        if(f.equals(false)){
+                            //False修改為True
+                            Map<Object, Object> upData = new HashMap<>();
+                            upData.put("favorite", true);
+                            memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                                    .document(id).set(upData, SetOptions.merge());
+                        }
+                        else {
+                            //True修改為False
+                            Map<Object, Object> Data = new HashMap<>();
+                            Data.put("favorite", false);
+                            memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                                    .document(id).set(Data, SetOptions.merge());
+                        }
+                    }
+                });
+    }
+
+    class CollectioncardHolder extends RecyclerView.ViewHolder {
         private TextView Title;
         private TextView points;
         private TextView dot1;

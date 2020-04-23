@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StoreNotiSending">
+    tools:context=".StoreNotification.StoreNotiSending">
 
     <EditText
         android:id="@+id/sendTitle"
@@ -60,7 +60,6 @@
         android:id="@+id/sendImg"
         android:layout_width="430dp"
         android:layout_height="194dp"
-        android:src="@drawable/ic_add_box_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

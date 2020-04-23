@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.QRcode;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,8 +10,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.example.dotdot.LoyaltyCard;
+import com.example.dotdot.MemberPointRec;
+import com.example.dotdot.R;
+import com.example.dotdot.Store;
+import com.example.dotdot.StorePointRec;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,6 +33,7 @@ public class QrcodeScannerNext extends Activity {
     private Button btn;
     private String points_given;
     private String who;
+    private Boolean favorite;
 
     //FireStore---------------------------------------------------
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -159,6 +164,7 @@ public class QrcodeScannerNext extends Activity {
                             LoyaltyCard loyalty = documentSnapshot.toObject(LoyaltyCard.class);
                             String points_owned = loyalty.getPoints_owned();
                             String store = loyalty.getStore();
+                            favorite = loyalty.getFavorite();
 
                             loyalty.setDocumentId(documentSnapshot.getId());
                             String docID = loyalty.getDocumentId();
@@ -168,7 +174,7 @@ public class QrcodeScannerNext extends Activity {
                                 int b = Integer.parseInt(points_owned);
                                 String pointsFinal = "" + (a + b);
 
-                                LoyaltyCard rec = new LoyaltyCard(pointsFinal, who);
+                                LoyaltyCard rec = new LoyaltyCard(pointsFinal, who, favorite);
                                 memRef.document(whoData).collection("loyalty_card").document(docID)
                                         .set(rec, SetOptions.merge());
                                 g += 1;
@@ -178,7 +184,8 @@ public class QrcodeScannerNext extends Activity {
 
                         }
                         if(g == 1){ //如果此會員沒有這店家集點卡，則新增
-                            LoyaltyCard rec = new LoyaltyCard(points_get, who);
+                            favorite = false;
+                            LoyaltyCard rec = new LoyaltyCard(points_get, who, favorite);
                             memRef.document(whoData).collection("loyalty_card").add(rec);
                         }
 

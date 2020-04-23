@@ -3,19 +3,20 @@ package com.example.dotdot;
 import com.google.firebase.database.Exclude;
 
 public class LoyaltyCard {
-    private String favorite;
     private String points_owned;
     private String store;
     private String documentId;
+    private Boolean favorite;
     LoyaltyCard loyaltyCard;
 
     public LoyaltyCard(){
 
     }
 
-    public LoyaltyCard(String points_owned, String store){
+    public LoyaltyCard(String points_owned, String store, Boolean favorite){
         this.points_owned = points_owned;
         this.store = store;
+        this.favorite = favorite;
     }
 
     @Exclude
@@ -27,11 +28,11 @@ public class LoyaltyCard {
         this.documentId = documentId;
     }
 
-    public String getFavorite() {
+    public Boolean getFavorite() {
         return favorite;
     }
 
-    public void setFavorite(String favorite) {
+    public void setFavorite(Boolean favorite) {
         this.favorite = favorite;
     }
 

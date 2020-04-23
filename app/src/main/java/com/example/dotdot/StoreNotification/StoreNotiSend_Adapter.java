@@ -1,7 +1,5 @@
-package com.example.dotdot;
+package com.example.dotdot.StoreNotification;
 
-import android.content.SharedPreferences;
-import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dotdot.Note_store_noit;
+import com.example.dotdot.R;
 import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class StoreNotiSend_Adapter extends FirestoreRecyclerAdapter<Note_store_noit, StoreNotiSend_Adapter.viewHolder> {
 
@@ -58,8 +53,8 @@ public class StoreNotiSend_Adapter extends FirestoreRecyclerAdapter<Note_store_n
     @Override
     public StoreNotiSend_Adapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_notification_item,
-                                parent, false);
-                        return new viewHolder(v);
+                parent, false);
+        return new viewHolder(v);
     }
 
     public void deleteItem(int position){

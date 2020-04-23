@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.StoreNotification;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dotdot.R;
 import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.google.android.material.tabs.TabLayout;
 
