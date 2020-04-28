@@ -19,7 +19,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
-public class MemCouponContent extends Activity {
+public class MemberOwnedCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference couponRef = db.collection("store");
@@ -27,13 +27,13 @@ public class MemCouponContent extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_mem_coupon_content);
+        setContentView(R.layout.activity_member_owned_coupon_content);
 
         Button confirmBtn = (Button)findViewById(R.id.confirmBtn);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConfirmExchange.class);
+                Intent intent = new Intent(getApplicationContext(), MemberUseCoupon.class);
                 startActivity(intent);
                 onBackPressed();
             }

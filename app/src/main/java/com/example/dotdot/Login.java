@@ -28,8 +28,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SharedPreferences memberSession = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = memberSession.edit();
+        //取得會員ID
+        SharedPreferences memberId = getSharedPreferences("save_memberId", MODE_PRIVATE);
+        //使用memberId
+//        String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
+//                .getString("user_id", "沒會員登入");
 
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
@@ -76,8 +79,9 @@ public class Login extends AppCompatActivity {
                                     String documentId = documentSnapshot.getId();
                                     String pass = mem.getPassword();
                                     if (pass.equals(password)) {
-                                        editor.putString("user_id", "iICTR1JL4eAG4B3QBi1S");
-                                        editor.commit();
+                                        memberId.edit()
+                                                .putString("user_id", "iICTR1JL4eAG4B3QBi1S")
+                                                .commit();
                                         Intent intent = new Intent(Login.this, test.class);
                                         startActivity(intent);
                                     } else {

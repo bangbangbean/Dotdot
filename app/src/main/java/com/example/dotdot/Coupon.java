@@ -10,6 +10,7 @@ public class Coupon {
     private String couponTitle;
     private Date creatTime;
     private Date deadLine;
+    private Date time;
     private String documentId;
     Coupon coupon;
 
@@ -22,6 +23,7 @@ public class Coupon {
         this.creatTime = creatTime;
         this.deadLine = deadLine;
         this.couponTitle = couponTitle;
+        this.time = time;
     }
     @Exclude
     public String getDocumentId(){
@@ -34,6 +36,10 @@ public class Coupon {
 
     public Integer getDotNeed() {
         return dotNeed;
+    }
+
+    public Date getTime() {
+        return time;
     }
 
     public void setDotNeed(Integer dotNeed) {

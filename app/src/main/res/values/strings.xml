@@ -50,7 +50,6 @@
     <string name="personal_phone">手機 :</string>
     <string name="personal_password">密碼 :</string>
     <string name="personal_logout">登出</string>
-
     ----------------------------------------------------------------------------------------------
     //地圖
     <string name="getpoint">Dot!</string>
@@ -108,6 +107,11 @@
     <string name="contx">內容</string>
     <string name="ima">圖片</string>
     <string name="send">發送!</string>
+    -----------------------------------------------------------------------------------------------
+    //MemberUseCoupon
+    <string name="MemberUseCoupon_word1">此動作不可返回，請確認您已在店家櫃檯，
+        出示此券於店家人員確認過後按下「使用」</string>
+
 
 </resources>
 

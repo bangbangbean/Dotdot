@@ -22,14 +22,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.Date;
-
 import static android.content.Context.MODE_PRIVATE;
 
 public class MemberOwnedCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("Coupon");
-    private MemCouponAdapter adapter;
+    private CollectionReference memRef = db.collection("Member");
+    private MemberOwnedCouponAdapter adapter;
     private View view;
 
 
@@ -51,14 +49,14 @@ public class MemberOwnedCoupon extends Fragment {
                 ft.commit();
             }
         });
-        //跳轉頁到MemberOwnedCoupon
-        Button ownedCoupon = (Button)view.findViewById(R.id.ownedCoupon);
-        canExchangeBtn.setOnClickListener(new View.OnClickListener() {
+        //跳轉頁到MemberOverlookCoupon
+        Button overlookBtn = (Button)view.findViewById(R.id.overlookBtn);
+        overlookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                MemberCanExchangeCoupon llf = new MemberCanExchangeCoupon();
+                MemberOverlookCoupon llf = new MemberOverlookCoupon();
                 ft.replace(R.id.fragment_container, llf);
                 ft.commit();
             }
@@ -67,19 +65,20 @@ public class MemberOwnedCoupon extends Fragment {
     }
 
     private void setUpRecyclerView() {
-        //store的亂碼Id
-        String storeId = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
-                .getString("store_id", "沒選擇店家");
 
-        Date dt = new Date();
-        Query query = couponRef.document(storeId).collection("coupon")
-                .whereGreaterThan("deadLine",dt)
-                .orderBy("deadLine", Query.Direction.ASCENDING);
+        //loyalty_card的亂碼Id
+        String loyalty_card_id = this.getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
+                .getString("loyalty_card_id", "沒選擇店家");
+
+        Query query = memRef.document("iICTR1JL4eAG4B3QBi1S")
+                .collection("loyalty_card").document(loyalty_card_id)
+                .collection("Owned_Coupon");
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
                 .build();
-        adapter = new MemCouponAdapter(options);
+
+        adapter = new MemberOwnedCouponAdapter(options);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -92,18 +91,23 @@ public class MemberOwnedCoupon extends Fragment {
         //coupon的Id名稱
         SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
 
+        //ownedcoupon的Id名稱
+        SharedPreferences ownedCouponIdpref = this.getActivity().getSharedPreferences("save_ownedCouponId", MODE_PRIVATE);
 
-        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
+        adapter.setOnItemClickListener(new MemberOwnedCouponAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
+                ownedCouponIdpref.edit()
+                        .putString("owned_coupon_id",documentSnapshot.getId())
+                        .commit();
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
                         .commit();
                 couponIdpref.edit()
                         .putString("coupon_id",documentSnapshot.getId())
                         .commit();
-                Intent intent = new Intent(getActivity(), MemCouponContent.class);
+                Intent intent = new Intent(getActivity(), MemberOwnedCouponContent.class);
                 startActivity(intent);
             }
         });

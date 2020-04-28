@@ -26,9 +26,9 @@
                 android:layout_width="108dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/member_overlookcoupon_toolbar_otherbtn"
+                android:background="@drawable/member_overlookcoupon_toolbar_mainbtn"
                 android:text="店家券券總覽"
-                android:textColor="#FFFFFF"
+                android:textColor="#0E0D0D"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -37,9 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/member_overlookcoupon_toolbar_mainbtn"
+                android:textColor="#FFFFFF"
                 android:text="會員可兌換券券"
                 android:textSize="15sp"
+                android:background="@drawable/member_overlookcoupon_toolbar_otherbtn"
                 android:textStyle="bold" />
 
             <Button

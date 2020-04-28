@@ -28,7 +28,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class MemberOverlookCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store");
+    private CollectionReference storeRef = db.collection("store");
     private MemCouponAdapter adapter;
     private View view;
 
@@ -53,12 +53,12 @@ public class MemberOverlookCoupon extends Fragment {
         });
         //跳轉頁到MemberOwnedCoupon
         Button ownedCoupon = (Button)view.findViewById(R.id.ownedCoupon);
-        canExchangeBtn.setOnClickListener(new View.OnClickListener() {
+        ownedCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                MemberCanExchangeCoupon llf = new MemberCanExchangeCoupon();
+                MemberOwnedCoupon llf = new MemberOwnedCoupon();
                 ft.replace(R.id.fragment_container, llf);
                 ft.commit();
             }
@@ -72,7 +72,7 @@ public class MemberOverlookCoupon extends Fragment {
                 .getString("store_id", "沒選擇店家");
 
         Date dt = new Date();
-        Query query = couponRef.document(storeId).collection("coupon")
+        Query query = storeRef.document(storeId).collection("coupon")
                 .whereGreaterThan("deadLine",dt)
                 .orderBy("deadLine", Query.Direction.ASCENDING);
 

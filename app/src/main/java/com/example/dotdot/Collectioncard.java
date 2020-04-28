@@ -53,16 +53,16 @@ public class Collectioncard extends Fragment {
     }
 
     private void setUpRecyclerView() {
+      swipeRecyclerView.setOnItemClickListener(mItemClickListener);
+        swipeRecyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
+        swipeRecyclerView.setOnItemMenuClickListener(mItemMenuClickListener);
+
         Query query = note;
         FirestoreRecyclerOptions<Loyalty_card> options = new FirestoreRecyclerOptions.Builder<Loyalty_card>()
                 .setQuery(query, Loyalty_card.class)
                 .build();
-
-        swipeRecyclerView.setOnItemClickListener(mItemClickListener);
-        swipeRecyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
-        swipeRecyclerView.setOnItemMenuClickListener(mItemMenuClickListener);
-
         adapter = new CollectioncardAdapter(options);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         swipeRecyclerView.setLayoutManager(linearLayoutManager);
         //swipeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -72,25 +72,26 @@ public class Collectioncard extends Fragment {
         swipeRecyclerView.setHasFixedSize(true);
         swipeRecyclerView.setAdapter(adapter);
 
-//        //store的亂碼Id
-//        SharedPreferences storepref = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE);
-//
-//        adapter.setOnItemClickListener(new CollectioncardAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-//                Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-//                String storeId = loyalty_card.getStore().trim();
-//                storepref.edit()
-//                        .putString("store_id", storeId)
-//                        .commit();
-//                //跳轉頁到MemberOverlookCoupon
-//                FragmentManager fm = getFragmentManager();
-//                FragmentTransaction ft = fm.beginTransaction();
-//                MemberOverlookCoupon llf = new MemberOverlookCoupon();
-//                ft.replace(R.id.fragment_container, llf);
-//                ft.commit();
-//            }
-//        });
+        //store的亂碼Id
+        SharedPreferences storepref = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE);
+
+        //loyalty_card的亂碼Id
+        SharedPreferences loyaltycardpref = this.getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE);
+
+        adapter.setOnItemClickListener(new CollectioncardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
+                String storeId = loyalty_card.getStore().trim();
+                String loyalty_card_id = documentSnapshot.getId();
+                storepref.edit()
+                        .putString("store_id", storeId)
+                        .commit();
+                loyaltycardpref.edit()
+                        .putString("loyalty_card_id", loyalty_card_id)
+                        .commit();
+            }
+        });
     }
 
     @Override
@@ -112,6 +113,12 @@ public class Collectioncard extends Fragment {
         @Override
         public void onItemClick(View itemView, int position) {
             Toast.makeText(getContext(), "第" + position + "个", Toast.LENGTH_SHORT).show();
+            //跳轉頁到MemberOverlookCoupon
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            MemberOverlookCoupon llf = new MemberOverlookCoupon();
+            ft.replace(R.id.fragment_container, llf);
+            ft.commit();
         }
     };
 

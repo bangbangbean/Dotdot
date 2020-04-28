@@ -29,13 +29,10 @@ public class ConfirmExchange extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
-    private CollectionReference addCouponRef = db.collection("Coupon");
-    private DocumentReference loyaltyCardRef = db.collection("Member").document("iICTR1JL4eAG4B3QBi1S");
-    private CollectionReference DotUseRecordRef = db.collection("Member");
+    private DocumentReference loyaltyCardRef = db.collection("Member")
+            .document("iICTR1JL4eAG4B3QBi1S");
     int memberPointOwned;
     int storeDotNeed;
-    String loyalty_card_id;
-    String coupon_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +65,10 @@ public class ConfirmExchange extends Activity {
         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
+        //loyalty_card的亂碼Id
+        String loyalty_card_id = getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
+                .getString("loyalty_card_id", "沒選擇店家");
+
         storeRef.document(storeId).collection("coupon")
                 .whereEqualTo("couponTitle", whichCoupon)
                 .get()
@@ -91,7 +92,6 @@ public class ConfirmExchange extends Activity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                            loyalty_card_id = documentSnapshot.getId();
                             memberPoint.setText(loyalty_card.getPoints_owned());
                             memberPointOwned = Integer.parseInt(loyalty_card.getPoints_owned());
                         }
@@ -116,7 +116,8 @@ public class ConfirmExchange extends Activity {
                     text.setText("兌換成功您的點數剩餘" + total + "點");
 
                     //記得改成活的 新增資料到Coupon
-                    addCouponRef.whereEqualTo("member", "iICTR1JL4eAG4B3QBi1S")
+                    memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                            .whereEqualTo("store", storeId)
                             .get()
                             .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -124,13 +125,14 @@ public class ConfirmExchange extends Activity {
                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
                                         //新增資料到已有的Coupon中
-                                        coupon_id = documentSnapshot.getId();
                                         Map<Object, Object> ownedCoupon = new HashMap<>();
-                                        ownedCoupon.put("store_couponId", CouponId);
-                                        ownedCoupon.put("storeId", storeId);
+                                        ownedCoupon.put("couponTitle", whichCoupon);
+                                        ownedCoupon.put("couponId", CouponId);
+                                        ownedCoupon.put("dotNeed", storeDotNeed);
                                         ownedCoupon.put("time", new Date());
-                                        addCouponRef.document(coupon_id)
-                                                .collection("Owned_coupon").add(ownedCoupon);
+                                        memRef.document("iICTR1JL4eAG4B3QBi1S")
+                                                .collection("loyalty_card").document(loyalty_card_id)
+                                                .collection("Owned_Coupon").add(ownedCoupon);
 
                                         //修改會員剩餘的點數
                                         Map<Object, Object> upData = new HashMap<>();
@@ -143,9 +145,9 @@ public class ConfirmExchange extends Activity {
                                         Map<Object, Object> dotUseRecord = new HashMap<>();
                                         dotUseRecord.put("store_couponId", CouponId);
                                         dotUseRecord.put("storeId", storeId);
-                                        dotUseRecord.put("pointUsed", storeDotNeed);
+                                        dotUseRecord.put("pointUsed", Integer.toString(storeDotNeed));
                                         dotUseRecord.put("time", new Date());
-                                        DotUseRecordRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                                        memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
                                                 .document(loyalty_card_id).collection("DotUseRecord")
                                                 .add(dotUseRecord);
 
@@ -166,7 +168,11 @@ public class ConfirmExchange extends Activity {
                             });
 
                 }
-                
+                doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        onBackPressed();
+                    }
+                });
             }
         });
 

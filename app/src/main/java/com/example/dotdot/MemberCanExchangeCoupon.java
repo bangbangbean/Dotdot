@@ -30,11 +30,11 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class MemberCanExchangeCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store");
+    private CollectionReference storeRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
     private MemCouponAdapter adapter;
     private View view;
-    int memberPointOwned = 80;//記得改
+    private int memberPointOwned = 100;//記得改
 
     @Nullable
     @Override
@@ -55,12 +55,12 @@ public class MemberCanExchangeCoupon extends Fragment {
         });
         //跳轉頁到MemberOwnedCoupon
         Button ownedCoupon = (Button)view.findViewById(R.id.ownedCoupon);
-        overlookBtn.setOnClickListener(new View.OnClickListener() {
+        ownedCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                MemberOverlookCoupon llf = new MemberOverlookCoupon();
+                MemberOwnedCoupon llf = new MemberOwnedCoupon();
                 ft.replace(R.id.fragment_container, llf);
                 ft.commit();
             }
@@ -92,7 +92,7 @@ public class MemberCanExchangeCoupon extends Fragment {
         String storeId = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
-        Query query = couponRef.document(storeId).collection("coupon")
+        Query query = storeRef.document(storeId).collection("coupon")
                 .whereLessThanOrEqualTo("dotNeed",memberPointOwned);
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()

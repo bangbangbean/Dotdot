@@ -31,6 +31,12 @@
             android:name=".StoreNotification.StoreNotiSending"
             android:theme="@style/AppTheme.Pop"/>
         <activity
+            android:name=".MemberUseCoupon"
+            android:theme="@style/AppTheme.CouponContent"/>
+        <activity
+            android:name=".MemberOwnedCouponContent"
+            android:theme="@style/AppTheme.CouponContent" />
+        <activity
             android:name=".ConfirmExchange"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
@@ -60,11 +66,13 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-
+        <activity
+            android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index" />
         <activity
             android:name=".QRcode.QrcodeScannerFinal"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".MemberOwnedCoupon"/>
+        <activity android:name=".MemberOwnedCoupon" />
         <activity android:name=".MemberCanExchangeCoupon" />
         <activity android:name=".CouponBelongMember" />
         <activity android:name=".MemberOverlookCoupon" />
@@ -82,18 +90,13 @@
         <activity android:name=".Regist" />
         <activity android:name=".Login" />
         <activity android:name=".TransactionRecord" />
-        <activity android:name=".Collectioncard"/>
+        <activity android:name=".Collectioncard" />
         <activity
             android:name=".MemberIndex"
-            android:label="@string/title_activity_maps"/>
-        <activity
-            android:name=".QRcode.QrcodeScannerNext"
-            android:theme="@style/AppTheme.PopMe"/>
-        <activity
-            android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index">
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
