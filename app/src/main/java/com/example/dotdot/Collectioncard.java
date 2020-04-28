@@ -12,10 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.yanzhenjie.recyclerview.OnItemClickListener;
@@ -69,9 +72,9 @@ public class Collectioncard extends Fragment {
         swipeRecyclerView.setHasFixedSize(true);
         swipeRecyclerView.setAdapter(adapter);
 
-        //store的亂碼Id
-        SharedPreferences storepref = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE);
-
+//        //store的亂碼Id
+//        SharedPreferences storepref = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE);
+//
 //        adapter.setOnItemClickListener(new CollectioncardAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
@@ -126,7 +129,9 @@ public class Collectioncard extends Fragment {
             if (direction == SwipeRecyclerView.LEFT_DIRECTION) {
                 Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
                 adapter.myLoveItem(position);
-
+            }else if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
+                Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                adapter.myLoveItem(position);
             }
         }
     };

@@ -5,7 +5,6 @@ import com.google.firebase.database.Exclude;
 public class LoyaltyCard {
     private String points_owned;
     private String store;
-    private String documentId;
     private Boolean favorite;
     LoyaltyCard loyaltyCard;
 
@@ -19,14 +18,7 @@ public class LoyaltyCard {
         this.favorite = favorite;
     }
 
-    @Exclude
-    public String getDocumentId(){
-        return documentId;
-    }
 
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
 
     public Boolean getFavorite() {
         return favorite;

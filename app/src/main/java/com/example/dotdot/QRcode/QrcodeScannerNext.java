@@ -166,8 +166,7 @@ public class QrcodeScannerNext extends Activity {
                             String store = loyalty.getStore();
                             favorite = loyalty.getFavorite();
 
-                            loyalty.setDocumentId(documentSnapshot.getId());
-                            String docID = loyalty.getDocumentId();
+                            String docID = documentSnapshot.getId();
 
                             if(store.equals(who)){//如果此會員已有這店家的集點卡，則增加本次交易的點數
                                 int a = Integer.parseInt(points_get);

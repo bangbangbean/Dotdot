@@ -19,4 +19,5 @@
 
     <item android:drawable="@color/red_pressed" android:state_pressed="true"/>
     <item android:drawable="@color/red_normal"/>
+
 </selector>
