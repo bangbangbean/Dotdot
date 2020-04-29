@@ -145,10 +145,10 @@ public class ConfirmExchange extends Activity {
                                         Map<Object, Object> dotUseRecord = new HashMap<>();
                                         dotUseRecord.put("store_couponId", CouponId);
                                         dotUseRecord.put("storeId", storeId);
-                                        dotUseRecord.put("pointUsed", Integer.toString(storeDotNeed));
+                                        dotUseRecord.put("point_use", Integer.toString(storeDotNeed));
                                         dotUseRecord.put("time", new Date());
                                         memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
-                                                .document(loyalty_card_id).collection("DotUseRecord")
+                                                .document(loyalty_card_id).collection("Record")
                                                 .add(dotUseRecord);
 
                                         //新增資料到店家紀錄

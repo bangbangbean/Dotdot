@@ -39,6 +39,14 @@ public class PopActivity extends Activity {
 
         getWindow().setAttributes(params);
 
+        Button card = findViewById(R.id.card);
+        card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(PopActivity.this,botnav.class);
+                startActivity(p);
+            }
+        });
 
         btn_profile = findViewById(R.id.profilee);
         btn_profile.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +59,7 @@ public class PopActivity extends Activity {
                 startActivity(p);
             }
         });
+
         btn_dot = findViewById(R.id.dot);
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override

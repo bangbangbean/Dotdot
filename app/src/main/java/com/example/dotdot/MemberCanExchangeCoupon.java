@@ -34,7 +34,7 @@ public class MemberCanExchangeCoupon extends Fragment {
     private CollectionReference memRef = db.collection("Member");
     private MemCouponAdapter adapter;
     private View view;
-    private int memberPointOwned = 100;//記得改
+    private int memberPointOwned = 15;//記得改
 
     @Nullable
     @Override
@@ -79,7 +79,6 @@ public class MemberCanExchangeCoupon extends Fragment {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
                             memberPointOwned = Integer.parseInt(loyalty_card.getPoints_owned());
-                            test.setText(Integer.toString(memberPointOwned));
                         }
                     }
                 });
