@@ -34,6 +34,10 @@ public class NoticeAdapter extends FirestoreRecyclerAdapter<Note_store_noit ,Not
 
     @Override
     protected void onBindViewHolder(@NonNull NoticeAdapter.viewHolder viewHolder, int i, @NonNull Note_store_noit note_store_noit) {
+
+
+
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//date轉string
         viewHolder.fav_title.setText(note_store_noit.getTitle());
         viewHolder.fav_time.setText(sdf.format(note_store_noit.getTime()));

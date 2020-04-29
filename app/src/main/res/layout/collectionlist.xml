@@ -3,19 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:background="@color/white"
+    android:outlineProvider="none"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".Collectioncard">
+        tools:context=".Collectioncard"
+        android:outlineProvider="none"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        >
 
 
         <View
             android:id="@+id/view"
-            android:layout_width="380dp"
-            android:layout_height="175dp"
             android:background="@drawable/bg_frame"
+            android:layout_width="380dp"
+            android:layout_height="150dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,95 +32,88 @@
 
         <TextView
             android:id="@+id/Title"
-            android:layout_width="250dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text=""
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="28dp"
+            android:text="111"
             android:textColor="@color/gray"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.223"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toTopOf="@+id/view" />
 
         <TextView
             android:id="@+id/points"
-            android:layout_width="56dp"
+            android:layout_width="58dp"
             android:layout_height="64dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="25dp"
+            android:gravity="center|bottom"
             android:text=""
-            android:textSize="30sp"
+            android:textSize="50dp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/view" />
 
         <View
             android:id="@+id/view2"
-            android:layout_width="253dp"
+            android:layout_width="235dp"
             android:layout_height="1dp"
-            android:layout_marginEnd="20dp"
-
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="2dp"
             android:background="@color/gray"
-            app:layout_constraintEnd_toStartOf="@+id/points"
+            app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/Title" />
 
         <TextView
             android:id="@+id/Dot1"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="328dp"
-            android:layout_marginRight="328dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view2"/>
 
         <TextView
             android:id="@+id/Dot2"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="278dp"
-            android:layout_marginRight="276dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toEndOf="@+id/Dot1"
+            app:layout_constraintTop_toBottomOf="@+id/view2"/>
 
         <TextView
             android:id="@+id/Dot3"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="228dp"
-            android:layout_marginRight="276dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/Dot2"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
             android:id="@+id/Dot4"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="178dp"
-            android:layout_marginRight="144dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/Dot3"
             app:layout_constraintTop_toBottomOf="@+id/view2"></TextView>
 
         <TextView
             android:id="@+id/Dot5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="104dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/Dot4"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
@@ -119,45 +121,41 @@
             android:id="@+id/Dot6"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="328dp"
-            android:layout_marginRight="328dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/Dot1" />
 
         <TextView
             android:id="@+id/Dot7"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="278dp"
-            android:layout_marginRight="276dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toEndOf="@+id/Dot6"
+            app:layout_constraintTop_toBottomOf="@+id/Dot2" />
 
         <TextView
             android:id="@+id/Dot8"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="228dp"
-            android:layout_marginRight="216dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toEndOf="@+id/Dot7"
+            app:layout_constraintTop_toBottomOf="@+id/Dot3" />
 
         <TextView
             android:id="@+id/Dot9"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="178dp"
-            android:layout_marginRight="144dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2">
+            app:layout_constraintStart_toEndOf="@+id/Dot8"
+            app:layout_constraintTop_toBottomOf="@+id/Dot4">
 
         </TextView>
 
@@ -165,18 +163,18 @@
             android:id="@+id/Dot10"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="104dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintStart_toEndOf="@+id/Dot9"
+            app:layout_constraintTop_toBottomOf="@+id/Dot5" />
 
         <TextView
             android:id="@+id/Dot"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginLeft="8dp"
             android:text="點"
             android:textSize="15dp"
             app:layout_constraintStart_toEndOf="@+id/points"
@@ -184,22 +182,20 @@
 
         <Button
             android:id="@+id/coupon"
-            android:layout_width="44dp"
-            android:layout_height="9dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginRight="44dp"
-            android:background="@color/black"
-            android:text="Button"
+            android:layout_width="105dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_ticket"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:elevation="10dp"
+            android:text="優惠券"
+            android:textColor="#676666"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/points" />
 
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

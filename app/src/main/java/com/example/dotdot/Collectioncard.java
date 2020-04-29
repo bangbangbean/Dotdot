@@ -66,9 +66,6 @@ public class Collectioncard extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         swipeRecyclerView.setLayoutManager(linearLayoutManager);
         //swipeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        swipeRecyclerView.addItemDecoration(
-                new DefaultItemDecoration(ContextCompat.getColor(getContext(), R.color.divider_color)));
-
         swipeRecyclerView.setHasFixedSize(true);
         swipeRecyclerView.setAdapter(adapter);
 

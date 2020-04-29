@@ -29,8 +29,6 @@ public class FavoriteNotification_fragment extends Fragment {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference FavRef = db.collection("Notice_store");
-    private FirebaseFirestore db2 = FirebaseFirestore.getInstance();
-    private CollectionReference storeRef = db2.collection("store");
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,6 +1,7 @@
 package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +16,7 @@ public class PopActivity extends Activity {
 
 
     Button btn_profile;
+    Button btn_dot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,21 @@ public class PopActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent p = new Intent(PopActivity.this,botnav.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("key","profile");
+                p.putExtras(bundle);
                 startActivity(p);
+            }
+        });
+        btn_dot = findViewById(R.id.dot);
+        btn_dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PopActivity.this , botnav.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("key", "dot");
+                i.putExtras(bundle);
+                startActivity(i);
             }
         });
 

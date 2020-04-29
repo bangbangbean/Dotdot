@@ -7,7 +7,7 @@
     android:background="@drawable/personal_bg">
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/store_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -15,7 +15,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav"
+        android:id="@+id/store_nav"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"

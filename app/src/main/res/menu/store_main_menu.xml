@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:id="@+id/cusomer"
+        android:enabled="true"
+        android:icon="@drawable/ic_people"
+        android:title="個人資料"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/shopping"
+        android:enabled="true"
+        android:icon="@drawable/ic_dot"
+        android:title="集點卡"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/shipping"
+        android:enabled="true"
+        android:icon="@drawable/ic_coupon"
+        android:title="優惠券"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/consume"
+        android:enabled="true"
+        android:icon="@drawable/ic_record"
+        android:title="交易紀錄"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/setting"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting"
+        android:title="設定"
+        app:showAsAction="ifRoom"/>
+
+</menu>
