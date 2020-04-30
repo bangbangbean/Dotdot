@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dotdot.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MemberUseCoupon extends Activity {

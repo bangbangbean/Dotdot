@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/personal_bg"
-    tools:context=".StoreOverlookCoupon">
+    tools:context=".StoreCouponManager.StoreOverlookCoupon">
 
 
     <TextView
@@ -32,13 +32,13 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="45dp"
             android:layout_marginTop="-5dp"
-            android:text="@string/coupon_title"
+            android:text="以發行的優惠券"
             android:textSize="32sp" />
 
         <Button
             android:id="@+id/creatBtn"
             android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="90dp"
             android:background="@drawable/dot_btn_bg"
             android:text="@string/coupon_creat"
@@ -56,12 +56,13 @@
         android:background="#D8878484" />
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="385dp"
+            android:layout_height="651dp"
             android:layout_gravity="center_horizontal" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

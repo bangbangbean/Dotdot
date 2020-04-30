@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.StoreCouponManager;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -21,6 +21,8 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.example.dotdot.Coupon;
+import com.example.dotdot.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -167,8 +169,8 @@ public class StoreCreatCoupon extends Activity {
                 .isCyclic(true)//是否迴圈滾動
                 .setTitleColor(Color.BLACK)//標題文字顏色
                 .setSubmitColor(Color.BLUE)//確定按鈕文字顏色
-                .setCancelColor(Color.BLUE)//取消按鈕文字顏色
-                .setTitleBgColor(Color.WHITE)//標題背景顏色 Night mode
+                .setCancelColor(Color.RED)//取消按鈕文字顏色
+                .setTitleBgColor(Color.WHITE)//標題背景顏色
                 .setLabel("年", "月", "日", "時", "分", "秒")
                 .isDialog(true)//是否顯示為對話方塊樣式
                 .setType(new boolean[]{true, true, true, true, true, false})

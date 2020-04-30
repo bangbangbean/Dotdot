@@ -1,43 +1,48 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.CollectionReference;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
-public class StoreCreatLoyaltyCard extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class StoreCreatLoyaltyCard extends Fragment {
     private String color = "blue";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference SloyaltyCardRef = db.document("store/N0yDSwbrTTVP2nZSKw1h");
+    private DocumentReference SloyaltyCardRef = db.document("store/nQnT8AAt4NYIRYZFZfAR");
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_creat_loyalty_card);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_store_creat_loyalty_card, container, false);
+        Button setRed = view.findViewById(R.id.redDot);
+        Button setBlue = view.findViewById(R.id.blueDot);
+        Button setGreen = view.findViewById(R.id.greenDot);
+        Button setYellow = view.findViewById(R.id.yellowDot);
+        Button saveBtn = view.findViewById(R.id.saveBtn);
 
-        Button setBlue = (Button)findViewById(R.id.blueDot);
-        Button setGreen = (Button)findViewById(R.id.greenDot);
-        Button setYellow = (Button)findViewById(R.id.yellowDot);
-        Button setRed = (Button)findViewById(R.id.redDot);
-        Button saveBtn = (Button)findViewById(R.id.saveBtn);
-
-        TextView dot1 = (TextView)findViewById(R.id.dot1);
-        TextView dot2 = (TextView)findViewById(R.id.dot2);
-        TextView dot3 = (TextView)findViewById(R.id.dot3);
-        TextView dot4 = (TextView)findViewById(R.id.dot4);
-        TextView dot5 = (TextView)findViewById(R.id.dot5);
-        TextView dot6 = (TextView)findViewById(R.id.dot6);
-        TextView dot7 = (TextView)findViewById(R.id.dot7);
-        EditText inputDollar = (EditText) findViewById(R.id.inputDollar);
+        TextView dot1 = view.findViewById(R.id.dot1);
+        TextView dot2 = view.findViewById(R.id.dot2);
+        TextView dot3 = view.findViewById(R.id.dot3);
+        TextView dot4 = view.findViewById(R.id.dot4);
+        TextView dot5 = view.findViewById(R.id.dot5);
+        TextView dot6 = view.findViewById(R.id.dot6);
+        TextView dot7 = view.findViewById(R.id.dot7);
+        EditText inputDollar = view.findViewById(R.id.inputDollar);
 
 
         //選擇顏色---------------------------------------------------------------------------
@@ -97,9 +102,13 @@ public class StoreCreatLoyaltyCard extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String money = inputDollar.getText().toString();
-                StoreLoyaltyCard loytyCard = new StoreLoyaltyCard(color,money);
-                SloyaltyCardRef.set(loytyCard, SetOptions.merge());
+                Map<Object, Object> StoreCreatLoyaltyCard = new HashMap<>();
+                StoreCreatLoyaltyCard.put("color", color);
+                StoreCreatLoyaltyCard.put("Threshold", money);
+                SloyaltyCardRef.set(StoreCreatLoyaltyCard, SetOptions.merge());
             }
         });
+
+        return view;
     }
 }

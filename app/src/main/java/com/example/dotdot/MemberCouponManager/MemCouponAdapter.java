@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,45 +8,47 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dotdot.Coupon;
+import com.example.dotdot.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 
-public class MemberOwnedCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemberOwnedCouponAdapter.MemberOwnedCouponHolder> {
-    private MemberOwnedCouponAdapter.OnItemClickListener listener;
+public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCouponAdapter.MemCouponHolder> {
+    private MemCouponAdapter.OnItemClickListener listener;
 
-    public MemberOwnedCouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
+    public MemCouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MemberOwnedCouponHolder memberOwnedCouponHolder, int i, @NonNull Coupon coupon) {
+    protected void onBindViewHolder(@NonNull MemCouponHolder memCouponHolder, int i, @NonNull Coupon coupon) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        memberOwnedCouponHolder.couponTitle.setText(coupon.getCouponTitle());
-        memberOwnedCouponHolder.couponPoint.setText(Integer.toString(coupon.getDotNeed()));
-        memberOwnedCouponHolder.Time.setText(sdf.format(coupon.getTime()));
+        memCouponHolder.couponTitle.setText(coupon.getCouponTitle());
+        memCouponHolder.couponPoint.setText(Integer.toString(coupon.getDotNeed()));
+        memCouponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
     }
 
     @NonNull
     @Override
-    public MemberOwnedCouponHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_owned_couponlist,
+    public MemCouponHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_couponlist,
                 parent, false);
-        return new MemberOwnedCouponAdapter.MemberOwnedCouponHolder(v);
+        return new MemCouponAdapter.MemCouponHolder(v);
     }
 
-    public class MemberOwnedCouponHolder extends RecyclerView.ViewHolder {
+    public class MemCouponHolder extends RecyclerView.ViewHolder {
         private TextView couponTitle;
         private TextView couponPoint;
-        private TextView Time;
+        private TextView endTime;
 
-        public MemberOwnedCouponHolder(@NonNull View itemView) {
+        public MemCouponHolder(@NonNull View itemView) {
             super(itemView);
             couponTitle = itemView.findViewById(R.id.couponTitle);
             couponPoint = itemView.findViewById(R.id.couponPoint);
-            Time = itemView.findViewById(R.id.time);
+            endTime = itemView.findViewById(R.id.endTime);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,7 +66,7 @@ public class MemberOwnedCouponAdapter extends FirestoreRecyclerAdapter<Coupon, M
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(MemberOwnedCouponAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(MemCouponAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 

@@ -30,19 +30,28 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".store_pop"
+            android:theme="@style/AppTheme.Pop"/>
+        <activity
             android:name=".StoreNotification.StoreNotiSending"
             android:theme="@style/AppTheme.Pop"/>
         <activity
-            android:name=".ConfirmExchange"
+            android:name=".MemberCouponManager.MemberUseCoupon"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
-            android:name=".MemCouponContent"
+            android:name=".MemberCouponManager.MemberOwnedCouponContent"
+            android:theme="@style/AppTheme.CouponContent" />
+        <activity
+            android:name=".MemberCouponManager.ConfirmExchange"
+            android:theme="@style/AppTheme.CouponContent" />
+        <activity
+            android:name=".MemberCouponManager.MemCouponContent"
             android:theme="@style/AppTheme.CouponContent" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
         <activity
-            android:name=".CouponContent"
+            android:name=".StoreCouponManager.CouponContent"
             android:theme="@style/AppTheme.CouponContent" />
         <activity
             android:name=".notification"
@@ -51,7 +60,7 @@
             android:name=".StoreNotification.StoreNotification"
             android:theme="@style/AppTheme.Pop" />
         <activity
-            android:name=".StoreCreatCoupon"
+            android:name=".StoreCouponManager.StoreCreatCoupon"
             android:theme="@style/AppTheme.CreatCoupon" />
         <activity
             android:name=".PopActivity"
@@ -62,16 +71,16 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".Store_botnav"/>
 
         <activity
             android:name=".QRcode.QrcodeScannerFinal"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".MemberOwnedCoupon"/>
-        <activity android:name=".MemberCanExchangeCoupon" />
-        <activity android:name=".CouponBelongMember" />
-        <activity android:name=".MemberOverlookCoupon" />
+        <activity android:name=".MemberCouponManager.MemberOwnedCoupon" />
+        <activity android:name=".MemberCouponManager.MemberCanExchangeCoupon" />
+        <activity android:name=".MemberCouponManager.MemberOverlookCoupon" />
         <activity android:name=".QRcode.QrcodeScanner" />
-        <activity android:name=".StoreOverlookCoupon" />
+        <activity android:name=".StoreCouponManager.StoreOverlookCoupon" />
         <activity android:name=".botnav" />
         <activity android:name=".test" />
         <activity android:name=".StoreCreatLoyaltyCard" />
@@ -100,4 +109,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

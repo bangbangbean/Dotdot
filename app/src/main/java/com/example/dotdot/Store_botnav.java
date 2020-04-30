@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.dotdot.StoreCouponManager.StoreOverlookCoupon;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Store_botnav extends AppCompatActivity{
@@ -21,10 +22,10 @@ public class Store_botnav extends AppCompatActivity{
                 selectedFragment = new Profile();
                 break;
             case R.id.shopping:
-                selectedFragment = new Collectioncard();
+                selectedFragment = new StoreCreatLoyaltyCard();
                 break;
             case R.id.shipping:
-                selectedFragment = new frag2();
+                selectedFragment = new StoreOverlookCoupon();
                 break;
             case R.id.consume:
                 selectedFragment = new frag2();

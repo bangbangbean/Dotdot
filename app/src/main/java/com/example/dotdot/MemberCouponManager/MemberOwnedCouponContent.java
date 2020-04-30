@@ -1,14 +1,18 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dotdot.Coupon;
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,22 +21,34 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
-public class CouponContent extends Activity {
+public class MemberOwnedCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
 
+    private CollectionReference couponRef = db.collection("store");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_coupon_content);
+        setContentView(R.layout.activity_member_owned_coupon_content);
 
-        //coupon的title
-        SharedPreferences coupon = getSharedPreferences("save_coupon", MODE_PRIVATE);
-        String whichCoupon = coupon.getString("coupon_title", "沒選到Coupon");
+        Button confirmBtn = (Button)findViewById(R.id.confirmBtn);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MemberUseCoupon.class);
+                startActivity(intent);
+                onBackPressed();
+            }
+        });
+        //coupon的title名稱
+        String whichCoupon = getSharedPreferences("save_coupon", MODE_PRIVATE)
+                .getString("coupon_title", "沒選到Coupon");
+        //store的亂碼Id
+        String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("store_id", "沒選擇店家");
 
-        couponRef.whereEqualTo("couponTitle",whichCoupon)
+        couponRef.document(storeId).collection("coupon")
+                .whereEqualTo("couponTitle",whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -42,13 +58,11 @@ public class CouponContent extends Activity {
                             TextView title = (TextView)findViewById(R.id.title);
                             TextView point = (TextView)findViewById(R.id.point);
                             TextView content = (TextView)findViewById(R.id.content);
-                            TextView creatTime = (TextView)findViewById(R.id.creatTime);
                             TextView deadLine = (TextView)findViewById(R.id.deadLine);
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             title.setText(coupon.getCouponTitle());
                             point.setText(Integer.toString(coupon.getDotNeed()));
                             content.setText(coupon.getCouponContent());
-                            creatTime.setText(sdf.format(coupon.getCreatTime()));
                             deadLine.setText(sdf.format(coupon.getDeadLine()));
                         }
                     }
@@ -60,7 +74,7 @@ public class CouponContent extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .7), (int) (height * .7));
+        getWindow().setLayout((int) (width * .8), (int) (height * .8));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -69,7 +83,5 @@ public class CouponContent extends Activity {
         params.y = -10;
 
         getWindow().setAttributes(params);
-
-
     }
 }

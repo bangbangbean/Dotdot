@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dotdot.Coupon;
+import com.example.dotdot.Loyalty_card;
+import com.example.dotdot.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;

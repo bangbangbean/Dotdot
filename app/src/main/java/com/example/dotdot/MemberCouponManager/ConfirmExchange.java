@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.dotdot.Coupon;
+import com.example.dotdot.Loyalty_card;
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -146,6 +149,7 @@ public class ConfirmExchange extends Activity {
                                         String use = "-" + i;
                                         Map<Object, Object> dotUseRecord = new HashMap<>();
                                         dotUseRecord.put("store_couponId", CouponId);
+                                        dotUseRecord.put("couponTitle", whichCoupon);
                                         dotUseRecord.put("storeId", storeId);
                                         dotUseRecord.put("point_use", use);
                                         dotUseRecord.put("time", new Date());

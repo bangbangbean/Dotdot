@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.MemberCouponManager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dotdot.Coupon;
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
-public class MemberOwnedCouponContent extends Activity {
+public class MemCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference couponRef = db.collection("store");
@@ -27,13 +29,13 @@ public class MemberOwnedCouponContent extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_member_owned_coupon_content);
+        setContentView(R.layout.activity_mem_coupon_content);
 
         Button confirmBtn = (Button)findViewById(R.id.confirmBtn);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MemberUseCoupon.class);
+                Intent intent = new Intent(getApplicationContext(), ConfirmExchange.class);
                 startActivity(intent);
                 onBackPressed();
             }
