@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class MemberPointRec {
     private String points_get;
-    private String store;
+    private String storeId;
     private Date time;
 
     public MemberPointRec(){}
 
-    public MemberPointRec(String points_get, String store, Date time){
+    public MemberPointRec(String points_get, String storeId, Date time){
         this.points_get = points_get;
-        this.store = store;
+        this.storeId = storeId;
         this.time = time;
     }
 
@@ -24,12 +24,12 @@ public class MemberPointRec {
         this.points_get = point_get;
     }
 
-    public String getStore() {
-        return store;
+    public String getStoreId() {
+        return storeId;
     }
 
-    public void setStore(String store) {
-        this.store = store;
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
     }
 
     public Date getTime() {

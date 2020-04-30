@@ -1,5 +1,7 @@
 package com.example.dotdot.StoreNotification;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -114,7 +116,7 @@ public class StoreNotificationSend extends Fragment {
             int menuPosition = menuBridge.getPosition(); // 菜单在RecyclerView的Item中的Position。
 
             if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
-                Toast.makeText(getContext(), "list第" + position + "; 右侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "list第" + position + "; 右側菜單第" + menuPosition, Toast.LENGTH_SHORT).show();
                 adapter.deleteItem(position);
             }
         }

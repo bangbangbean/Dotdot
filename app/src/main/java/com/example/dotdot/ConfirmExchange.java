@@ -141,11 +141,13 @@ public class ConfirmExchange extends Activity {
                                         loyaltyCardRef.collection("loyalty_card").document(loyalty_card_id)
                                                 .set(upData, SetOptions.merge());
 
-                                        //新增資料到DotUseRecord
+                                        //新增資料到member的Loyalty的Record
+                                        String i = Integer.toString(storeDotNeed);
+                                        String use = "-" + i;
                                         Map<Object, Object> dotUseRecord = new HashMap<>();
                                         dotUseRecord.put("store_couponId", CouponId);
                                         dotUseRecord.put("storeId", storeId);
-                                        dotUseRecord.put("point_use", Integer.toString(storeDotNeed));
+                                        dotUseRecord.put("point_use", use);
                                         dotUseRecord.put("time", new Date());
                                         memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
                                                 .document(loyalty_card_id).collection("Record")

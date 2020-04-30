@@ -127,7 +127,7 @@ public class QrcodeScannerNext extends Activity {
         //取的intent中的bundle物件
         Bundle bundle66 =this.getIntent().getExtras();
         String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
-        String points_get = points_given;
+        String points_get = "+" + points_given;
 
         MemberPointRec rec = new MemberPointRec(points_get, who, dt);
         memRef.document(whoData).collection("loyalty_card")
@@ -139,7 +139,7 @@ public class QrcodeScannerNext extends Activity {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                             String oo = documentSnapshot.getId();
                             memRef.document(whoData).collection("loyalty_card")
-                                    .document(oo).collection("DotGetRecord").add(rec);
+                                    .document(oo).collection("Record").add(rec);
                         }
                     }
                 });
