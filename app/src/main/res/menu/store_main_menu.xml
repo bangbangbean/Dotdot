@@ -7,7 +7,7 @@
     <item
         android:id="@+id/cusomer"
         android:enabled="true"
-        android:icon="@drawable/ic_people"
+        android:icon="@drawable/ic_store"
         android:title="個人資料"
         app:showAsAction="ifRoom"></item>
     <item
