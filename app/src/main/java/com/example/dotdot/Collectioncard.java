@@ -78,8 +78,9 @@ public class Collectioncard extends Fragment {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                String storeId = loyalty_card.getStore().trim();
+                String storeId = loyalty_card.getStore();
                 String loyalty_card_id = documentSnapshot.getId();
+
                 storepref.edit()
                         .putString("store_id", storeId)
                         .commit();

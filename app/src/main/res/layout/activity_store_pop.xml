@@ -129,7 +129,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:background="@drawable/ic_people"
+        android:background="@drawable/ic_store"
         app:layout_constraintBottom_toTopOf="@+id/dot"
         app:layout_constraintEnd_toStartOf="@+id/card"
         app:layout_constraintHorizontal_bias="0.596"

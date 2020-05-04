@@ -30,80 +30,320 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
 
     @Override
     protected void onBindViewHolder(@NonNull CollectioncardHolder collectioncardHolder, int i, @NonNull Loyalty_card loyalty_card) {
-        collectioncardHolder.Title.setText(loyalty_card.getStore());
         collectioncardHolder.points.setText(loyalty_card.getPoints_owned());
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference storeRef = db.collection("store");
+        storeRef.document(loyalty_card.getStore()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Store store = documentSnapshot.toObject(Store.class);
+                collectioncardHolder.Title.setText(store.getName());
+            }
+        });
+
+
         int qqq = Integer.parseInt(loyalty_card.getPoints_owned());
-        if (qqq == 1) {
+        String color = loyalty_card.getColor();
+        System.out.println(loyalty_card.getColor());
+        if (color.equals("red")) {
 
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
+            if (qqq == 1) {
 
-        } else if (qqq == 2) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-        } else if (qqq == 3) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
 
-        } else if (qqq == 4) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
+            } else if (qqq == 2) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+            } else if (qqq == 3) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
 
-        } else if (qqq == 5) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
+            } else if (qqq == 4) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
 
-        } else if (qqq == 6) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot6.setBackgroundResource(R.drawable.pink_dot);
+            } else if (qqq == 5) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
 
-        } else if (qqq == 7) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot6.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot7.setBackgroundResource(R.drawable.pink_dot);
-        } else if (qqq == 8) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot6.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot7.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot8.setBackgroundResource(R.drawable.pink_dot);
-        } else if (qqq == 9) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot6.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot7.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot8.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot9.setBackgroundResource(R.drawable.pink_dot);
-        } else if (qqq >= 10) {
-            collectioncardHolder.dot1.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot2.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot3.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot4.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot5.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot6.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot7.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot8.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot9.setBackgroundResource(R.drawable.pink_dot);
-            collectioncardHolder.dot10.setBackgroundResource(R.drawable.pink_dot);
+            } else if (qqq == 6) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.red_dot);
+
+            } else if (qqq == 7) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.red_dot);
+            } else if (qqq == 8) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.red_dot);
+            } else if (qqq == 9) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.red_dot);
+            } else if (qqq >= 10) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.red_dot);
+                collectioncardHolder.dot10.setBackgroundResource(R.drawable.red_dot);
+            }
+        }
+        if (color.equals("green")) {
+
+            if (qqq == 1) {
+
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+
+            } else if (qqq == 2) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+            } else if (qqq == 3) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+
+            } else if (qqq == 4) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+
+            } else if (qqq == 5) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+
+            } else if (qqq == 6) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.green_dot);
+
+            } else if (qqq == 7) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.green_dot);
+            } else if (qqq == 8) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.green_dot);
+            } else if (qqq == 9) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.green_dot);
+            } else if (qqq >= 10) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.green_dot);
+                collectioncardHolder.dot10.setBackgroundResource(R.drawable.green_dot);
+            }
+        }
+        if (color.equals("yellow")) {
+
+            if (qqq == 1) {
+
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+
+            } else if (qqq == 2) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+            } else if (qqq == 3) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+
+            } else if (qqq == 4) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+
+            } else if (qqq == 5) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+
+            } else if (qqq == 6) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.yellow_dot);
+
+            } else if (qqq == 7) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.yellow_dot);
+            } else if (qqq == 8) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.yellow_dot);
+            } else if (qqq == 9) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.yellow_dot);
+            } else if (qqq >= 10) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.yellow_dot);
+                collectioncardHolder.dot10.setBackgroundResource(R.drawable.yellow_dot);
+            }
+        }
+        if (color.equals("blue")) {
+
+            if (qqq == 1) {
+
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+
+            } else if (qqq == 2) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+            } else if (qqq == 3) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+
+            } else if (qqq == 4) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+
+            } else if (qqq == 5) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+
+            } else if (qqq == 6) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.blue_dot);
+
+            } else if (qqq == 7) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.blue_dot);
+            } else if (qqq == 8) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.blue_dot);
+            } else if (qqq == 9) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.blue_dot);
+            } else if (qqq >= 10) {
+                collectioncardHolder.dot1.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot2.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot3.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot4.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot5.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot6.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot7.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot8.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot9.setBackgroundResource(R.drawable.blue_dot);
+                collectioncardHolder.dot10.setBackgroundResource(R.drawable.blue_dot);
+            }
         }
 
         collectioncardHolder.coupon.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +363,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         return new CollectioncardHolder(v);
     }
 
-    public void myLoveItem(int position){
+    public void myLoveItem(int position) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference memRef = db.collection("Member");
 
@@ -137,14 +377,13 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         LoyaltyCard loyaltyCard = documentSnapshot.toObject(LoyaltyCard.class);
                         Boolean f = loyaltyCard.getFavorite();
-                        if(f.equals(false)){
+                        if (f.equals(false)) {
                             //False修改為True
                             Map<Object, Object> upData = new HashMap<>();
                             upData.put("favorite", true);
                             memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
                                     .document(id).set(upData, SetOptions.merge());
-                        }
-                        else {
+                        } else {
                             //True修改為False
                             Map<Object, Object> Data = new HashMap<>();
                             Data.put("favorite", false);
@@ -169,6 +408,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         private TextView dot9;
         private TextView dot10;
         private Button coupon;
+
 
         public CollectioncardHolder(@NonNull View itemView) {
             super(itemView);
@@ -197,6 +437,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             });
         }
     }
+
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }

@@ -24,6 +24,7 @@ public class StoreCreatLoyaltyCard extends Fragment {
     private String color = "blue";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference SloyaltyCardRef = db.document("store/nQnT8AAt4NYIRYZFZfAR");
+    private DocumentReference SloyaltyCardRef1 = db.document("Member/iICTR1JL4eAG4B3QBi1S/loyalty_card/BxskPfoZCfztCUSuDUOu");
 
     @Nullable
     @Override
@@ -106,6 +107,8 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 StoreCreatLoyaltyCard.put("color", color);
                 StoreCreatLoyaltyCard.put("Threshold", money);
                 SloyaltyCardRef.set(StoreCreatLoyaltyCard, SetOptions.merge());
+                SloyaltyCardRef1.set(StoreCreatLoyaltyCard, SetOptions.merge());
+
             }
         });
 
