@@ -34,7 +34,7 @@ public class ConfirmExchange extends Activity {
     private CollectionReference memRef = db.collection("Member");
     private DocumentReference loyaltyCardRef = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S");
-    int memberPointOwned;
+    int memberPointOwned = 100;
     int storeDotNeed;
 
     @Override
@@ -104,6 +104,7 @@ public class ConfirmExchange extends Activity {
 
         doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                memberPointOwned = 100;
                 memberPoint.setText("");
                 couponPoint.setText("");
                 wordDot.setText("");

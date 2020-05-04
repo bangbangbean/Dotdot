@@ -2,7 +2,6 @@ package com.example.dotdot.StoreCouponManager;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -34,17 +33,12 @@ import java.util.Date;
 public class StoreCreatCoupon extends Activity {
     private TextView et_startTime;
     private TextView et_endTime;
-
     private Date startTime = new Date();
     private Date endTime = new Date();
-
-    String beginning, ending;
-
     private TimePickerView pvTime;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference couponRef = db.collection("store");
-
+    String beginning, ending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +51,12 @@ public class StoreCreatCoupon extends Activity {
         creatBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 creatCoupon();
-                Intent intent = new Intent(StoreCreatCoupon.this, StoreOverlookCoupon.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext() , StoreOverlookCoupon.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
 
@@ -87,7 +79,6 @@ public class StoreCreatCoupon extends Activity {
         getWindow().setAttributes(params);
 
         //設定時間--------------------------------------------------------------------------
-
         et_startTime = findViewById(R.id.et_startTime);
         et_endTime = findViewById(R.id.et_endTime);
         et_startTime.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +129,6 @@ public class StoreCreatCoupon extends Activity {
     }
 
     private void initTimePicker() {
-
         pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
@@ -193,16 +183,16 @@ public class StoreCreatCoupon extends Activity {
         }
     }
 
-    private String getTime(Date date) {//可根據需要自行擷取資料顯示
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(date);
-    }
+
 
 
     static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public Date getDateFromString(String datetoSaved) {
+    private String getTime(Date date) {//可根據需要自行擷取資料顯示
+        return format.format(date);
+    }
 
+    public Date getDateFromString(String datetoSaved) {
         try {
             Date date = format.parse(datetoSaved);
             return date;
@@ -215,7 +205,6 @@ public class StoreCreatCoupon extends Activity {
         EditText couponTitle = (EditText)findViewById(R.id.couponTitle);
         AutoCompleteTextView couponContent = (AutoCompleteTextView)findViewById(R.id.couponContent);
         EditText dotNeed = (EditText)findViewById(R.id.dotNeed);
-
         String title = couponTitle.getText().toString();
         String content = couponContent.getText().toString();
         Integer need = Integer.parseInt(dotNeed.getText().toString());

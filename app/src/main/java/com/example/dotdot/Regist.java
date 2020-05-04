@@ -1,7 +1,5 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -100,7 +100,6 @@ public class Regist extends AppCompatActivity {
                 if (allinput == 0 && onlyacc == 0 && passlen == 0 && passconfirm == 0) {
                     //新增資料到資料庫
                     Creatmember();
-
                     Intent intent = new Intent(Regist.this, Login.class);
                     startActivity(intent);
                 }

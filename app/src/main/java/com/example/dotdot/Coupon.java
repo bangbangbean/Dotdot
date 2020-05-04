@@ -23,7 +23,6 @@ public class Coupon {
         this.creatTime = creatTime;
         this.deadLine = deadLine;
         this.couponTitle = couponTitle;
-        this.time = time;
     }
     @Exclude
     public String getDocumentId(){
