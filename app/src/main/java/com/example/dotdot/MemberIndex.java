@@ -8,6 +8,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Collection;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -38,6 +42,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference qq = db.collection("store");
     private CollectionReference note = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
     //記得改成session
@@ -121,15 +126,18 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
     public void addmarker() {
 
+
         note.document("BxskPfoZCfztCUSuDUOu").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
                     MarkerOptions options = new MarkerOptions();
+
                     String title = poi.getStore();
                     String point = poi.getPoints_owned();
-                    options.title(title);
+                    options.title("椒麻雞大王");
+
                     options.snippet(point);
                     options.position(storerecord.chicken);
                     options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
@@ -148,10 +156,10 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     MarkerOptions options1 = new MarkerOptions();
                     String title = poi.getStore();
                     String point = poi.getPoints_owned();
-                    options1.title(title);
+                    options1.title("崔舍");
                     options1.snippet(point);
                     options1.position(storerecord.loc1);
-                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
                     mMap.addMarker(options1);
 
                 }
@@ -170,7 +178,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 17));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
 
                 }
             }

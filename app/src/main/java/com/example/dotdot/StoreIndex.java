@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,13 +34,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import io.opencensus.tags.Tag;
 
 public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("store");
+    private CollectionReference memRef1 = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR").collection("couponBeenExchange");
     private CollectionReference note = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR")
             .collection("record");
     private GoogleMap mMap;
@@ -51,6 +55,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private TextView Storetitle;
     private TextView Mon;
     private TextView Pointsgives;
+    private TextView coupongiven;
     Button btn_notificaiton;
 
 
@@ -115,8 +120,22 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 }
                 Pointsgives = findViewById(R.id.pointsgive);
                 Pointsgives.setText(Integer.toString(point1sum));
-                System.out.println(point1sum);
 
+            }
+        });
+        //coupon
+        memRef1.whereGreaterThan("time", dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
+
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots1) {
+
+                    CouponBeenExchange crec = queryDocumentSnapshot.toObject(CouponBeenExchange.class);
+
+
+                }
+                coupongiven = findViewById(R.id.couponsgive);
+                coupongiven.setText(Integer.toString(queryDocumentSnapshots1.size()));
             }
         });
         //--------------------------------------------------------------------------------------
