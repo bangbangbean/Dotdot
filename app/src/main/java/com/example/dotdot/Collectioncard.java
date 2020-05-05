@@ -38,8 +38,8 @@ public class Collectioncard extends Fragment {
     private CollectionReference note = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
     private View view;
-
     private SwipeRecyclerView swipeRecyclerView;
+    String storeId;
 
     @Nullable
     @Override
@@ -78,15 +78,14 @@ public class Collectioncard extends Fragment {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                String storeId = loyalty_card.getStore();
+                storeId = loyalty_card.getStore().trim();
                 String loyalty_card_id = documentSnapshot.getId();
-
                 storepref.edit()
                         .putString("store_id", storeId)
-                        .commit();
+                        .apply();
                 loyaltycardpref.edit()
                         .putString("loyalty_card_id", loyalty_card_id)
-                        .commit();
+                        .apply();
             }
         });
     }

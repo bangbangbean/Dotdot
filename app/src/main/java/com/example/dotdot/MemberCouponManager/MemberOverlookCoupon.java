@@ -109,6 +109,7 @@ public class MemberOverlookCoupon extends Fragment {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
