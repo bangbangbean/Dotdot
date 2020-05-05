@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-    public class CouponExchange extends AppCompatActivity {
+    public class   CouponExchange extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView;
 

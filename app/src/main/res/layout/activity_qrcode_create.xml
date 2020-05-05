@@ -18,5 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnknownId" />
 
+    <ImageView
+        android:id="@+id/concelbtn"
+        android:layout_width="81dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.704"
+        app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
