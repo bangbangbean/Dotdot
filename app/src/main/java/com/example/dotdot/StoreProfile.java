@@ -1,9 +1,12 @@
 package com.example.dotdot;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +23,9 @@ public class StoreProfile extends Fragment {
     private TextView sname;
     private TextView saddress;
     private TextView stelephone;
+    private Button editbtn;
     private View view;
+    private Integer a = 1;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference stoRef = db.collection("store");
@@ -33,6 +38,53 @@ public class StoreProfile extends Fragment {
         sname = (TextView)view.findViewById(R.id.sname);
         saddress = (TextView)view.findViewById(R.id.address);
         stelephone = (TextView)view.findViewById(R.id.telephone);
+        editbtn = (Button)view.findViewById(R.id.editbtn);
+
+        saddress.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        //文本显示的位置在EditText的最上方  
+        saddress.setGravity(Gravity.TOP);
+        //改变默认的单行模式  
+        saddress.setSingleLine(false);
+        //水平滚动设置为False  
+        saddress.setHorizontallyScrolling(false);
+
+        //鎖定編輯
+        sname.setFocusable(false);
+        sname.setFocusableInTouchMode(false);
+        saddress.setFocusable(false);
+        saddress.setFocusableInTouchMode(false);
+        stelephone.setFocusable(false);
+        stelephone.setFocusableInTouchMode(false);
+
+        //控制editText可否編輯
+        editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(a == 1){
+                    sname.setFocusableInTouchMode(true);
+                    sname.setFocusable(true);
+                    sname.requestFocus();
+
+                    saddress.setFocusableInTouchMode(true);
+                    saddress.setFocusable(true);
+                    saddress.requestFocus();
+
+                    stelephone.setFocusableInTouchMode(true);
+                    stelephone.setFocusable(true);
+                    stelephone.requestFocus();
+                    a = 0;
+                }
+                else {
+                    sname.setFocusable(false);
+                    sname.setFocusableInTouchMode(false);
+                    saddress.setFocusable(false);
+                    saddress.setFocusableInTouchMode(false);
+                    stelephone.setFocusable(false);
+                    stelephone.setFocusableInTouchMode(false);
+                    a = 1;
+                }
+            }
+        });
 
         return view;
     }
