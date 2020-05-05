@@ -44,7 +44,7 @@
 
     <style name="AppTheme.PopMee">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowBackground">@drawable/popqrcod_bg</item>
         <item name="android:windowNoTitle">true</item>
     </style>
