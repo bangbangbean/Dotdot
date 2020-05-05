@@ -51,6 +51,11 @@
     <string name="personal_password">密碼 :</string>
     <string name="personal_logout">登出</string>
     ----------------------------------------------------------------------------------------------
+    //店家資料
+    <string name="store_name">店名 :</string>
+    <string name="store_address">地址 :</string>
+    <string name="store_phone">電話 :</string>
+    ----------------------------------------------------------------------------------------------
     //地圖
     <string name="getpoint">Dot!</string>
     <string name="givepoint">Scan!</string>

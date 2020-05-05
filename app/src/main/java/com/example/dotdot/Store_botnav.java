@@ -19,7 +19,7 @@ public class Store_botnav extends AppCompatActivity{
 
         switch (item.getItemId()){
             case R.id.cusomer:
-                selectedFragment = new Profile();
+                selectedFragment = new StoreProfile();
                 break;
             case R.id.shopping:
                 selectedFragment = new StoreCreatLoyaltyCard();
@@ -47,6 +47,6 @@ public class Store_botnav extends AppCompatActivity{
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StoreProfile()).commit();
     }
 }

@@ -112,7 +112,7 @@ public class QrcodeCreate extends Activity {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             LoyaltyCard loyalty = documentSnapshot.toObject(LoyaltyCard.class);
                             int points_owned = Integer.parseInt(loyalty.getPoints_owned());
-                            String name = loyalty.getName();
+                            //String name = loyalty.getName();
 
                             storeRef.document((String) documentSnapshot.get("store"))
                                     .collection("coupon")
@@ -125,7 +125,7 @@ public class QrcodeCreate extends Activity {
                                             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                                                 if (coupon.getDotNeed() <= points_owned) {
-                                                    stop = name;
+                                                    //stop = name;
                                                     count++;
                                                 }
                                             }
