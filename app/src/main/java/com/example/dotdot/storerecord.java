@@ -12,19 +12,19 @@ public class storerecord {
     public static final LatLng loc1 = new LatLng(25.032022, 121.432804);
     public static final LatLng chicken = new LatLng(25.034434, 121.430992);
     private Date time;
-    private String points_given;
+    private String point_given;
 
-//        private String member;
+
 
     public storerecord() {
         //empty constructor needed
     }
 
-    public storerecord(Date time, String points_given, String member) {
+    public storerecord(Date time, String point_given ){
         this.time = time;
-        this.points_given = points_given;
+        this.point_given = point_given;
 
-//            this.member = member;
+
     }
 
     public Date getTime() {
@@ -32,10 +32,10 @@ public class storerecord {
     }
 
 
-    public String getPoints_given() {
-        return points_given;
+    public String getPoint_given() {
+        return point_given;
     }
 
 
-//        public String getMember(){return member;}
+
 }

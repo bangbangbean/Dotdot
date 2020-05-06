@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -44,8 +45,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("store");
     private CollectionReference memRef1 = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR").collection("couponBeenExchange");
-    private CollectionReference note = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR")
-            .collection("record");
+    private CollectionReference note = db.collection("store/nQnT8AAt4NYIRYZFZfAR/giveDotRecord");
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     // this variable get for the location in mobile
@@ -57,7 +57,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private TextView Pointsgives;
     private TextView coupongiven;
     Button btn_notificaiton;
-
 
 
     @Override
@@ -93,6 +92,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     String name = mem.getName();
                     Storetitle.setText(name);
 
+
                 }
             }
         });
@@ -106,23 +106,41 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         Date dt = new Date();
         dt.equals("2020-05-01 00:00:00");
 
-        note.whereGreaterThan("time", dt).orderBy("time").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-
+        note.whereGreaterThan("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int point1sum = 0;
+                int points1sum = 0;
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-
                     storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
-                    String point = rec.getPoints_given();
+                    String point = rec.getPoint_given();
                     int point1 = Integer.valueOf(point);
-                    point1sum += point1;
+                    points1sum += point1;
+
+
                 }
+                System.out.println(points1sum);
                 Pointsgives = findViewById(R.id.pointsgive);
-                Pointsgives.setText(Integer.toString(point1sum));
+                Pointsgives.setText(Integer.toString(points1sum));
 
             }
         });
+
+//        note.whereGreaterThan("time", dt).orderBy("time").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                int point1sum = 0;
+//                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+//
+//                    storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
+//                    String point = rec.getPoint_given();
+//                    int point1 = Integer.valueOf(point);
+//                    point1sum += point1;
+//                }
+//
+//
+//            }
+//        });
         //coupon
         memRef1.whereGreaterThan("time", dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

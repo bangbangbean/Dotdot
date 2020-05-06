@@ -117,6 +117,7 @@
     //MemberUseCoupon
     <string name="MemberUseCoupon_word1">此動作不可返回，請確認您已在店家櫃檯，
         出示此券於店家人員確認過後按下「使用」</string>
+    <string name="google_maps_key" />
 
 
 </resources>
