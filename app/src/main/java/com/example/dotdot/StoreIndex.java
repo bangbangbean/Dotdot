@@ -102,9 +102,19 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         SimpleDateFormat sdf = new SimpleDateFormat("MM");
         String date = sdf.format(new java.util.Date());
         Mon.setText(date + "月");
+
         //判斷時間
-        Date dt = new Date();
-        dt.equals("2020-05-01 00:00:00");
+        Date dt = new Date(120,04,01);
+        System.out.println(dt);
+        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots){
+
+                }
+
+            }
+        });
 
         note.whereGreaterThan("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -118,29 +128,14 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
 
                 }
-                System.out.println(points1sum);
+
                 Pointsgives = findViewById(R.id.pointsgive);
                 Pointsgives.setText(Integer.toString(points1sum));
 
             }
         });
 
-//        note.whereGreaterThan("time", dt).orderBy("time").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                int point1sum = 0;
-//                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-//
-//                    storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
-//                    String point = rec.getPoint_given();
-//                    int point1 = Integer.valueOf(point);
-//                    point1sum += point1;
-//                }
-//
-//
-//            }
-//        });
+
         //coupon
         memRef1.whereGreaterThan("time", dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
