@@ -105,6 +105,7 @@
         android:layout_marginStart="340dp"
         android:layout_marginLeft="340dp"
         android:layout_marginTop="60dp"
+        android:gravity="center"
         android:elevation="3dp"
         android:textColor="@color/darkblue"
         android:textSize="110dp"
