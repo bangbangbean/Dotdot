@@ -69,8 +69,7 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".Store_botnav">
-        </activity>
+        <activity android:name=".Store_botnav"/>
 
         <activity
             android:name=".QRcode.QrcodeScannerFinal"
@@ -95,8 +94,7 @@
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
-        </activity>
+            android:label="@string/title_activity_maps"/>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe"/>

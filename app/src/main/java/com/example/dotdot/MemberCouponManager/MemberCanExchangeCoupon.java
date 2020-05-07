@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,16 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotdot.Coupon;
-import com.example.dotdot.Loyalty_card;
 import com.example.dotdot.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -37,7 +32,7 @@ public class MemberCanExchangeCoupon extends Fragment {
     private CollectionReference memRef = db.collection("Member");
     private MemCouponAdapter adapter;
     private View view;
-    private int memberPointOwned = 15;//記得改
+    //private int memberPointOwned;//記得改
 
     @Nullable
     @Override
@@ -45,7 +40,7 @@ public class MemberCanExchangeCoupon extends Fragment {
         view = inflater.inflate(R.layout.activity_member_can_exchange_coupon, container, false);
 
         //跳轉頁到MemberOverlookCoupon
-        Button overlookBtn = (Button)view.findViewById(R.id.overlookBtn);
+        Button overlookBtn = (Button) view.findViewById(R.id.overlookBtn);
         overlookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +52,7 @@ public class MemberCanExchangeCoupon extends Fragment {
             }
         });
         //跳轉頁到MemberOwnedCoupon
-        Button ownedCoupon = (Button)view.findViewById(R.id.ownedCoupon);
+        Button ownedCoupon = (Button) view.findViewById(R.id.ownedCoupon);
         ownedCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,20 +66,21 @@ public class MemberCanExchangeCoupon extends Fragment {
         //store的亂碼Id
         String storeId = getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
-        TextView test = (TextView)view.findViewById(R.id.test);
-        //記得要改成活的
-        memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
-                .whereEqualTo("store", storeId)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                            memberPointOwned = Integer.parseInt(loyalty_card.getPoints_owned());
-                        }
-                    }
-                });
+
+//        //記得要改成活的
+//        memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+//                .whereEqualTo("store", storeId)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+//                            Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
+//                            memberPointOwned = Integer.parseInt(loyalty_card.getPoints_owned());
+//                            test.setText(loyalty_card.getPoints_owned());
+//                        }
+//                    }
+//                });
         setUpRecyclerView();
         return view;
     }
@@ -94,8 +90,12 @@ public class MemberCanExchangeCoupon extends Fragment {
         String storeId = this.getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
+        //memberPointOwned
+        int memberPointOwned = this.getActivity().getSharedPreferences("save_memberPointOwned", MODE_PRIVATE)
+                .getInt("memberPointOwned", 123);
+
         Query query = storeRef.document(storeId).collection("coupon")
-                .whereLessThanOrEqualTo("dotNeed",memberPointOwned);
+                .whereLessThanOrEqualTo("dotNeed", memberPointOwned);
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
@@ -114,7 +114,7 @@ public class MemberCanExchangeCoupon extends Fragment {
         //coupon的Id名稱
         SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
 
-        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
+        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
@@ -122,7 +122,7 @@ public class MemberCanExchangeCoupon extends Fragment {
                         .putString("coupon_title", coupon.getCouponTitle())
                         .commit();
                 couponIdpref.edit()
-                        .putString("coupon_id",documentSnapshot.getId())
+                        .putString("coupon_id", documentSnapshot.getId())
                         .commit();
                 Intent intent = new Intent(getActivity(), MemCouponContent.class);
                 startActivity(intent);
@@ -135,6 +135,7 @@ public class MemberCanExchangeCoupon extends Fragment {
         super.onStart();
         adapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();

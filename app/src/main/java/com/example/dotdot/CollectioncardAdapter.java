@@ -439,8 +439,8 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
     }
 
     public interface OnItemClickListener {
-        void onItemClick(DocumentSnapshot documentSnapshot, int position);
-    }
+    void onItemClick(DocumentSnapshot documentSnapshot, int position);
+}
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;

@@ -21,7 +21,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.yanzhenjie.recyclerview.OnItemClickListener;
 import com.yanzhenjie.recyclerview.OnItemMenuClickListener;
 import com.yanzhenjie.recyclerview.SwipeMenu;
 import com.yanzhenjie.recyclerview.SwipeMenuBridge;
@@ -45,14 +44,12 @@ public class Collectioncard extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.collectioncard, container, false);
-
         swipeRecyclerView = (SwipeRecyclerView) view.findViewById(R.id.recyclerView);
         setUpRecyclerView();
         return view;
     }
 
     private void setUpRecyclerView() {
-      swipeRecyclerView.setOnItemClickListener(mItemClickListener);
         swipeRecyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
         swipeRecyclerView.setOnItemMenuClickListener(mItemMenuClickListener);
 
@@ -64,7 +61,6 @@ public class Collectioncard extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         swipeRecyclerView.setLayoutManager(linearLayoutManager);
-        //swipeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         swipeRecyclerView.setHasFixedSize(true);
         swipeRecyclerView.setAdapter(adapter);
 
@@ -74,18 +70,31 @@ public class Collectioncard extends Fragment {
         //loyalty_card的亂碼Id
         SharedPreferences loyaltycardpref = this.getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE);
 
+        //memberPointOwned
+        SharedPreferences memberPointOwnedpref = this.getActivity().getSharedPreferences("save_memberPointOwned", MODE_PRIVATE);
+
         adapter.setOnItemClickListener(new CollectioncardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                storeId = loyalty_card.getStore().trim();
+                storeId = documentSnapshot.getString("store");
                 String loyalty_card_id = documentSnapshot.getId();
+                memberPointOwnedpref.edit()
+                        .putInt("memberPointOwned", Integer.parseInt(loyalty_card.getPoints_owned()))
+                        .apply();
                 storepref.edit()
                         .putString("store_id", storeId)
                         .apply();
                 loyaltycardpref.edit()
                         .putString("loyalty_card_id", loyalty_card_id)
                         .apply();
+
+                //跳轉頁到MemberOverlookCoupon
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                MemberOverlookCoupon llf = new MemberOverlookCoupon();
+                ft.replace(R.id.fragment_container, llf);
+                ft.commit();
             }
         });
     }
@@ -103,22 +112,6 @@ public class Collectioncard extends Fragment {
     }
 
     /**
-     * RecyclerView的Item点击监听。
-     */
-    private OnItemClickListener mItemClickListener = new OnItemClickListener() {
-        @Override
-        public void onItemClick(View itemView, int position) {
-            Toast.makeText(getContext(), "第" + position + "个", Toast.LENGTH_SHORT).show();
-            //跳轉頁到MemberOverlookCoupon
-            FragmentManager fm = getFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            MemberOverlookCoupon llf = new MemberOverlookCoupon();
-            ft.replace(R.id.fragment_container, llf);
-            ft.commit();
-        }
-    };
-
-    /**
      * RecyclerView的Item中的Menu点击监听。
      */
     private OnItemMenuClickListener mItemMenuClickListener = new OnItemMenuClickListener() {
@@ -132,7 +125,7 @@ public class Collectioncard extends Fragment {
             if (direction == SwipeRecyclerView.LEFT_DIRECTION) {
                 Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
                 adapter.myLoveItem(position);
-            }else if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
+            } else if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
                 Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
                 adapter.myLoveItem(position);
             }
