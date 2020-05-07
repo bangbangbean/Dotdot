@@ -69,7 +69,12 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".Store_botnav"/>
+        <activity android:name=".Store_botnav">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".QRcode.QrcodeScannerFinal"
@@ -86,25 +91,22 @@
         <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Forgetpassword_1" />
+        <activity android:name=".Forgetpassword_2" />
         <activity android:name=".Regist" />
         <activity android:name=".Login" />
         <activity android:name=".TransactionRecord" />
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps">
+        </activity>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe"/>
         <activity
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -16,7 +16,6 @@ public class Store_botnav extends AppCompatActivity{
             =(item) ->{
         Fragment selectedFragment = null;
 
-
         switch (item.getItemId()){
             case R.id.cusomer:
                 selectedFragment = new StoreProfile();
@@ -34,19 +33,19 @@ public class Store_botnav extends AppCompatActivity{
                 selectedFragment = new frag2();
                 break;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.store_fragment_container, selectedFragment).commit();
         return true;
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_botnav);
+        setContentView(R.layout.store_botnav);
 
-        bottomNavigationView = findViewById(R.id.nav);
-        bottomNavigationView.inflateMenu(R.menu.main_menu);
+        bottomNavigationView = findViewById(R.id.store_nav);
+        bottomNavigationView.inflateMenu(R.menu.store_main_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StoreProfile()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.store_fragment_container, new StoreProfile()).commit();
     }
 }

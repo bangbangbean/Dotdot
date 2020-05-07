@@ -17,11 +17,11 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/store_nav"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:background="#3E51B2"
         app:itemTextColor="@color/white"
-        app:itemIconSize="38dp"
+        app:itemIconSize="48dp"
         app:itemTextAppearanceActive="@style/titlestyle"
         android:outlineSpotShadowColor="@color/transparent"
         android:outlineAmbientShadowColor="@color/transparent">
