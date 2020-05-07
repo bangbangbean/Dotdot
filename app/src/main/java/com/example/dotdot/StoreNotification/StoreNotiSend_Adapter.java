@@ -47,6 +47,12 @@ public class StoreNotiSend_Adapter extends FirestoreRecyclerAdapter<Note_store_n
                 keepOne.toggle(viewHolder);
             }
         });
+        viewHolder.notiTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                keepOne.toggle(viewHolder);
+            }
+        });
     }
 
     @NonNull

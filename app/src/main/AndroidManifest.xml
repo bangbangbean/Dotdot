@@ -70,10 +70,6 @@
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".Store_botnav">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -107,6 +103,10 @@
         <activity
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

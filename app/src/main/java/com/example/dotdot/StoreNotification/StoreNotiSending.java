@@ -53,7 +53,7 @@ public class StoreNotiSending extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.9), (int)(height*.75));
+        getWindow().setLayout((int)(width*.9), (int)(height*.8));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;

@@ -34,7 +34,7 @@ public class StoreNotification extends AppCompatActivity implements TabLayout.On
         params.gravity = Gravity.CENTER;
 
         params.x = 0;
-        params.y = -180;
+        params.y = -110;
 
         getWindow().setAttributes(params);
 

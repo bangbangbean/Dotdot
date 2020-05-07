@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import com.example.dotdot.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.yanzhenjie.recyclerview.widget.DefaultItemDecoration;
 
 public class StoreNotificationNormal extends Fragment {
 
@@ -38,9 +41,10 @@ public class StoreNotificationNormal extends Fragment {
     }
 
     public void setUpRecyclerView(){
+        Query query = notiRef.orderBy("time", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note_store_noit> options = new FirestoreRecyclerOptions.Builder<Note_store_noit>()
-                .setQuery(notiRef, Note_store_noit.class)
+                .setQuery(query, Note_store_noit.class)
                 .build();
 
         adapter = new StoreNotiSend_Adapter(options);

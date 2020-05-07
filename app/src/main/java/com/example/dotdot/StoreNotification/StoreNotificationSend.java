@@ -21,6 +21,7 @@ import com.example.dotdot.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.yanzhenjie.recyclerview.OnItemClickListener;
 import com.yanzhenjie.recyclerview.OnItemMenuClickListener;
 import com.yanzhenjie.recyclerview.SwipeMenu;
@@ -63,8 +64,10 @@ public class StoreNotificationSend extends Fragment {
     }
 
     public void setUpRecyclerView(){
+        Query query = notiRef.orderBy("time", Query.Direction.DESCENDING);
+
         FirestoreRecyclerOptions<Note_store_noit> options = new FirestoreRecyclerOptions.Builder<Note_store_noit>()
-                .setQuery(notiRef, Note_store_noit.class)
+                .setQuery(query, Note_store_noit.class)
                 .build();
 
         notiList.setOnItemClickListener(mItemClickListener);
@@ -74,10 +77,10 @@ public class StoreNotificationSend extends Fragment {
         adapter = new StoreNotiSend_Adapter(options);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         notiList.setLayoutManager(linearLayoutManager);
-
+/*
         notiList.addItemDecoration(
                 new DefaultItemDecoration(ContextCompat.getColor(getContext(), R.color.divider_color)));
-
+*/
         notiList.setHasFixedSize(true);
         notiList.setAdapter(adapter);
     }

@@ -32,8 +32,7 @@ public class store_pop extends Activity {
         params.gravity = Gravity.CENTER;
 
         params.x = 0;
-        params.y = 25;
-
+        params.y = 110;
         getWindow().setAttributes(params);
 
         Button card = findViewById(R.id.card);
