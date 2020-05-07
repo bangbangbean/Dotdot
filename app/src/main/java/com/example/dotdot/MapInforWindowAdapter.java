@@ -30,9 +30,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference note = db.collection("Member")
-            .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+
 
     private Context context;
 
@@ -64,6 +62,7 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         tvTitle.setText(marker.getTitle());
         Message1.setText(marker.getSnippet());
+        System.out.println(marker.getSnippet());
         String point = marker.getSnippet();
         int points = Integer.valueOf(point);
 
