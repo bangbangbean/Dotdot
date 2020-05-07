@@ -1,5 +1,6 @@
 package com.example.dotdot;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -20,7 +21,6 @@ public class notification extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice);
-
 
 
         DisplayMetrics dm = new DisplayMetrics();

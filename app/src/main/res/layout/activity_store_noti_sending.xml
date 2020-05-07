@@ -56,15 +56,16 @@
 
     <ImageView
         android:id="@+id/sendImg"
-        android:layout_width="430dp"
-        android:layout_height="194dp"
+        android:layout_width="230dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.689"
-        app:srcCompat="@drawable/ic_add_box_black_24dp" />
+        android:background="@drawable/ic_add_box_black_24dp"
+        />
 
     <TextView
         android:id="@+id/textView40"

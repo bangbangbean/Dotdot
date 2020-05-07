@@ -19,6 +19,8 @@ public class Note_store_noit {
         this.store = store;
     }
 
+
+
     public String getTitle() {
         return title;
     }

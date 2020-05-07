@@ -17,6 +17,7 @@ import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class NormalNotification_fragment extends Fragment {
 
@@ -50,9 +51,10 @@ public class NormalNotification_fragment extends Fragment {
     }
 
     public void setUpRecyclerView() {
+        Query query = FavRef.orderBy("time"  , Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note_store_noit> options = new FirestoreRecyclerOptions.Builder<Note_store_noit>()
-                .setQuery(FavRef, Note_store_noit.class)
+                .setQuery(query, Note_store_noit.class)
                 .build();
         adapter = new NoticeAdapter(options);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
