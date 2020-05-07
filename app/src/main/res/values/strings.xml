@@ -61,7 +61,7 @@
     <string name="givepoint">Scan!</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_maps">DotDot</string>
-    <string name="title_activity_store_index">Map</string>
+    <string name="title_activity_store_index">DotStore</string>
     ----------------------------------------------------------------------------------------------
     //店家新增集點卡
     <string name="loyalty_card_title">集點卡設定</string>

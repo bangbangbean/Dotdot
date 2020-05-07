@@ -15,9 +15,14 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class StoreProfile extends Fragment {
     private TextView sname;
@@ -83,6 +88,15 @@ public class StoreProfile extends Fragment {
                     stelephone.setFocusableInTouchMode(false);
                     a = 1;
                 }
+                String name = sname.getText().toString();
+                String address = saddress.getText().toString();
+                String tele = stelephone.getText().toString();
+
+                Map<Object, Object> upData = new HashMap<>();
+                upData.put("name", name);
+                upData.put("address", address);
+                upData.put("phone", tele);
+                stoRef.document("nQnT8AAt4NYIRYZFZfAR").set(upData, SetOptions.merge());
             }
         });
 

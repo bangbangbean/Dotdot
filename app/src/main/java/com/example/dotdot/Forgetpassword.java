@@ -1,11 +1,10 @@
 package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class Forgetpassword extends AppCompatActivity {
 
+public class Forgetpassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

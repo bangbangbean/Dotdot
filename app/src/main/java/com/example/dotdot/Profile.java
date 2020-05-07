@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +15,19 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Profile extends Fragment {
 
     private TextView showusername;
     private TextView showpassword;
     private TextView showphone;
+    private Button button2;
+    private Integer a = 1;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
     private View view;
@@ -31,6 +39,48 @@ public class Profile extends Fragment {
         showusername = (TextView)view.findViewById(R.id.inputPhone);
         showpassword = (TextView) view.findViewById(R.id.password);
         showphone = (TextView) view.findViewById(R.id.inputStore);
+        button2 = (Button)view.findViewById(R.id.button2);
+
+        //鎖定編輯
+        showusername.setFocusable(false);
+        showusername.setFocusableInTouchMode(false);
+        showpassword.setFocusable(false);
+        showpassword.setFocusableInTouchMode(false);
+        showphone.setFocusable(false);
+        showphone.setFocusableInTouchMode(false);
+
+        //控制editText可否編輯
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(a == 1){
+                    showusername.setFocusableInTouchMode(true);
+                    showusername.setFocusable(true);
+                    showusername.requestFocus();
+
+                    showpassword.setFocusableInTouchMode(true);
+                    showpassword.setFocusable(true);
+                    showpassword.requestFocus();
+                    a = 0;
+                }
+                else {
+                    showusername.setFocusable(false);
+                    showusername.setFocusableInTouchMode(false);
+                    showpassword.setFocusable(false);
+                    showpassword.setFocusableInTouchMode(false);
+                    a = 1;
+                }
+                String name = showusername.getText().toString();
+                String password = showpassword.getText().toString();
+
+                Map<Object, Object> upData = new HashMap<>();
+                upData.put("name", name);
+                upData.put("password", password);
+                memRef.document("iICTR1JL4eAG4B3QBi1S").set(upData, SetOptions.merge());
+            }
+        });
+
+
         return view;
     }
 
