@@ -178,7 +178,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                             MarkerOptions options = new MarkerOptions();
                             String title = poi.getStore();
                             String point = poi.getPoints_owned();
-                            String color = poi.getColor();
                             options.title("椒麻雞大王");
                             options.snippet(point);
                             options.position(storerecord.chicken);
@@ -246,7 +245,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 17));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
 
                 }
             }

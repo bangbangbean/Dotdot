@@ -37,12 +37,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import io.opencensus.tags.Tag;
 
 public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("store");
+    //記得改成session
     private CollectionReference memRef1 = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR").collection("couponBeenExchange");
     private CollectionReference note = db.collection("store/nQnT8AAt4NYIRYZFZfAR/giveDotRecord");
     private GoogleMap mMap;
@@ -63,6 +65,8 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
+
+
 
         //------------------------action-----------------------------------------------------------
         Button home = (Button) findViewById(R.id.home);
@@ -98,12 +102,32 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         //--------------------------------------------------------------------------------------
         //當月月份
         Mon = findViewById(R.id.mom);
+
         SimpleDateFormat sdf = new SimpleDateFormat("MM");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("YYYY-MM");
         String date = sdf.format(new java.util.Date());
+        String date1 = sdf1.format(new java.util.Date());
         Mon.setText(date + "月");
 
+
+        Calendar a = Calendar.getInstance();
+        a.setTime(new Date());
+        int month = a.get(Calendar.MONTH);
+        System.out.println(month);
+
+        Calendar b = Calendar.getInstance();
+        b.setTime(new Date());
+        int year = b.get(Calendar.YEAR);
+        System.out.println(year);
+
+
+
+
+
+
         //判斷時間
-        Date dt = new Date(120,04,01);
+        Date dt = new Date(year-1900,month,01);
+        System.out.println(dt);
 
         //
         //點數總和
@@ -199,6 +223,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
+                    //記得改成mylocation
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
 
