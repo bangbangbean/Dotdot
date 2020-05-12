@@ -30,15 +30,11 @@ public class Login extends AppCompatActivity {
 
         //取得會員ID
         SharedPreferences memberId = getSharedPreferences("save_memberId", MODE_PRIVATE);
-        //使用memberId
-//        String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
-//                .getString("user_id", "沒會員登入");
-
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
-        EditText inputPhone = (EditText) findViewById(R.id.inputStore);
+        EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
         Button loginbtn = (Button) findViewById(R.id.loginbt);
-        TextView registbtn = (TextView) findViewById(R.id.registbtn);
+        TextView registbtn = (TextView) findViewById(R.id.nextbtn);
         TextView forgetPassbtn = (TextView) findViewById(R.id.forgetPassbtn);
         TextView storebtn = (TextView) findViewById(R.id.storebtn);
 
@@ -80,9 +76,9 @@ public class Login extends AppCompatActivity {
                                     String pass = mem.getPassword();
                                     if (pass.equals(password)) {
                                         memberId.edit()
-                                                .putString("user_id", "iICTR1JL4eAG4B3QBi1S")
-                                                .commit();
-                                        Intent intent = new Intent(Login.this, test.class);
+                                                .putString("user_id", documentId)
+                                                .apply();
+                                        Intent intent = new Intent(Login.this, MemberIndex.class);
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(Login.this, "登入失敗", Toast.LENGTH_LONG).show();

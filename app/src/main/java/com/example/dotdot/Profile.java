@@ -36,9 +36,9 @@ public class Profile extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.profile_fragment, container, false);
-        showusername = (TextView)view.findViewById(R.id.inputPhone);
+        showusername = (TextView)view.findViewById(R.id.inputName);
         showpassword = (TextView) view.findViewById(R.id.password);
-        showphone = (TextView) view.findViewById(R.id.inputStore);
+        showphone = (TextView) view.findViewById(R.id.inputPhone);
         button2 = (Button)view.findViewById(R.id.button2);
 
         //鎖定編輯

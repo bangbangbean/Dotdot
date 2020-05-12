@@ -33,7 +33,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         collectioncardHolder.points.setText(loyalty_card.getPoints_owned());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference storeRef = db.collection("store");
-        storeRef.document(loyalty_card.getStore()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        storeRef.document(loyalty_card.getStore().trim()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 

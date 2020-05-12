@@ -9,18 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class Storeregist extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("Store");
-    EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
-    EditText inputStore = (EditText) findViewById(R.id.inputStore);
+    EditText inputPhone = (EditText) findViewById(R.id.inputName);
+    EditText inputStore = (EditText) findViewById(R.id.inputPhone);
     EditText inputAddress = (EditText) findViewById(R.id.inputAddress);
     int allinput = 0;//所有欄位都已填寫
     int phonelen = 0;//密碼長度至少8個
@@ -29,7 +26,7 @@ public class Storeregist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storeregist);
 
-        Button registbtn = (Button) findViewById(R.id.registbtn);
+        Button registbtn = (Button) findViewById(R.id.nextbtn);
         registbtn.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
                 if (inputPhone.length() == 0 || inputAddress.length() == 0 || inputStore.length() == 0) {

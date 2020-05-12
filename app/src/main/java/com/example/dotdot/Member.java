@@ -1,37 +1,37 @@
 package com.example.dotdot;
 
-import com.google.firebase.database.Exclude;
-
 public class Member {
     private String name;
     private String phone;
     private String password;
-    private String documentId;
+    private String hintQuestion;
+    private String hintAnswer;
     Member member;
 
     public Member() {
 
     }
-    public Member(String name,String password,String phone){
+
+    public Member(String name, String password, String phone, String hintQuestion, String hintAnswer) {
         this.name = name;
         this.phone = phone;
         this.password = password;
-    }
-    @Exclude
-    public String getDocumentId(){
-        return documentId;
+        this.hintQuestion = hintQuestion;
+        this.hintAnswer = hintAnswer;
     }
 
-    public void setDocumentId(String documentId){
-        this.documentId = documentId;
-    }
+    public String getHintQuestion() { return hintQuestion; }
+
+    public String getHintAnswer() { return hintAnswer; }
 
     public String getName() {
         return name;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public String getPassword() { return password; }
 
 }

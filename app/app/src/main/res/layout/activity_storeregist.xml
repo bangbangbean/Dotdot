@@ -47,7 +47,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/storeregist_name"
-        app:layout_constraintBottom_toTopOf="@+id/inputStore"
+        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -86,7 +86,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/storeregist_phone"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
+        app:layout_constraintBottom_toTopOf="@+id/inputName"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -114,7 +114,7 @@
         android:layout_marginRight="88dp"
         android:layout_marginBottom="24dp"
         android:text="@string/storeregist_checkbox"
-        app:layout_constraintBottom_toTopOf="@+id/registbtn"
+        app:layout_constraintBottom_toTopOf="@+id/nextbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent" />

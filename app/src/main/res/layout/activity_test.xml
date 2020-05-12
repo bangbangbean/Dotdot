@@ -23,7 +23,7 @@
         android:inputType="text"></EditText>
 
     <EditText
-        android:id="@+id/inputStore"
+        android:id="@+id/inputPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/regist_phone"

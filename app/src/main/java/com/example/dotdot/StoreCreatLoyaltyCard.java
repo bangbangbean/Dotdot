@@ -16,9 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -51,16 +49,15 @@ public class StoreCreatLoyaltyCard extends Fragment {
         TextView dot6 = view.findViewById(R.id.dot6);
         TextView dot7 = view.findViewById(R.id.dot7);
         inputDollar = view.findViewById(R.id.inputDollar);
-
-        SloyaltyCardRef
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Threshold = (String) documentSnapshot.get("Threshold");
-                    }
-                });
-
+//
+//        SloyaltyCardRef
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        Threshold = (String) documentSnapshot.get("Threshold");
+//                    }
+//                });
 
         //選擇顏色---------------------------------------------------------------------------
         setGreen.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +130,8 @@ public class StoreCreatLoyaltyCard extends Fragment {
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
-                    //跳轉頁到MemberOverlookCoupon
+
+                    //跳轉頁到StoreCreatLoyaltyCard
                     FragmentManager fm = getFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     StoreCreatLoyaltyCard llf = new StoreCreatLoyaltyCard();

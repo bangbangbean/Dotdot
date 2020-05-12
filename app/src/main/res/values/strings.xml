@@ -9,6 +9,12 @@
     <string name="fp_title_2">輸入新密碼</string>
     <string name="fp_title_3">再次輸入</string>
     <string name="fp_comfrim">確定</string>
+
+    <array name="hintQes">
+        <item>你的第一隻寵物是什麼名子?</item>
+        <item>你最喜歡的老師是什麼名子?</item>
+        <item>你最好的朋友是什麼名子?</item>
+    </array>
     ----------------------------------------------------------------------------------------------
     //註冊
     <string name="regist">註冊</string>

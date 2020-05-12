@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/inputPhone"
+        android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -54,7 +54,7 @@
         android:layout_marginTop="52dp"
         android:text="@string/personal_name"
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/inputPhone"
+        app:layout_constraintEnd_toStartOf="@+id/inputName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view" />
 
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
-        android:id="@+id/inputStore"
+        android:id="@+id/inputPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -80,7 +80,7 @@
         android:background="@null"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
     <TextView
         android:id="@+id/textView14"
@@ -105,7 +105,7 @@
         android:background="@null"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/inputStore" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPhone" />
 
     <Button
         android:id="@+id/button2"
