@@ -36,15 +36,16 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         storeRef.document(loyalty_card.getStore()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                 Store store = documentSnapshot.toObject(Store.class);
                 collectioncardHolder.Title.setText(store.getName());
+                System.out.println(store.getName());
+
             }
         });
 
-
         int qqq = Integer.parseInt(loyalty_card.getPoints_owned());
         String color = loyalty_card.getColor();
-        System.out.println(loyalty_card.getColor());
         if (color.equals("red")) {
 
             if (qqq == 1) {

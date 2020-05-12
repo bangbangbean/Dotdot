@@ -43,9 +43,11 @@ public class MemCouponContent extends Activity {
         //coupon的title名稱
         String whichCoupon = getSharedPreferences("save_coupon", MODE_PRIVATE)
                 .getString("coupon_title", "沒選到Coupon");
+
         //store的亂碼Id
         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
+
 
         couponRef.document(storeId).collection("coupon")
                 .whereEqualTo("couponTitle",whichCoupon)

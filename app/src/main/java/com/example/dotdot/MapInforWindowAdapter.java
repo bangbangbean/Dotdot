@@ -62,7 +62,6 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         tvTitle.setText(marker.getTitle());
         Message1.setText(marker.getSnippet());
-        System.out.println(marker.getSnippet());
         String point = marker.getSnippet();
         int points = Integer.valueOf(point);
 

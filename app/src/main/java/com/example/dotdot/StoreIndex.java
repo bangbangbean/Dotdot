@@ -104,18 +104,11 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         //判斷時間
         Date dt = new Date(120,04,01);
-        System.out.println(dt);
-        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots){
 
-                }
+        //
+        //點數總和
 
-            }
-        });
-
-        note.whereGreaterThan("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        note.whereGreaterThan("time", dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 int points1sum = 0;
@@ -134,18 +127,15 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             }
         });
 
-
         //coupon
-        memRef1.whereGreaterThan("time", dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        memRef1.whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
 
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots1) {
 
-                    CouponBeenExchange crec = queryDocumentSnapshot.toObject(CouponBeenExchange.class);
-
-
                 }
+
                 coupongiven = findViewById(R.id.couponsgive);
                 coupongiven.setText(Integer.toString(queryDocumentSnapshots1.size()));
             }
@@ -190,6 +180,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         }
 
         mMap.setMyLocationEnabled(true);
+       
     }
 
 

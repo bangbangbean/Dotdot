@@ -66,6 +66,8 @@ public class StoreOverlookCoupon extends Fragment {
         SharedPreferences couponpref = this.getActivity().getSharedPreferences("save_coupon", MODE_PRIVATE);
 
 
+
+
         adapter.setOnItemClickListener(new CouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {

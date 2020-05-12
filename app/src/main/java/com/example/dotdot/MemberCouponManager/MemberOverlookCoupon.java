@@ -74,6 +74,7 @@ public class MemberOverlookCoupon extends Fragment {
                 .getString("store_id", "沒選擇店家");
 
         Date dt = new Date();
+
         Query query = storeRef.document(storeId).collection("coupon")
                 .whereGreaterThan("deadLine",dt)
                 .orderBy("deadLine", Query.Direction.ASCENDING);

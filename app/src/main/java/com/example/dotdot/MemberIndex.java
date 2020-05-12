@@ -2,13 +2,15 @@ package com.example.dotdot;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,9 +34,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Collection;
+
+import static android.widget.Toast.makeText;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -42,10 +47,13 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference qq = db.collection("store");
+
+    //記得改成session
     private CollectionReference note = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
-    //記得改成session
+
+
+
 
 
     Button home;
@@ -57,6 +65,27 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memberindex);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        SharedPreferences storeref = this.getSharedPreferences("save_store", MODE_PRIVATE);
+
+
+        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots) {
+                    Loyalty_card loyalty_card = queryDocumentSnapshot.toObject(Loyalty_card.class);
+                    String name = loyalty_card.getStore();
+                    storeref.edit().putString("save_store", name).commit();
+
+
+                }
+
+            }
+        });
+
+
 
         //------------------------Map---------------------------------------------------------------
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -107,6 +136,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
+
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
         mMap.setOnInfoWindowClickListener(this);
 /** this code is used to get the permission/ check the permission allow or not*/
@@ -117,7 +147,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     ACCESS_FINE_LOCATION}, RESQUEST_PERMISSION_LOCATION);
         } else {
             getMyLocation();
-            Toast.makeText(this, "登入成功", Toast.LENGTH_LONG).show();
+            makeText(this, "登入成功", Toast.LENGTH_LONG).show();
         }
 
         mMap.setMyLocationEnabled(true);
@@ -127,17 +157,37 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     public void addmarker() {
 
 
+
+
         note.document("BxskPfoZCfztCUSuDUOu").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
                     MarkerOptions options = new MarkerOptions();
-
                     String title = poi.getStore();
                     String point = poi.getPoints_owned();
+                    String color = poi.getColor();
                     options.title("椒麻雞大王");
+                    options.snippet(point);
+                    options.position(storerecord.chicken);
+                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    mMap.addMarker(options);
 
+                }
+
+            }
+        });
+        note.document("11cbdffohVBW7MQ1lDh4").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+                    MarkerOptions options = new MarkerOptions();
+                    String title = poi.getStore();
+                    String point = poi.getPoints_owned();
+                    String color = poi.getColor();
+                    options.title("椒麻雞大王");
                     options.snippet(point);
                     options.position(storerecord.chicken);
                     options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
@@ -148,7 +198,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
             }
         });
 
-        note.document("luyQa2eRYr3k4q22hq7T").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+
+        note.document("ZuzoCsJcH5kXvCjIpKfC").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
@@ -167,6 +218,26 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
             }
         });
 
+        note.document("IINi2hdusAGMTRUrszFr").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+                    MarkerOptions options1 = new MarkerOptions();
+                    String title = poi.getStore();
+                    String point = poi.getPoints_owned();
+                    options1.title("崔舍");
+                    options1.snippet(point);
+                    options1.position(storerecord.loc1);
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+                    mMap.addMarker(options1);
+
+                }
+
+            }
+        });
+
+
     }
 
 
@@ -178,7 +249,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 17));
 
                 }
             }
@@ -203,7 +274,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onInfoWindowClick(Marker marker) {
 
-        Intent intent = new Intent(MemberIndex.this, Collectioncard.class);
+        Intent intent = new Intent(MemberIndex.this, botnav.class);
+        startActivity(intent);
 
     }
 
