@@ -40,7 +40,7 @@ public class MemberOwnedCoupon extends Fragment {
         setUpRecyclerView();
 
         //跳轉頁到MemberCanExchangeCoupon
-        Button canExchangeBtn = (Button)view.findViewById(R.id.canExchangeBtn);
+        Button canExchangeBtn = (Button) view.findViewById(R.id.canExchangeBtn);
         canExchangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class MemberOwnedCoupon extends Fragment {
             }
         });
         //跳轉頁到MemberOverlookCoupon
-        Button overlookBtn = (Button)view.findViewById(R.id.overlookBtn);
+        Button overlookBtn = (Button) view.findViewById(R.id.overlookBtn);
         overlookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,10 +69,14 @@ public class MemberOwnedCoupon extends Fragment {
     private void setUpRecyclerView() {
 
         //loyalty_card的亂碼Id
-        String loyalty_card_id = this.getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
+        String loyalty_card_id = getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
                 .getString("loyalty_card_id", "沒選擇店家");
 
-        Query query = memRef.document("iICTR1JL4eAG4B3QBi1S")
+        //member的亂碼Id
+        String memberId = getActivity().getSharedPreferences("save_useraccount", MODE_PRIVATE)
+                .getString("user_id", "沒人登入");
+
+        Query query = memRef.document(memberId)
                 .collection("loyalty_card").document(loyalty_card_id)
                 .collection("Owned_Coupon");
 
@@ -96,18 +100,18 @@ public class MemberOwnedCoupon extends Fragment {
         //ownedcoupon的Id名稱
         SharedPreferences ownedCouponIdpref = this.getActivity().getSharedPreferences("save_ownedCouponId", MODE_PRIVATE);
 
-        adapter.setOnItemClickListener(new MemberOwnedCouponAdapter.OnItemClickListener(){
+        adapter.setOnItemClickListener(new MemberOwnedCouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 ownedCouponIdpref.edit()
-                        .putString("owned_coupon_id",documentSnapshot.getId())
+                        .putString("owned_coupon_id", documentSnapshot.getId())
                         .commit();
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
                         .commit();
                 couponIdpref.edit()
-                        .putString("coupon_id",documentSnapshot.getId())
+                        .putString("coupon_id", documentSnapshot.getId())
                         .commit();
                 Intent intent = new Intent(getActivity(), MemberOwnedCouponContent.class);
                 startActivity(intent);
@@ -120,6 +124,7 @@ public class MemberOwnedCoupon extends Fragment {
         super.onStart();
         adapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();

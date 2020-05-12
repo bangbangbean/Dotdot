@@ -141,6 +141,8 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     }
 
     public void addmarker() {
+
+        //member的亂碼Id
         String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
 

@@ -34,8 +34,7 @@ public class Collectioncard extends Fragment {
     private CollectioncardAdapter adapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     //記得改成活的
-    private CollectionReference note = db.collection("Member")
-            .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+    private CollectionReference note = db.collection("Member");
     private View view;
     private SwipeRecyclerView swipeRecyclerView;
     String storeId;
@@ -53,7 +52,11 @@ public class Collectioncard extends Fragment {
         swipeRecyclerView.setSwipeMenuCreator(mSwipeMenuCreator);
         swipeRecyclerView.setOnItemMenuClickListener(mItemMenuClickListener);
 
-        Query query = note;
+        //member的亂碼Id
+        String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
+        Query query = note.document(memberId).collection("loyalty_card");
         FirestoreRecyclerOptions<Loyalty_card> options = new FirestoreRecyclerOptions.Builder<Loyalty_card>()
                 .setQuery(query, Loyalty_card.class)
                 .build();

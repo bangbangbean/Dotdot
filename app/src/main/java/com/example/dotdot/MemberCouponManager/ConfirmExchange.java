@@ -1,6 +1,7 @@
 package com.example.dotdot.MemberCouponManager;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -9,15 +10,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.example.dotdot.Coupon;
-import com.example.dotdot.Loyalty_card;
 import com.example.dotdot.R;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,10 +28,8 @@ public class ConfirmExchange extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
-    private DocumentReference loyaltyCardRef = db.collection("Member")
-            .document("iICTR1JL4eAG4B3QBi1S");
-    int memberPointOwned = 100;
     int storeDotNeed;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +51,8 @@ public class ConfirmExchange extends Activity {
                 .getString("coupon_title", "沒選到Coupon");
 
         //member的亂碼Id
-        String member = getSharedPreferences("save_useraccount", MODE_PRIVATE)
-                .getString("user_id", "沒人登入");
+        String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
 
         //coupon的id
         String CouponId = getSharedPreferences("save_couponId", MODE_PRIVATE)
@@ -71,6 +65,11 @@ public class ConfirmExchange extends Activity {
         //loyalty_card的亂碼Id
         String loyalty_card_id = getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
                 .getString("loyalty_card_id", "沒選擇店家");
+
+        //memberPointOwned
+        int memberPointOwned = getSharedPreferences("save_memberPointOwned", MODE_PRIVATE)
+                .getInt("memberPointOwned", 123);
+        memberPoint.setText(Integer.toString(memberPointOwned));
 
         storeRef.document(storeId).collection("coupon")
                 .whereEqualTo("couponTitle", whichCoupon)
@@ -86,25 +85,9 @@ public class ConfirmExchange extends Activity {
                     }
                 });
 
-        //記得要改成活的
-        memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
-                .whereEqualTo("store", storeId)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                            memberPoint.setText(loyalty_card.getPoints_owned());
-                            memberPointOwned = Integer.parseInt(loyalty_card.getPoints_owned());
-                        }
-                    }
-                });
-
 
         doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                memberPointOwned = 100;
                 memberPoint.setText("");
                 couponPoint.setText("");
                 wordDot.setText("");
@@ -119,61 +102,48 @@ public class ConfirmExchange extends Activity {
                     int total = memberPointOwned - storeDotNeed;
                     text.setText("兌換成功您的點數剩餘" + total + "點");
 
-                    //記得改成活的 新增資料到Coupon
-                    memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
-                            .whereEqualTo("store", storeId)
-                            .get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    //跟改memberPointQwned的暫存點數
+                    SharedPreferences memberPointOwnedpref = getSharedPreferences("save_memberPointOwned", MODE_PRIVATE);
+                    memberPointOwnedpref.edit()
+                            .putInt("memberPointOwned", total)
+                            .apply();
 
-                                        //新增資料到已有的Coupon中
-                                        Map<Object, Object> ownedCoupon = new HashMap<>();
-                                        ownedCoupon.put("couponTitle", whichCoupon);
-                                        ownedCoupon.put("couponId", CouponId);
-                                        ownedCoupon.put("dotNeed", storeDotNeed);
-                                        ownedCoupon.put("time", new Date());
-                                        memRef.document("iICTR1JL4eAG4B3QBi1S")
-                                                .collection("loyalty_card").document(loyalty_card_id)
-                                                .collection("Owned_Coupon").add(ownedCoupon);
+                    //新增資料到已有的Coupon中
+                    Map<Object, Object> ownedCoupon = new HashMap<>();
+                    ownedCoupon.put("couponTitle", whichCoupon);
+                    ownedCoupon.put("couponId", CouponId);
+                    ownedCoupon.put("dotNeed", storeDotNeed);
+                    ownedCoupon.put("time", new Date());
+                    memRef.document(memberId)
+                            .collection("loyalty_card").document(loyalty_card_id)
+                            .collection("Owned_Coupon").add(ownedCoupon);
 
-                                        //修改會員剩餘的點數
-                                        Map<Object, Object> upData = new HashMap<>();
-                                        upData.put("points_owned", Integer.toString(total));
-                                        upData.put("store", storeId);
-                                        loyaltyCardRef.collection("loyalty_card").document(loyalty_card_id)
-                                                .set(upData, SetOptions.merge());
+                    //到集點卡修改會員剩餘的點數
+                    Map<Object, Object> upData = new HashMap<>();
+                    upData.put("points_owned", Integer.toString(total));
+                    db.collection("Member").document(memberId)
+                            .collection("loyalty_card").document(loyalty_card_id)
+                            .set(upData, SetOptions.merge());
 
-                                        //新增資料到member的Loyalty的Record
-                                        String i = Integer.toString(storeDotNeed);
-                                        String use = "-" + i;
-                                        Map<Object, Object> dotUseRecord = new HashMap<>();
-                                        dotUseRecord.put("store_couponId", CouponId);
-                                        dotUseRecord.put("couponTitle", whichCoupon);
-                                        dotUseRecord.put("storeId", storeId);
-                                        dotUseRecord.put("point_use", use);
-                                        dotUseRecord.put("time", new Date());
-                                        memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
-                                                .document(loyalty_card_id).collection("Record")
-                                                .add(dotUseRecord);
+                    //新增資料到member的Loyalty的Record
+                    String i = Integer.toString(storeDotNeed);
+                    String use = "-" + i;
+                    Map<Object, Object> dotUseRecord = new HashMap<>();
+                    dotUseRecord.put("store_couponId", CouponId);
+                    dotUseRecord.put("couponTitle", whichCoupon);
+                    dotUseRecord.put("storeId", storeId);
+                    dotUseRecord.put("point_use", use);
+                    dotUseRecord.put("time", new Date());
+                    memRef.document(memberId).collection("loyalty_card")
+                            .document(loyalty_card_id).collection("Record")
+                            .add(dotUseRecord);
 
-                                        //新增資料到店家紀錄
-                                        Map<Object, Object> couponBeenExchange = new HashMap<>();
-                                        couponBeenExchange.put("store_couponId", CouponId);
-                                        couponBeenExchange.put("time", new Date());
-                                        storeRef.document(storeId).collection("couponBeenExchange")
-                                                .add(couponBeenExchange);
-                                    }
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {//如果會員沒有領取過集點卡
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                }
-                            });
-
+                    //新增資料到店家紀錄
+                    Map<Object, Object> couponBeenExchange = new HashMap<>();
+                    couponBeenExchange.put("store_couponId", CouponId);
+                    couponBeenExchange.put("time", new Date());
+                    storeRef.document(storeId).collection("couponBeenExchange")
+                            .add(couponBeenExchange);
                 }
                 doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {

@@ -20,6 +20,8 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Profile extends Fragment {
 
     private TextView showusername;
@@ -76,7 +78,10 @@ public class Profile extends Fragment {
                 Map<Object, Object> upData = new HashMap<>();
                 upData.put("name", name);
                 upData.put("password", password);
-                memRef.document("iICTR1JL4eAG4B3QBi1S").set(upData, SetOptions.merge());
+                //member的亂碼Id
+                String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+                        .getString("user_id", "沒會員登入");
+                memRef.document(memberId).set(upData, SetOptions.merge());
             }
         });
 

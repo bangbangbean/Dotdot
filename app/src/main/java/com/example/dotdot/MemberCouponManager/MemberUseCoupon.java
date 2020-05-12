@@ -31,12 +31,15 @@ public class MemberUseCoupon extends Activity {
         //loyalty_card的亂碼Id
         String loyalty_card_id = getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
                 .getString("loyalty_card_id", "沒選擇店家");
+        //member的亂碼Id
+        String memberId = getSharedPreferences("save_useraccount", MODE_PRIVATE)
+                .getString("user_id", "沒人登入");
 
         //把優惠券從會員資料刪除
         doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //記得改成活的 新增資料到Coupon
-                db.collection("Member").document("iICTR1JL4eAG4B3QBi1S")
+                db.collection("Member").document(memberId)
                         .collection("loyalty_card").document(loyalty_card_id)
                         .collection("Owned_Coupon").document(ownedCouponId)
                         .delete();
