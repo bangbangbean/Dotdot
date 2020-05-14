@@ -89,11 +89,17 @@
         <activity android:name=".BeforeLogin.Forgetpassword_1" />
         <activity android:name=".BeforeLogin.Forgetpassword_2" />
 
-        <activity android:name=".BeforeLogin.Login" />
+        <activity android:name=".BeforeLogin.Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps">
+
         </activity>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
@@ -104,10 +110,7 @@
         <activity android:name=".BeforeLogin.Regist"/>
         <activity android:name=".BeforeLogin.RegistPart2"/>
         <activity android:name=".TransactionRecord">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

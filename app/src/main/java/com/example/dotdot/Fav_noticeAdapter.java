@@ -128,6 +128,9 @@ public class Fav_noticeAdapter extends FirestoreRecyclerAdapter<Note_store_noit 
         viewHolder.fav_title.setOnClickListener((view -> {
             keepOne.toggle(viewHolder);
         }));
+        viewHolder.fav_storename.setOnClickListener((view -> {
+            keepOne.toggle(viewHolder);
+        }));
 
 
 

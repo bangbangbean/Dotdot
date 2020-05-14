@@ -1,14 +1,19 @@
 package com.example.dotdot;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -18,7 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class TransactionRecord extends AppCompatActivity {
+public class TransactionRecord extends Fragment {
 
     private RecyclerView recyclerView;
     private Switch modeSwitch = null;
@@ -29,35 +34,35 @@ public class TransactionRecord extends AppCompatActivity {
 
     private RecordAdapter adapter;
     private Loyalty_cardAdapter adapter2;
+    private View view;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction_record);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.activity_transaction_record, container, false);
 
         setUpRecyclerView();
         setUpRecyclerView2();
 
-        modeSwitch = (Switch)findViewById(R.id.modeSwitch);
-        recyclerView =(RecyclerView) findViewById(R.id.recycler_view);
+        modeSwitch = view.findViewById(R.id.modeSwitch);
+        recyclerView = view.findViewById(R.id.recycler_view);
 
-
-        //利用Switch切換模式
         modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
-                    //顯示清單模式紀錄
+                if(buttonView.isChecked()){
                     recyclerView.setAdapter(adapter);
-                }
-                else {
-                    //顯示店家模式紀錄
+                }else{
                     recyclerView.setAdapter(adapter2);
                 }
             }
         });
 
+
+        return view;
     }
+
+
 
 
     private void setUpRecyclerView() {
@@ -70,9 +75,10 @@ public class TransactionRecord extends AppCompatActivity {
 
         adapter = new RecordAdapter(options);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
     }
 
@@ -84,12 +90,13 @@ public class TransactionRecord extends AppCompatActivity {
 
         adapter2 = new Loyalty_cardAdapter(options);
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter2);
 
-        SharedPreferences loyalty_card = getSharedPreferences("loyalty_card", MODE_PRIVATE);
+        SharedPreferences loyalty_card = this.getActivity().getSharedPreferences("loyalty_card", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = loyalty_card.edit();
 
         adapter2.setOnItemClickListener(new Loyalty_cardAdapter.OnItemClickListener() {
@@ -99,21 +106,21 @@ public class TransactionRecord extends AppCompatActivity {
                 String store = loyalty_card.getStore();
                 editor.putString("user_id", store);
                 editor.commit();
-                Intent intent = new Intent(getApplicationContext(), member_storemode_record.class);
+                Intent intent = new Intent(getActivity(), member_storemode_record.class);
                 startActivity(intent);
             }
         });
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         adapter.startListening();
         adapter2.startListening();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         adapter.stopListening();
         adapter2.stopListening();

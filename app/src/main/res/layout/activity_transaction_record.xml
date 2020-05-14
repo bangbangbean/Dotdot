@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/personal_bg"
     tools:context=".TransactionRecord">
 
     <LinearLayout
@@ -35,17 +34,10 @@
             android:track="@drawable/track" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/lightgray" />
-
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="580dp">
+        android:layout_height="472dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

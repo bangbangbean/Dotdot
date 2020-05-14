@@ -107,13 +107,11 @@ public class ConfirmExchange extends Activity {
                 if (memberPointOwned < storeDotNeed) {
                     doubleCheckBtn.setVisibility(View.INVISIBLE);
                     cancelBtn.setVisibility(View.INVISIBLE);
-
                     doubleCeckBtn2.setVisibility(View.VISIBLE);
                     text.setText("你的點數不夠喔><");
                 } else {
                     doubleCheckBtn.setVisibility(View.INVISIBLE);
                     cancelBtn.setVisibility(View.INVISIBLE);
-
                     doubleCeckBtn2.setVisibility(View.VISIBLE);
 
                     int total = memberPointOwned - storeDotNeed;

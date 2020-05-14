@@ -27,7 +27,7 @@ public class botnav extends AppCompatActivity{
                 selectedFragment = new frag2();
                 break;
             case R.id.consume:
-                selectedFragment = new frag2();
+                selectedFragment = new TransactionRecord();
                 break;
             case R.id.setting:
                 selectedFragment = new frag2();
