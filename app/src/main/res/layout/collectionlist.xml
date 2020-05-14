@@ -140,18 +140,20 @@
             android:id="@+id/Dot8"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
             android:layout_marginTop="11dp"
-            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintStart_toEndOf="@+id/Dot7"
+            app:layout_constraintStart_toEndOf="@+id/Dot6"
             app:layout_constraintTop_toBottomOf="@+id/Dot3" />
 
         <TextView
             android:id="@+id/Dot9"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="11dp"
-            android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
             app:layout_constraintStart_toEndOf="@+id/Dot8"
             app:layout_constraintTop_toBottomOf="@+id/Dot4">
@@ -162,8 +164,9 @@
             android:id="@+id/Dot10"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp"
             android:background="@drawable/gray_dot"
             app:layout_constraintStart_toEndOf="@+id/Dot9"
             app:layout_constraintTop_toBottomOf="@+id/Dot5" />

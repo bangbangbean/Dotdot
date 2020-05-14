@@ -134,6 +134,18 @@
         android:id="@+id/Dot6"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+
+        android:layout_marginTop="76dp"
+        android:background="@drawable/gray_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <TextView
+        android:id="@+id/Dot7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
 
@@ -142,19 +154,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
-
-
-    <TextView
-        android:id="@+id/Dot7"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-
-        android:layout_marginTop="76dp"
-        android:background="@drawable/gray_dot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <TextView
         android:id="@+id/Dot8"

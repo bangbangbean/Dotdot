@@ -96,6 +96,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
             }
         });
 
+
         //------------------------QRcode-----------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
         btn_dot.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +116,18 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 startActivity(n);
             }
         });
+
+        String memberId = getSharedPreferences("save_memberId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
+        if (memberId.equals("沒會員登入")) {
+            Intent r = new Intent(getApplicationContext(), Nonelogin.class);
+            startActivity(r);
+
+        } else {
+            makeText(this, "登入成功", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     @Override
@@ -122,18 +135,22 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
+
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
         mMap.setOnInfoWindowClickListener(this);
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.
                     ACCESS_FINE_LOCATION}, RESQUEST_PERMISSION_LOCATION);
         } else {
             getMyLocation();
             makeText(this, "登入成功", Toast.LENGTH_LONG).show();
         }
+
         mMap.setMyLocationEnabled(true);
+
     }
 
     public void addmarker() {
@@ -244,6 +261,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
+
                 }
             }
         });
@@ -262,6 +280,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
             }
         }
     }
+
 
     @Override
     public void onInfoWindowClick(Marker marker) {

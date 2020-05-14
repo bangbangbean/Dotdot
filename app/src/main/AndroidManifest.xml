@@ -83,23 +83,21 @@
         <activity android:name=".botnav2"/>
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
-        <activity android:name=".BeforeLogin.Forgetpassword" />
+        <activity android:name=".Forgetpassword" />
         <activity android:name=".Storeregist" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".BeforeLogin.Forgetpassword_1" />
-        <activity android:name=".BeforeLogin.Forgetpassword_2" />
+        <activity android:name=".Forgetpassword_1" />
+        <activity android:name=".Forgetpassword_2" />
 
-        <activity android:name=".BeforeLogin.Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Login" />
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
             android:label="@string/title_activity_maps">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
@@ -107,8 +105,8 @@
         <activity
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index"/>
-        <activity android:name=".BeforeLogin.Regist"/>
-        <activity android:name=".BeforeLogin.RegistPart2"/>
+        <activity android:name=".Regist"/>
+        <activity android:name=".RegistPart2"/>
         <activity android:name=".TransactionRecord">
 
         </activity>

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +37,6 @@ public class Collectioncard extends Fragment {
     private CollectionReference memRef = db.collection("Member");
     private View view;
     private SwipeRecyclerView swipeRecyclerView;
-    private Button coupon;
     String storeId;
 
     @Nullable
@@ -115,7 +114,9 @@ public class Collectioncard extends Fragment {
         adapter.stopListening();
     }
 
-    //RecyclerView的Item中的Menu点击监听。
+    /**
+     * RecyclerView的Item中的Menu点击监听。
+     */
     private OnItemMenuClickListener mItemMenuClickListener = new OnItemMenuClickListener() {
         @Override
         public void onItemClick(SwipeMenuBridge menuBridge, int position) {
@@ -130,7 +131,9 @@ public class Collectioncard extends Fragment {
         }
     };
 
-     //菜单创建器，在Item要创建菜单的时候调用。
+    /**
+     * 菜单创建器，在Item要创建菜单的时候调用。
+     */
     private SwipeMenuCreator mSwipeMenuCreator = new SwipeMenuCreator() {
         @Override
         public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int position) {

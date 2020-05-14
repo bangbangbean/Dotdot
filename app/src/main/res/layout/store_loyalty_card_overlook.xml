@@ -135,7 +135,7 @@
 
 
         <TextView
-            android:id="@+id/Dot6"
+            android:id="@+id/Dot7"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="11dp"
@@ -161,7 +161,7 @@
             android:layout_marginTop="11dp"
             android:layout_marginLeft="20dp"
             android:background="@drawable/gray_dot"
-            app:layout_constraintStart_toEndOf="@+id/Dot7"
+            app:layout_constraintStart_toEndOf="@+id/Dot6"
             app:layout_constraintTop_toBottomOf="@+id/Dot3" />
 
         <TextView
