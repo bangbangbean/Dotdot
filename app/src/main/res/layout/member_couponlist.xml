@@ -50,7 +50,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="28dp"
             android:gravity="center_horizontal"
-            android:textColor="#2654CA"
+            android:textColor="#0A4C7C"
             android:textStyle="bold"
             android:textSize="45dp"
             app:layout_constraintEnd_toStartOf="@+id/dot"

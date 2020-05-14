@@ -44,6 +44,11 @@ public class ConfirmExchange extends Activity {
         TextView wordWarning = (TextView) findViewById(R.id.wordWarning);
         TextView text = (TextView) findViewById(R.id.text);
         Button doubleCheckBtn = (Button) findViewById(R.id.doubleCheckBtn);
+        Button cancelBtn = findViewById(R.id.CancelBtn2);
+        Button doubleCeckBtn2 = findViewById(R.id.doubleCheckBtn2);
+
+        doubleCeckBtn2.setVisibility(View.INVISIBLE);
+
 
 
         //coupon的title名稱
@@ -92,15 +97,24 @@ public class ConfirmExchange extends Activity {
                 couponPoint.setText("");
                 wordDot.setText("");
                 wordDot2.setText("");
-                wordWarning.setText("");
+                /*wordWarning.setText("");*/
                 word1.setText("");
                 word2.setText("");
                 //點數運算
                 if (memberPointOwned < storeDotNeed) {
+                    doubleCheckBtn.setVisibility(View.INVISIBLE);
+                    cancelBtn.setVisibility(View.INVISIBLE);
+
+                    doubleCeckBtn2.setVisibility(View.VISIBLE);
                     text.setText("你的點數不夠喔><");
                 } else {
+                    doubleCheckBtn.setVisibility(View.INVISIBLE);
+                    cancelBtn.setVisibility(View.INVISIBLE);
+
+                    doubleCeckBtn2.setVisibility(View.VISIBLE);
+
                     int total = memberPointOwned - storeDotNeed;
-                    text.setText("兌換成功您的點數剩餘" + total + "點");
+                    text.setText("兌換成功\n剩餘 " + total + " 點");
 
                     //跟改memberPointQwned的暫存點數
                     SharedPreferences memberPointOwnedpref = getSharedPreferences("save_memberPointOwned", MODE_PRIVATE);
@@ -145,11 +159,18 @@ public class ConfirmExchange extends Activity {
                     storeRef.document(storeId).collection("couponBeenExchange")
                             .add(couponBeenExchange);
                 }
-                doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
+                doubleCeckBtn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         onBackPressed();
                     }
                 });
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

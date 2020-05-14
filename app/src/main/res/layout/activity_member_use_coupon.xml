@@ -10,25 +10,67 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#3F51B5"
+        android:background="@drawable/usecoupon_alert"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:text="點數兌換"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/doubleCheckBtn"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
-        android:layout_marginLeft="102dp"
-        android:layout_marginTop="150dp"
-        android:text="確定"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_round_button"
+        android:text="確認"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/word1" />
+    <Button
+        android:id="@+id/doubleCheckBtn2"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="105dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_round_button"
+        android:text="確認"
+        android:textSize="18dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/word1" />
+    <Button
+        android:id="@+id/CancelBtn2"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_round_button2"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:text="取消"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toEndOf="@+id/doubleCheckBtn"
+        app:layout_constraintTop_toBottomOf="@+id/word1" />
 
     <TextView
         android:id="@+id/word1"
@@ -42,19 +84,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TextView
-        android:id="@+id/wordWarning"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="112dp"
-        android:text="您確定要使用嗎?"
-        android:textColor="#E81111"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 
     <TextView
         android:id="@+id/text"
@@ -64,7 +94,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:textColor="#1C1A1A"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />

@@ -23,6 +23,10 @@ public class MemberUseCoupon extends Activity {
         TextView text = (TextView) findViewById(R.id.text);
         TextView word1 = (TextView) findViewById(R.id.word1);
         Button doubleCheckBtn = (Button) findViewById(R.id.doubleCheckBtn);
+        Button cancelBtn = findViewById(R.id.CancelBtn2);
+        Button doubleCeckBtn2 = findViewById(R.id.doubleCheckBtn2);
+
+        doubleCeckBtn2.setVisibility(View.INVISIBLE);
 
         //coupon的id
         String ownedCouponId = getSharedPreferences("save_ownedCouponId", MODE_PRIVATE)
@@ -38,16 +42,19 @@ public class MemberUseCoupon extends Activity {
         //把優惠券從會員資料刪除
         doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                doubleCheckBtn.setVisibility(View.INVISIBLE);
+                cancelBtn.setVisibility(View.INVISIBLE);
+                doubleCeckBtn2.setVisibility(View.VISIBLE);
+
                 //記得改成活的 新增資料到Coupon
                 db.collection("Member").document(memberId)
                         .collection("loyalty_card").document(loyalty_card_id)
                         .collection("Owned_Coupon").document(ownedCouponId)
                         .delete();
-                wordWarning.setText("");
                 word1.setText("");
                 text.setText("使用成功><");
 
-                doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
+                doubleCeckBtn2.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         onBackPressed();
                     }
@@ -62,13 +69,13 @@ public class MemberUseCoupon extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .97), (int) (height * .61));
+        getWindow().setLayout((int) (width * .7), (int) (height * .4));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
 
         params.x = 0;
-        params.y = 60;
+        params.y =-10;
 
         getWindow().setAttributes(params);
     }
