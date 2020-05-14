@@ -76,12 +76,12 @@ public class MemberOwnedCoupon extends Fragment {
     private void setUpRecyclerView() {
 
         //loyalty_card的亂碼Id
-        String loyalty_card_id = getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
+        String loyalty_card_id = this.getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
                 .getString("loyalty_card_id", "沒選擇店家");
 
         //member的亂碼Id
-        String memberId = getActivity().getSharedPreferences("save_useraccount", MODE_PRIVATE)
-                .getString("user_id", "沒人登入");
+        String memberId =this.getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
 
         Query query = memRef.document(memberId)
                 .collection("loyalty_card").document(loyalty_card_id)

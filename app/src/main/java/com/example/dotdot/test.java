@@ -1,23 +1,12 @@
-//package com.example.dotdot;
-//
-//import android.content.SharedPreferences;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.EditText;
-//import android.widget.TextView;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.firebase.firestore.CollectionReference;
-//import com.google.firebase.firestore.DocumentReference;
-//import com.google.firebase.firestore.FirebaseFirestore;
-//import com.google.firebase.firestore.QueryDocumentSnapshot;
-//import com.google.firebase.firestore.QuerySnapshot;
-//
-//
-//public class test extends AppCompatActivity {
-//    private EditText nameinput;
+package com.example.dotdot;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class test extends AppCompatActivity {
+    //    private EditText nameinput;
 //    private EditText passwordinput;
 //    private EditText phoneinput;
 //    private TextView getinfo;
@@ -28,16 +17,16 @@
 //
 //
 //
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_test);
 //
 //        nameinput = findViewById(R.id.name);
 //        passwordinput = findViewById(R.id.password);
 //        phoneinput = findViewById(R.id.inputStore);
 //        getinfo = findViewById(R.id.getinfo);
-//    }
+    }
 //
 //    @Override
 //    protected void onStart() {
@@ -96,4 +85,4 @@
 //                });
 //    }
 //
-//}
+}
