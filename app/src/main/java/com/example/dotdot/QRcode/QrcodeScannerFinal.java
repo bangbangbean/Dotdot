@@ -10,13 +10,24 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.example.dotdot.R;
 import com.example.dotdot.StoreIndex;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class QrcodeScannerFinal extends Activity {
 
     private TextView point_given;
     private Button finishbtn;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference memRef = db.collection("Member");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

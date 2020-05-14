@@ -2,6 +2,7 @@ package com.example.dotdot;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -9,10 +10,13 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -29,12 +33,19 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.api.client.util.Data;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+
+import static com.example.dotdot.App.CHANNEL_1_ID;
 import static android.widget.Toast.makeText;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
@@ -43,7 +54,17 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference qq = db.collection("store");
+    private CollectionReference loy = db.collection("Member")
+            .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+    //記得改成session
     private CollectionReference note = db.collection("Member");
+
+    private NotificationManagerCompat notificationManager;
+    private String dot;
+    private String sto;
+    private String str;
+    private String nowdt;
 
     Button home;
     Button btn_dot;
@@ -55,24 +76,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memberindex);
 
-        SharedPreferences storeref = this.getSharedPreferences("save_store", MODE_PRIVATE);
-
-
-        note.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                    Loyalty_card loyalty_card = queryDocumentSnapshot.toObject(Loyalty_card.class);
-                    String name = loyalty_card.getStore();
-                    storeref.edit().putString("save_store", name).commit();
-
-
-                }
-
-            }
-        });
-
-
+        notificationManager = NotificationManagerCompat.from(this);
         //------------------------Map---------------------------------------------------------------
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -91,7 +95,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 startActivity(i);
             }
         });
-
 
         //------------------------QRcode-----------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
@@ -112,32 +115,25 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 startActivity(n);
             }
         });
-
-
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         addmarker();
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style));
-
         mMap.setInfoWindowAdapter(new MapInforWindowAdapter(this));
         mMap.setOnInfoWindowClickListener(this);
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.
                     ACCESS_FINE_LOCATION}, RESQUEST_PERMISSION_LOCATION);
         } else {
             getMyLocation();
             makeText(this, "登入成功", Toast.LENGTH_LONG).show();
         }
-
         mMap.setMyLocationEnabled(true);
-
     }
 
     public void addmarker() {
@@ -248,7 +244,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
-
                 }
             }
         });
@@ -268,7 +263,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         }
     }
 
-
     @Override
     public void onInfoWindowClick(Marker marker) {
 
@@ -277,5 +271,103 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
     }
 
+    public void noti(){
+        loy.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            String id = documentSnapshot.getId();
+                            loy.document(id).collection("Record")
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                                MemberPointRec m = documentSnapshot.toObject(MemberPointRec.class);
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                //Date c = m.getTime();
+                                                //Date newDate = new Date(c.getTime() + 28800000);//因為時區問題 需+8小時
+                                                String dead = sdf.format(m.getTime());
 
+                                                if(nowdt == null){ //如果上次發送的時間是空的，直接發送
+                                                    dot = m.getPoint_get();
+                                                    if(dot != null){  //只抓取"得到點數"的紀錄
+                                                        sto = m.getStoreId();
+
+                                                        qq.document(sto) //storeID轉換店名
+                                                                .get()
+                                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                    @Override
+                                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                        Store store = documentSnapshot.toObject(Store.class);
+                                                                        str = store.getName();
+                                                                        sendOnChannel(dot, str);
+                                                                    }
+                                                                });
+                                                        nowdt = dead;
+                                                        break;
+                                                    }
+                                                }else{ //如果發送的時間非空，則比較時間前後
+                                                    if (compareDate(nowdt, dead) == true) {  //如果資料庫抓到的時間比較晚
+                                                        dot = m.getPoint_get();
+                                                        if(dot != null){  //只抓取得到點數的紀錄
+                                                            sto = m.getStoreId();
+
+                                                            qq.document(sto) //storeID轉換店名
+                                                                    .get()
+                                                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                        @Override
+                                                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                            Store store = documentSnapshot.toObject(Store.class);
+                                                                            str = store.getName();
+                                                                            sendOnChannel(dot, str);
+                                                                        }
+                                                                    });
+                                                            nowdt = dead;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                            break;
+                        }
+                    }
+                });
+    }
+
+    public void sendOnChannel(String dot, String str) {//發送獲得點數通知
+        SharedPreferences session = getSharedPreferences("get_dot_time", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = session.edit();
+        String time = session.getString("newTime","目前沒時間");
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_ok)
+                .setContentTitle("點點通知")
+                .setContentText("您在" + str + "獲得了" + dot + "點")
+                .setWhen(System.currentTimeMillis())
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
+
+    public boolean compareDate(String nowDate, String compareDate) { //時間比較前後
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        try {
+            Date now = df.parse(nowDate);
+            Date compare = df.parse(compareDate);
+            if (now.before(compare)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
+
 import com.example.dotdot.LoyaltyCard;
 import com.example.dotdot.MemberPointRec;
 import com.example.dotdot.R;
@@ -20,7 +22,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
@@ -81,8 +85,11 @@ public class QrcodeScannerNext extends Activity {
             }
         });
     }
-    
+
     public void countPoint(){
+        Bundle bundle66 =this.getIntent().getExtras();
+        String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
+
         storeRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -95,11 +102,11 @@ public class QrcodeScannerNext extends Activity {
                         int j = Integer.parseInt(String.valueOf(input));
                         points_given = "" + j / i; //應該得到的點數
 
-
                         Intent h = new Intent(getApplicationContext(), QrcodeScannerFinal.class);
 
                         Bundle bundle = new Bundle();
                         bundle.putString("point_given",points_given);
+
                         h.putExtras(bundle);
 
                         startActivity(h);
@@ -117,7 +124,6 @@ public class QrcodeScannerNext extends Activity {
         //取的intent中的bundle物件
         Bundle bundle66 =this.getIntent().getExtras();
         String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
-        //String whoData = "iICTR1JL4eAG4B3QBi1S";//test
 
         StorePointRec rec = new StorePointRec(whoData,points_given,dt);
         stoRef.document(who).collection("giveDotRecord").add(rec);
@@ -125,24 +131,26 @@ public class QrcodeScannerNext extends Activity {
 
     public void addMemberRec(){
         Date dt = new Date();//當下時間
-        //Bundle-----------------------------------------------------
-        //取的intent中的bundle物件
-        Bundle bundle66 =this.getIntent().getExtras();
-        String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
-        String points_get = "+" + points_given;
+                        //Bundle-----------------------------------------------------
+                        //取的intent中的bundle物件
+                        Bundle bundle66 =this.getIntent().getExtras();
+                        String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
+                        String points_get = "+" + points_given;
 
-        MemberPointRec rec = new MemberPointRec(points_get, who, dt);
-        memRef.document(whoData).collection("loyalty_card")
-                .whereEqualTo("store",who)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                            String oo = documentSnapshot.getId();
-                            memRef.document(whoData).collection("loyalty_card")
-                                    .document(oo).collection("Record").add(rec);
-                        }
+                        MemberPointRec rec = new MemberPointRec(points_get, who, dt);
+                        memRef.document(whoData).collection("loyalty_card")
+                                .whereEqualTo("store",who)
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                                            String oo = documentSnapshot.getId();
+                                            memRef.document(whoData).collection("loyalty_card")
+                                                    .document(oo).collection("Record").add(rec);
+                                            memRef.document(whoData).collection("loyalty_card")
+                                                    .document(oo).collection("DotGet").add(rec);
+                                        }
                     }
                 });
     }

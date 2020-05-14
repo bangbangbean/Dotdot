@@ -59,14 +59,10 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private TextView coupongiven;
     Button btn_notificaiton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
-
-
 
         //------------------------action-----------------------------------------------------------
         Button home = (Button) findViewById(R.id.home);
@@ -84,7 +80,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
         Storetitle = findViewById(R.id.storetitle);
         //記得改成session
         memRef.document("nQnT8AAt4NYIRYZFZfAR").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -94,21 +89,18 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     Store mem = documentSnapshot.toObject(Store.class);
                     String name = mem.getName();
                     Storetitle.setText(name);
-
-
                 }
             }
         });
+
         //--------------------------------------------------------------------------------------
         //當月月份
         Mon = findViewById(R.id.mom);
-
         SimpleDateFormat sdf = new SimpleDateFormat("MM");
         SimpleDateFormat sdf1 = new SimpleDateFormat("YYYY-MM");
         String date = sdf.format(new java.util.Date());
         String date1 = sdf1.format(new java.util.Date());
         Mon.setText(date + "月");
-
 
         Calendar a = Calendar.getInstance();
         a.setTime(new Date());
@@ -119,11 +111,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         b.setTime(new Date());
         int year = b.get(Calendar.YEAR);
         System.out.println(year);
-
-
-
-
-
 
         //判斷時間
         Date dt = new Date(year-1900,month,01);
@@ -141,13 +128,9 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     String point = rec.getPoint_given();
                     int point1 = Integer.valueOf(point);
                     points1sum += point1;
-
-
                 }
-
                 Pointsgives = findViewById(R.id.pointsgive);
                 Pointsgives.setText(Integer.toString(points1sum));
-
             }
         });
 
@@ -155,7 +138,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         memRef1.whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
-
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots1) {
 
                 }
@@ -164,9 +146,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 coupongiven.setText(Integer.toString(queryDocumentSnapshots1.size()));
             }
         });
-        //--------------------------------------------------------------------------------------
-
-
         //QRcode Scanner----------------------------------------------------------------------------
         btn_dot = (Button) findViewById(R.id.btn_dot);
         btn_dot.setOnClickListener(new View.OnClickListener() {
@@ -191,30 +170,24 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         addmarker();
-
 /** this code is used to get the permission/ check the permission allow or not*/
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.
                     ACCESS_FINE_LOCATION}, RESQUEST_PERMISSION_LOCATION);
         } else {
             getMyLocation();
             Toast.makeText(this, "Permission is allowed", Toast.LENGTH_SHORT).show();
         }
-
         mMap.setMyLocationEnabled(true);
-       
+
     }
 
-
     public void addmarker() {
-
         MarkerOptions options = new MarkerOptions();
         options.position(storerecord.chicken);
         options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
         mMap.addMarker(options);
-
     }
 
     @SuppressLint("MissingPermission")
@@ -226,8 +199,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                     //記得改成mylocation
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
-
-
                 }
             }
         });
@@ -246,7 +217,5 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
             }
         }
     }
-    //----------------------------------------------------------------------------------------------
-
 }
 
