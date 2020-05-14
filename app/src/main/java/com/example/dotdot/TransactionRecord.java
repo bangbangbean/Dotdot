@@ -1,15 +1,16 @@
 package com.example.dotdot;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
@@ -21,11 +22,9 @@ public class TransactionRecord extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Switch modeSwitch = null;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memref = db.collection("Member").document(
-            "iICTR1JL4eAG4B3QBi1S").collection("record");
-
-    private CollectionReference memref2 = db.collection("Member").document(
             "iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
 
     private RecordAdapter adapter;
@@ -40,21 +39,19 @@ public class TransactionRecord extends AppCompatActivity {
         setUpRecyclerView2();
 
         modeSwitch = (Switch)findViewById(R.id.modeSwitch);
-
         recyclerView =(RecyclerView) findViewById(R.id.recycler_view);
+
 
         //利用Switch切換模式
         modeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isChecked()){
-                    //顯示店家模式紀錄
+                    //顯示清單模式紀錄
                     recyclerView.setAdapter(adapter);
-                    //點擊觸發事件_跳出選定店家紀錄
-
                 }
                 else {
-                    //顯示清單模式紀錄
+                    //顯示店家模式紀錄
                     recyclerView.setAdapter(adapter2);
                 }
             }
@@ -63,10 +60,10 @@ public class TransactionRecord extends AppCompatActivity {
     }
 
 
-
-
     private void setUpRecyclerView() {
-        Query query = memref.orderBy("time", Query.Direction.DESCENDING);
+        Query query = memref.document("BxskPfoZCfztCUSuDUOu")
+                .collection("Record");
+
         FirestoreRecyclerOptions<Record> options = new FirestoreRecyclerOptions.Builder<Record>()
                 .setQuery(query, Record.class)
                 .build();
@@ -80,7 +77,7 @@ public class TransactionRecord extends AppCompatActivity {
     }
 
     private void setUpRecyclerView2() {
-        Query query = memref2;
+        Query query = memref;
         FirestoreRecyclerOptions<Loyalty_card> options = new FirestoreRecyclerOptions.Builder<Loyalty_card>()
                 .setQuery(query, Loyalty_card.class)
                 .build();
