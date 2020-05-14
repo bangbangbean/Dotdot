@@ -20,9 +20,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Login extends AppCompatActivity {
 
+    private static final String TAG = "";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
-
+    int accountExist = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String phone = inputPhone.getText().toString();
@@ -68,9 +68,9 @@ public class Login extends AppCompatActivity {
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
-
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                    accountExist+=1;
                                     Member mem = documentSnapshot.toObject(Member.class);
                                     String documentId = documentSnapshot.getId();
                                     String pass = mem.getPassword();
@@ -81,14 +81,15 @@ public class Login extends AppCompatActivity {
                                         Intent intent = new Intent(Login.this, MemberIndex.class);
                                         startActivity(intent);
                                     } else {
-                                        Toast.makeText(Login.this, "登入失敗", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Login.this, "登入失敗!", Toast.LENGTH_LONG).show();
                                     }
+                                }
+                                if(accountExist==0){
+                                    Toast.makeText(Login.this, "此帳號尚未被註冊!", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
             }
         });
-
-
     }
 }

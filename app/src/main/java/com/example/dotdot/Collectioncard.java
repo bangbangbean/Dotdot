@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -116,9 +115,7 @@ public class Collectioncard extends Fragment {
         adapter.stopListening();
     }
 
-    /**
-     * RecyclerView的Item中的Menu点击监听。
-     */
+    //RecyclerView的Item中的Menu点击监听。
     private OnItemMenuClickListener mItemMenuClickListener = new OnItemMenuClickListener() {
         @Override
         public void onItemClick(SwipeMenuBridge menuBridge, int position) {
@@ -127,19 +124,13 @@ public class Collectioncard extends Fragment {
             int direction = menuBridge.getDirection(); // 左侧还是右侧菜单。
             int menuPosition = menuBridge.getPosition(); // 菜单在RecyclerView的Item中的Position。
 
-            if (direction == SwipeRecyclerView.LEFT_DIRECTION) {
-                Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
-                adapter.myLoveItem(position);
-            } else if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
-                Toast.makeText(getContext(), "list第" + position + "; 左侧菜单第" + menuPosition, Toast.LENGTH_SHORT).show();
+            if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
                 adapter.myLoveItem(position);
             }
         }
     };
 
-    /**
-     * 菜单创建器，在Item要创建菜单的时候调用。
-     */
+     //菜单创建器，在Item要创建菜单的时候调用。
     private SwipeMenuCreator mSwipeMenuCreator = new SwipeMenuCreator() {
         @Override
         public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int position) {

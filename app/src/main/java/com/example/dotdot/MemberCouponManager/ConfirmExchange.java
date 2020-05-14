@@ -14,6 +14,7 @@ import com.example.dotdot.Coupon;
 import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -29,6 +30,8 @@ public class ConfirmExchange extends Activity {
     private CollectionReference storeRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
     int storeDotNeed;
+    int countCoupon;
+    int countDot;
 
 
     @Override
@@ -56,7 +59,7 @@ public class ConfirmExchange extends Activity {
                 .getString("coupon_title", "沒選到Coupon");
 
         //member的亂碼Id
-        String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
+        String memberId = getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
 
         //coupon的id
@@ -132,13 +135,29 @@ public class ConfirmExchange extends Activity {
                             .collection("loyalty_card").document(loyalty_card_id)
                             .collection("Owned_Coupon").add(ownedCoupon);
 
-                    //到集點卡修改會員剩餘的點數
-                    Map<Object, Object> upData = new HashMap<>();
-                    upData.put("points_owned", Integer.toString(total));
+                    //到集點卡修改會員剩餘的點數跟擁有優惠卷的數量跟點數
                     db.collection("Member").document(memberId)
                             .collection("loyalty_card").document(loyalty_card_id)
-                            .set(upData, SetOptions.merge());
+                            .get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.exists()) {
+                                        countCoupon = Integer.parseInt(documentSnapshot.getString("couponCount"));
+                                        countDot = Integer.parseInt(documentSnapshot.getString("dotUse"));
 
+                                        countCoupon = countCoupon + 1;
+                                        countDot += storeDotNeed;
+                                        Map<Object, Object> upData = new HashMap<>();
+                                        upData.put("points_owned", Integer.toString(total));
+                                        upData.put("couponCount", Integer.toString(countCoupon));
+                                        upData.put("dotUse", Integer.toString(countDot));
+                                        db.collection("Member").document(memberId)
+                                                .collection("loyalty_card").document(loyalty_card_id)
+                                                .set(upData, SetOptions.merge());
+                                    }
+                                }
+                            });
                     //新增資料到member的Loyalty的Record
                     String i = Integer.toString(storeDotNeed);
                     String use = "-" + i;
@@ -150,6 +169,10 @@ public class ConfirmExchange extends Activity {
                     dotUseRecord.put("time", new Date());
                     memRef.document(memberId).collection("loyalty_card")
                             .document(loyalty_card_id).collection("Record")
+                            .add(dotUseRecord);
+
+                    memRef.document(memberId).collection("loyalty_card")
+                            .document(loyalty_card_id).collection("DotUse")
                             .add(dotUseRecord);
 
                     //新增資料到店家紀錄

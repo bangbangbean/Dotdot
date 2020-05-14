@@ -48,9 +48,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         if (color.equals("red")) {
 
             if (qqq == 1) {
-
                 collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
-
             } else if (qqq == 2) {
                 collectioncardHolder.dot1.setBackgroundResource(R.drawable.red_dot);
                 collectioncardHolder.dot2.setBackgroundResource(R.drawable.red_dot);
@@ -349,7 +347,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         collectioncardHolder.coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
     }
@@ -359,7 +356,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
     public CollectioncardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collectionlist,
                 parent, false);
-
 
         return new CollectioncardHolder(v);
     }
@@ -409,7 +405,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         private TextView dot9;
         private TextView dot10;
         private Button coupon;
-        private TextView hint;
 
         public CollectioncardHolder(@NonNull View itemView) {
 

@@ -201,6 +201,7 @@ public class QrcodeScannerNext extends Activity {
                                             rec.put("points_owned", points_get);
                                             rec.put("color", color);
                                             rec.put("Threshold", Threshold);
+                                            rec.put("couponCount",0);
 
                                             memRef.document(whoData).collection("loyalty_card").add(rec);
                                         }

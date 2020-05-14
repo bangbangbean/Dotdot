@@ -1,8 +1,5 @@
 package com.example.dotdot.QRcode;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +9,9 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.example.dotdot.R;
 import com.google.android.gms.vision.CameraSource;
@@ -49,7 +48,7 @@ public class QrcodeScanner extends Activity {
     }
 
     private void initialiseDetectorsAndSources() {
-        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
@@ -76,7 +75,7 @@ public class QrcodeScanner extends Activity {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-                Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -107,7 +106,7 @@ public class QrcodeScanner extends Activity {
             @Override
             public void run() {
                 whoData = barCode.valueAt(0).displayValue;
-                textViewBarCodeValue.setText(whoData);
+                //textViewBarCodeValue.setText(whoData);
                 if (whoData != null){
                     Intent k = new Intent(getApplicationContext(), QrcodeScannerNext.class);
 //                    k.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
