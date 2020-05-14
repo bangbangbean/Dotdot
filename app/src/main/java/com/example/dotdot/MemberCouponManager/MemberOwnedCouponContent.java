@@ -74,13 +74,13 @@ public class MemberOwnedCouponContent extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .8));
+        getWindow().setLayout((int) (width * .97), (int) (height * .61));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
 
         params.x = 0;
-        params.y = -10;
+        params.y = 60;
 
         getWindow().setAttributes(params);
     }

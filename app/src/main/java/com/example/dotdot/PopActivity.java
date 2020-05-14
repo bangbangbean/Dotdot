@@ -53,9 +53,6 @@ public class PopActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent p = new Intent(PopActivity.this,botnav.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("key","profile");
-                p.putExtras(bundle);
                 startActivity(p);
             }
         });
@@ -64,10 +61,7 @@ public class PopActivity extends Activity {
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PopActivity.this , botnav.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("key", "dot");
-                i.putExtras(bundle);
+                Intent i = new Intent(PopActivity.this , botnav2.class);
                 startActivity(i);
             }
         });

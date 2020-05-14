@@ -3,6 +3,7 @@ package com.example.dotdot.MemberCouponManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotdot.Coupon;
 import com.example.dotdot.R;
+import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,6 +29,7 @@ import com.google.firebase.firestore.Query;
 import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.facebook.AccessTokenManager.TAG;
 
 public class MemberOverlookCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -65,6 +68,8 @@ public class MemberOverlookCoupon extends Fragment {
                 ft.commit();
             }
         });
+
+
         return view;
     }
 
@@ -99,6 +104,10 @@ public class MemberOverlookCoupon extends Fragment {
         adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                if(position != -1){
+                    smoothMoveToPosition(recyclerView , position);
+                }
+
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
@@ -108,10 +117,56 @@ public class MemberOverlookCoupon extends Fragment {
                         .commit();
                 Intent intent = new Intent(getActivity(), MemCouponContent.class);
                 startActivity(intent);
+
+
+
             }
         });
 
     }
+    private boolean mShouldScroll;
+    private int mToPosition;
+
+    private void smoothMoveToPosition(RecyclerView recyclerView , final int position){
+
+        int firstItemPosition = -1;
+        int lastItemPosition = -1;
+
+
+        firstItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0));
+        lastItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(recyclerView.getChildCount() - 1));
+
+        Log.i(TAG, "smoothMoveToPosition: firstItemPosition::" + firstItemPosition + " lastItemPosition::" + lastItemPosition + "\n");
+
+        if (position < firstItemPosition) {
+            // 第一种可能:跳转位置在第一个可见位置之前
+            recyclerView.smoothScrollToPosition(position);
+        } else if (position <= lastItemPosition) {
+            // 第二种可能:跳转位置在第一个可见位置之后,在最后一个可见项之前
+            int movePosition = position - firstItemPosition;
+            if (movePosition >= 0 && movePosition < recyclerView.getChildCount()) {
+                int top = recyclerView.getChildAt(movePosition).getTop();
+                recyclerView.smoothScrollBy(0, top);//dx>0===>向左  dy>0====>向上
+            }
+        } else {
+            // 第三种可能:跳转位置在最后可见项之后
+            recyclerView.smoothScrollToPosition(position);
+            mToPosition = position;
+            mShouldScroll = true;
+        }
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (mShouldScroll && RecyclerView.SCROLL_STATE_IDLE == newState) {//
+                    mShouldScroll = false;
+                    smoothMoveToPosition(recyclerView, mToPosition);
+                }
+            }
+        });
+
+    }
+
 
     @Override
     public void onStart() {

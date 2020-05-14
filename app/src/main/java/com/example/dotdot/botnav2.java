@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class botnav extends AppCompatActivity{
+public class botnav2 extends AppCompatActivity{
 
     BottomNavigationView bottomNavigationView;
 
@@ -45,6 +45,6 @@ public class botnav extends AppCompatActivity{
         bottomNavigationView.inflateMenu(R.menu.main_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Collectioncard()).commit();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.dotdot.MemberCouponManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 
+import static com.facebook.AccessTokenManager.TAG;
+
 public class MemberOwnedCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemberOwnedCouponAdapter.MemberOwnedCouponHolder> {
     private MemberOwnedCouponAdapter.OnItemClickListener listener;
 
     public MemberOwnedCouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
         super(options);
     }
+
+
 
     @Override
     protected void onBindViewHolder(@NonNull MemberOwnedCouponHolder memberOwnedCouponHolder, int i, @NonNull Coupon coupon) {
