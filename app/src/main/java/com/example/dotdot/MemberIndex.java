@@ -156,97 +156,130 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     public void addmarker() {
 
         //member的亂碼Id
-        String memberId =getSharedPreferences("save_memberId", MODE_PRIVATE)
+        String memberId = getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
-
         note.document(memberId).collection("loyalty_card")
-                .document("BxskPfoZCfztCUSuDUOu")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-                            MarkerOptions options = new MarkerOptions();
-                            String title = poi.getStore();
-                            String point = poi.getPoints_owned();
-                            String color = poi.getColor();
-                            options.title("椒麻雞大王");
-                            options.snippet(point);
-                            options.position(storerecord.chicken);
-                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-                            mMap.addMarker(options);
-
-                        }
-
-                    }
-                });
-        note.document(memberId).collection("loyalty_card")
-                .document("11cbdffohVBW7MQ1lDh4")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-                            MarkerOptions options = new MarkerOptions();
-                            String title = poi.getStore();
-                            String point = poi.getPoints_owned();
-                            options.title("椒麻雞大王");
-                            options.snippet(point);
-                            options.position(storerecord.chicken);
-                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-                            mMap.addMarker(options);
-
-                        }
-
-                    }
-                });
-
-
-        note.document(memberId).collection("loyalty_card")
-                .document("ZuzoCsJcH5kXvCjIpKfC")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-                            MarkerOptions options1 = new MarkerOptions();
-                            String title = poi.getStore();
-                            String point = poi.getPoints_owned();
-                            options1.title("崔舍");
-                            options1.snippet(point);
-                            options1.position(storerecord.loc1);
-                            options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-                            mMap.addMarker(options1);
-
-                        }
-
-                    }
-                });
-
-        note.document(memberId).collection("loyalty_card")
-                .document("IINi2hdusAGMTRUrszFr")
-                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-                    MarkerOptions options1 = new MarkerOptions();
-                    String title = poi.getStore();
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    Loyalty_card poi = queryDocumentSnapshot.toObject(Loyalty_card.class);
                     String point = poi.getPoints_owned();
+
+                    MarkerOptions options = new MarkerOptions();
+                    options.title("椒麻雞大王");
+                    options.snippet(point);
+                    options.position(storerecord.chicken);
+                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    mMap.addMarker(options);
+
+                    MarkerOptions options1 = new MarkerOptions();
                     options1.title("崔舍");
                     options1.snippet(point);
                     options1.position(storerecord.loc1);
                     options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
                     mMap.addMarker(options1);
 
+                    MarkerOptions options2 = new MarkerOptions();
+                    options2.title("蛋蛋早餐屋");
+                    options2.snippet(point);
+                    options2.position(storerecord.loc2);
+                    options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop3));
+                    mMap.addMarker(options2);
+
                 }
 
             }
         });
+
+//        note.document(memberId).collection("loyalty_card")
+//                .document("BxskPfoZCfztCUSuDUOu")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        if (documentSnapshot.exists()) {
+//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+//                            MarkerOptions options = new MarkerOptions();
+//                            String title = poi.getStore();
+//                            String point = poi.getPoints_owned();
+//                            String color = poi.getColor();
+//                            options.title("椒麻雞大王");
+//                            options.snippet(point);
+//                            options.position(storerecord.chicken);
+//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+//                            mMap.addMarker(options);
+//
+//                        }
+//
+//                    }
+//                });
+//        note.document(memberId).collection("loyalty_card")
+//                .document("11cbdffohVBW7MQ1lDh4")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        if (documentSnapshot.exists()) {
+//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+//                            MarkerOptions options = new MarkerOptions();
+//                            String title = poi.getStore();
+//                            String point = poi.getPoints_owned();
+//                            options.title("椒麻雞大王");
+//                            options.snippet(point);
+//                            options.position(storerecord.chicken);
+//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+//                            mMap.addMarker(options);
+//
+//                        }
+//
+//                    }
+//                });
+//
+//
+//        note.document(memberId).collection("loyalty_card")
+//                .document("ZuzoCsJcH5kXvCjIpKfC")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        if (documentSnapshot.exists()) {
+//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+//                            MarkerOptions options1 = new MarkerOptions();
+//                            String title = poi.getStore();
+//                            String point = poi.getPoints_owned();
+//                            options1.title("崔舍");
+//                            options1.snippet(point);
+//                            options1.position(storerecord.loc1);
+//                            options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+//                            mMap.addMarker(options1);
+//
+//                        }
+//
+//                    }
+//                });
+//
+//        note.document(memberId).collection("loyalty_card")
+//                .document("IINi2hdusAGMTRUrszFr")
+//                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.exists()) {
+//                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
+//                    MarkerOptions options1 = new MarkerOptions();
+//                    String title = poi.getStore();
+//                    String point = poi.getPoints_owned();
+//                    options1.title("崔舍");
+//                    options1.snippet(point);
+//                    options1.position(storerecord.loc1);
+//                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+//                    mMap.addMarker(options1);
+//
+//                }
+//
+//            }
+//        });
 
 
     }
@@ -290,7 +323,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
     }
 
-    public void noti(){
+    public void noti() {
         loy.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -309,9 +342,9 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                                                 //Date newDate = new Date(c.getTime() + 28800000);//因為時區問題 需+8小時
                                                 String dead = sdf.format(m.getTime());
 
-                                                if(nowdt == null){ //如果上次發送的時間是空的，直接發送
+                                                if (nowdt == null) { //如果上次發送的時間是空的，直接發送
                                                     dot = m.getPoint_get();
-                                                    if(dot != null){  //只抓取"得到點數"的紀錄
+                                                    if (dot != null) {  //只抓取"得到點數"的紀錄
                                                         sto = m.getStoreId();
 
                                                         qq.document(sto) //storeID轉換店名
@@ -327,10 +360,10 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                                                         nowdt = dead;
                                                         break;
                                                     }
-                                                }else{ //如果發送的時間非空，則比較時間前後
+                                                } else { //如果發送的時間非空，則比較時間前後
                                                     if (compareDate(nowdt, dead) == true) {  //如果資料庫抓到的時間比較晚
                                                         dot = m.getPoint_get();
-                                                        if(dot != null){  //只抓取得到點數的紀錄
+                                                        if (dot != null) {  //只抓取得到點數的紀錄
                                                             sto = m.getStoreId();
 
                                                             qq.document(sto) //storeID轉換店名
@@ -360,7 +393,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     public void sendOnChannel(String dot, String str) {//發送獲得點數通知
         SharedPreferences session = getSharedPreferences("get_dot_time", MODE_PRIVATE);
         final SharedPreferences.Editor editor = session.edit();
-        String time = session.getString("newTime","目前沒時間");
+        String time = session.getString("newTime", "目前沒時間");
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.ic_ok)
