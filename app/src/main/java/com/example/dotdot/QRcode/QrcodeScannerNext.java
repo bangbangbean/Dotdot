@@ -26,6 +26,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QrcodeScannerNext extends Activity {
 
@@ -183,11 +185,27 @@ public class QrcodeScannerNext extends Activity {
 
                         }
                         if(g == 1){ //如果此會員沒有這店家集點卡，則新增
-                            favorite = false;
-                            LoyaltyCard rec = new LoyaltyCard(points_get, who, favorite);
-                            memRef.document(whoData).collection("loyalty_card").add(rec);
-                        }
+                            stoRef.document(who)
+                                    .get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
 
+                                            String color = documentSnapshot.getString("color");
+                                            String Threshold = documentSnapshot.getString("Threshold");
+
+                                            favorite = false;
+                                            Map<Object, Object> rec = new HashMap<>();
+                                            rec.put("store", who);
+                                            rec.put("favorite", favorite);
+                                            rec.put("points_owned", points_get);
+                                            rec.put("color", color);
+                                            rec.put("Threshold", Threshold);
+
+                                            memRef.document(whoData).collection("loyalty_card").add(rec);
+                                        }
+                                    });
+                        }
                     }
                 });
     }

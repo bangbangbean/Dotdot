@@ -89,7 +89,6 @@ public class Regist extends AppCompatActivity {
                             .putString("phone", phone)
                             .putString("password", password)
                             .apply();
-                    Toast.makeText(Regist.this, "OK !", Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(Regist.this, RegistPart2.class);
                     startActivity(intent);

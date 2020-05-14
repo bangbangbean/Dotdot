@@ -33,14 +33,13 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         collectioncardHolder.points.setText(loyalty_card.getPoints_owned());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference storeRef = db.collection("store");
+
         storeRef.document(loyalty_card.getStore().trim()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-
                 Store store = documentSnapshot.toObject(Store.class);
                 collectioncardHolder.Title.setText(store.getName());
                 System.out.println(store.getName());
-
             }
         });
 
@@ -361,6 +360,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.collectionlist,
                 parent, false);
 
+
         return new CollectioncardHolder(v);
     }
 
@@ -409,9 +409,10 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         private TextView dot9;
         private TextView dot10;
         private Button coupon;
-
+        private TextView hint;
 
         public CollectioncardHolder(@NonNull View itemView) {
+
             super(itemView);
             Title = itemView.findViewById(R.id.Title);
             points = itemView.findViewById(R.id.points);

@@ -69,6 +69,7 @@ public class RegistPart2 extends AppCompatActivity {
                     Creatmember();
                     Intent intent = new Intent(RegistPart2.this, Login.class);
                     startActivity(intent);
+                    Toast.makeText(RegistPart2.this, "註冊成功!", Toast.LENGTH_LONG).show();
                 }
 
             }

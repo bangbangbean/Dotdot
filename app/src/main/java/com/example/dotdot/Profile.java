@@ -6,15 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
@@ -84,8 +84,6 @@ public class Profile extends Fragment {
                 memRef.document(memberId).set(upData, SetOptions.merge());
             }
         });
-
-
         return view;
     }
 
@@ -94,18 +92,20 @@ public class Profile extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //member的亂碼Id
+        String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
 
-
-        memRef.whereEqualTo("name", "邱冠儒")
+        db.collection("Member")
+                .document(memberId)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Member mem = documentSnapshot.toObject(Member.class);
-                            String name = mem.getName();
-                            String password = mem.getPassword();
-                            String phone = mem.getPhone();
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            String name = documentSnapshot.getString("name");
+                            String password = documentSnapshot.getString("password");
+                            String phone = documentSnapshot.getString("phone");
 
                             showusername.setText(name);
                             showpassword.setText(password);
@@ -114,25 +114,4 @@ public class Profile extends Fragment {
                     }
                 });
     }
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        memRef.whereEqualTo("name", "王小名")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-//                            Member mem = documentSnapshot.toObject(Member.class);
-//                            String name = mem.getName();
-//                            String password = mem.getPassword();
-//                            String phone = mem.getPhone();
-//
-//                            showusername.setText(name);
-//                            showpassword.setText(password);
-//                            showphone.setText(phone);
-//                        }
-//                    }
-//                });
-//    }
 }
