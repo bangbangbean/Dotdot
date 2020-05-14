@@ -14,35 +14,43 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
-public class RecordAdapter extends FirestoreRecyclerAdapter<Record, RecordAdapter.RecordHolder> {
+public class DotGetAdapter extends FirestoreRecyclerAdapter<DotGet, DotGetAdapter.DotGetHolder> {
 
-    public RecordAdapter(@NonNull FirestoreRecyclerOptions<Record> options) {
+    public DotGetAdapter(@NonNull FirestoreRecyclerOptions<DotGet> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull RecordHolder recordHolder, int i, @NonNull Record record) {
+    protected void onBindViewHolder(@NonNull DotGetHolder dotGetHolder, int i, @NonNull DotGet dotGet) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-        recordHolder.point_use.setText(record.getPoint_use());
-        recordHolder.point_get.setText(record.getPoint_get());
-        recordHolder.store_couponId.setText(record.getCouponTitle());
-        recordHolder.yearmonth.setText(sdf.format(record.getTime()));
-        recordHolder.day.setText(sdf1.format(record.getTime()));
-        recordHolder.time.setText(sdf2.format(record.getTime()));
+        dotGetHolder.point_get.setText(dotGet.getPoint_get());
+        dotGetHolder.yearmonth.setText(sdf.format(dotGet.getTime()));
+        dotGetHolder.day.setText(sdf1.format(dotGet.getTime()));
+        dotGetHolder.time.setText(sdf2.format(dotGet.getTime()));
+
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference recordRef = db.collection("Record");
+        recordRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+            }
+        });
         CollectionReference storeRef = db.collection("store");
-        storeRef.document(record.getStoreId()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        storeRef.document(dotGet.getStoreId()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Store store = documentSnapshot.toObject(Store.class);
-                recordHolder.storeId.setText(store.getName());
+                dotGetHolder.storeId.setText(store.getName());
             }
         });
 
@@ -51,27 +59,23 @@ public class RecordAdapter extends FirestoreRecyclerAdapter<Record, RecordAdapte
 
     @NonNull
     @Override
-    public RecordHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DotGetHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_listmode_list,
                 parent, false);
-        return new RecordHolder(v);
+        return new DotGetHolder(v);
     }
 
-    class RecordHolder extends RecyclerView.ViewHolder {
-        private TextView point_use;
-        private TextView point_get;
-        private TextView storeId;
-        private TextView store_couponId;
-        private TextView yearmonth;
-        private TextView day;
-        private TextView time;
+    class DotGetHolder extends RecyclerView.ViewHolder {
+        TextView point_get;
+        TextView storeId;
+        TextView yearmonth;
+        TextView day;
+        TextView time;
 
-        public RecordHolder(@NonNull View itemView) {
+        public DotGetHolder(@NonNull View itemView) {
             super(itemView);
-            point_use = itemView.findViewById(R.id.situation);
             point_get = itemView.findViewById(R.id.situation2);
             storeId = itemView.findViewById(R.id.storeName);
-            store_couponId = itemView.findViewById(R.id.obj);
             yearmonth = itemView.findViewById(R.id.yearmonth);
             day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);

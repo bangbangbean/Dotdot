@@ -1,5 +1,7 @@
 package com.example.dotdot;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.facebook.share.internal.DeviceShareDialogFragment.TAG;
 
 public class Loyalty_cardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, Loyalty_cardAdapter.Loyalty_cardHolder> {
     private OnItemClickListener listener;
@@ -21,11 +36,24 @@ public class Loyalty_cardAdapter extends FirestoreRecyclerAdapter<Loyalty_card, 
 
     @Override
     protected void onBindViewHolder(@NonNull Loyalty_cardHolder loyalty_cardholder, int position, @NonNull Loyalty_card loyalty_card) {
-        loyalty_cardholder.textViewstore.setText((CharSequence) loyalty_card.getStore());
         loyalty_cardholder.textViewpoints_owned.setText(loyalty_card.getPoints_owned());
-//        loyalty_cardholder.textViewpoints_use.setText(loyalty_card.getPoints_use());
-//        loyalty_cardholder.textViewcoupon.setText(loyalty_card.getCoupon());
+        loyalty_cardholder.textViewcoupon.setText(loyalty_card.getCouponCount());
+        loyalty_cardholder.textViewpoints_use.setText(loyalty_card.getDotUse());
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference storeRef = db.collection("store");
+        storeRef.document(loyalty_card.getStore()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Store store = documentSnapshot.toObject(Store.class);
+                loyalty_cardholder.textViewstore.setText(store.getName());
+            }
+        });
+
+
     }
+
+
 
     @NonNull
     @Override

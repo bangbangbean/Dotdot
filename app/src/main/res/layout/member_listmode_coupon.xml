@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="380dp"
+            android:layout_width="390dp"
             android:layout_height="100dp"
             android:background="@drawable/bg_frame2"
             android:orientation="vertical"
@@ -66,7 +66,7 @@
 
                 <TextView
                     android:id="@+id/th"
-                    android:layout_width="wrap_content"
+                    android:layout_width="5sp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/hao"
@@ -82,58 +82,24 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:layout_width="108dp"
+                    android:layout_width="127dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/storeName"
+                        android:id="@+id/couponName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center_horizontal|bottom"
+                        android:background="@drawable/border_record2"
+                        android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="25sp" />
 
-                    <TextView
-                        android:id="@+id/obj"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="18sp"
-                        android:gravity="center_horizontal|top"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/situation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical|right"
-                    android:textColor="#3F54C9"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/situation2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical|right"
-                    android:textColor="#3F54C9"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
 
-
-                <TextView
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="點"
-                    android:textColor="#3F54C9"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
 
 
             </LinearLayout>

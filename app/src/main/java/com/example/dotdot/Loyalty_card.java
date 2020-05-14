@@ -4,6 +4,8 @@ public class Loyalty_card {
     private String points_owned;
     private String store;
     private String color;
+    private String couponCount;
+    private String dotUse;
     Loyalty_card loyalty_card;
     public Loyalty_card(){
     }
@@ -29,4 +31,19 @@ public class Loyalty_card {
         return color;
     }
 
+    public String getCouponCount() {
+        return couponCount;
+    }
+
+    public void setCouponCount(String couponCount) {
+        this.couponCount = couponCount;
+    }
+
+    public String getDotUse() {
+        return dotUse;
+    }
+
+    public void setDotUse(String dotUse) {
+        this.dotUse = dotUse;
+    }
 }
