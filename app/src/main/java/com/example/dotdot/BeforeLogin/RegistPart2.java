@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.BeforeLogin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dotdot.Member;
+import com.example.dotdot.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 

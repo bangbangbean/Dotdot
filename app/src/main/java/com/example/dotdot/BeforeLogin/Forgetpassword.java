@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.BeforeLogin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dotdot.Member;
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,7 +49,7 @@ public class Forgetpassword extends AppCompatActivity {
                                         forgetpasswordData.edit()
                                                 .putString("phone",phone)
                                                 .apply();
-                                        Intent intent = new Intent(Forgetpassword.this,Forgetpassword_1.class);
+                                        Intent intent = new Intent(Forgetpassword.this, Forgetpassword_1.class);
                                         startActivity(intent);
                                         Toast.makeText(Forgetpassword.this, "登入成功 !", Toast.LENGTH_SHORT).show();
                                     } else if(!phone.equals(inputph)){

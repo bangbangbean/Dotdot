@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.BeforeLogin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dotdot.Member;
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,7 +55,7 @@ public class Forgetpassword_1 extends AppCompatActivity {
                 String inputhintA = inputhintAnswer.getText().toString();
 
                 if(inputhintA.equals(hintAnswer)){
-                    Intent intent = new Intent(Forgetpassword_1.this,Forgetpassword_2.class);
+                    Intent intent = new Intent(Forgetpassword_1.this, Forgetpassword_2.class);
                     startActivity(intent);
                     Toast.makeText(Forgetpassword_1.this, "回答正確!", Toast.LENGTH_SHORT).show();
                 }else if(!inputhintA.equals(hintAnswer)){

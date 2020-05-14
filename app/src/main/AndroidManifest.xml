@@ -83,13 +83,13 @@
         <activity android:name=".botnav2"/>
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
-        <activity android:name=".Forgetpassword" />
+        <activity android:name=".BeforeLogin.Forgetpassword" />
         <activity android:name=".Storeregist" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Forgetpassword_2" />
+        <activity android:name=".BeforeLogin.Forgetpassword_1" />
+        <activity android:name=".BeforeLogin.Forgetpassword_2" />
 
-        <activity android:name=".Login" />
+        <activity android:name=".BeforeLogin.Login" />
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
@@ -101,8 +101,8 @@
         <activity
             android:name=".StoreIndex"
             android:label="@string/title_activity_store_index"/>
-        <activity android:name=".Regist"/>
-        <activity android:name=".RegistPart2"/>
+        <activity android:name=".BeforeLogin.Regist"/>
+        <activity android:name=".BeforeLogin.RegistPart2"/>
         <activity android:name=".TransactionRecord">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

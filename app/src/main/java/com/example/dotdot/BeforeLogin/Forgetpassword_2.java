@@ -1,4 +1,4 @@
-package com.example.dotdot;
+package com.example.dotdot.BeforeLogin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dotdot.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -64,7 +65,7 @@ public class Forgetpassword_2 extends AppCompatActivity {
 
                     memRef.document(memberId).set(upDataPassword, SetOptions.merge());
                     Toast.makeText(Forgetpassword_2.this, "密碼已更新，請重新登入", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Forgetpassword_2.this,Login.class);
+                    Intent intent = new Intent(Forgetpassword_2.this, Login.class);
                     startActivity(intent);
                     //member的亂碼Id
                     SharedPreferences memberId = getSharedPreferences("save_memberId", MODE_PRIVATE);
