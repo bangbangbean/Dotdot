@@ -29,10 +29,10 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".store_pop"
-            android:theme="@style/AppTheme.Pop"/>
+            android:theme="@style/AppTheme.Pop" />
         <activity
             android:name=".StoreNotification.StoreNotiSending"
-            android:theme="@style/AppTheme.Pop"/>
+            android:theme="@style/AppTheme.Pop" />
         <activity
             android:name=".MemberCouponManager.MemberUseCoupon"
             android:theme="@style/AppTheme.CouponContent" />
@@ -45,6 +45,7 @@
         <activity
             android:name=".MemberCouponManager.MemCouponContent"
             android:theme="@style/AppTheme.CouponContent" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" /> <!-- ACTIVITIES -->
@@ -69,7 +70,7 @@
         <activity
             android:name=".member_storemode_record"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".Store_botnav"/>
+        <activity android:name=".Store_botnav" />
 
         <activity
             android:name=".QRcode.QrcodeScannerFinal"
@@ -80,20 +81,28 @@
         <activity android:name=".QRcode.QrcodeScanner" />
         <activity android:name=".StoreCouponManager.StoreOverlookCoupon" />
         <activity android:name=".botnav" />
-        <activity android:name=".botnav2"/>
+        <activity android:name=".botnav2" />
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
-        <activity android:name=".Forgetpassword" />
+        <activity android:name=".BeforeLogin.Login" />
+        <activity android:name=".BeforeLogin.Forgetpassword" />
+        <activity android:name=".BeforeLogin.Forgetpassword_1" />
+        <activity android:name=".BeforeLogin.Forgetpassword_2" />
+        <activity android:name=".BeforeLogin.Regist" />
+        <activity android:name=".BeforeLogin.RegistPart2" />
+
+
+
         <activity android:name=".Storeregist" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Forgetpassword_1" />
-        <activity android:name=".Forgetpassword_2" />
+        <activity android:name=".Nonelogin"
+            android:theme="@style/AppTheme.Pop" />
 
-        <activity android:name=".Login" />
-        <activity android:name=".Collectioncard"/>
-        <activity
-            android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+
+        <activity android:name=".Collectioncard" />
+        <activity android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -101,12 +110,11 @@
         </activity>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
-            android:theme="@style/AppTheme.PopMe"/>
-        <activity
-            android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index"/>
-        <activity android:name=".Regist"/>
-        <activity android:name=".RegistPart2"/>
+            android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".MemberIndex"
+            android:label="@string/title_activity_maps"
+            />
+
         <activity android:name=".TransactionRecord">
 
         </activity>

@@ -116,6 +116,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         Calendar a = Calendar.getInstance();
         a.setTime(new Date());
         int year = a.get(Calendar.YEAR);
+        System.out.println(year);
         //當月月份
         Calendar b = Calendar.getInstance();
         b.setTime(new Date());

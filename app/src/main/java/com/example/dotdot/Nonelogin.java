@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.dotdot.BeforeLogin.Login;
+
 public class Nonelogin extends Activity {
 
     Button login;
@@ -42,7 +44,7 @@ public class Nonelogin extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent p = new Intent(Nonelogin.this,Login.class);
+                Intent p = new Intent(Nonelogin.this, Login.class);
                 startActivity(p);
             }
         });
