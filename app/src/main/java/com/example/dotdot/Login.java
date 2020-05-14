@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
         SharedPreferences memberId = getSharedPreferences("save_memberId", MODE_PRIVATE);
 
         EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
-        EditText inputPhone = (EditText) findViewById(R.id.inputPhone);
+        EditText inputPhone = (EditText) findViewById(R.id.newPassword);
         Button loginbtn = (Button) findViewById(R.id.loginbt);
         TextView registbtn = (TextView) findViewById(R.id.nextbtn);
         TextView forgetPassbtn = (TextView) findViewById(R.id.forgetPassbtn);

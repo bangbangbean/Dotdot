@@ -47,13 +47,13 @@
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="4dp"
         android:text="@string/regist_phone"
-        app:layout_constraintBottom_toTopOf="@+id/inputPhone"
+        app:layout_constraintBottom_toTopOf="@+id/newPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/inputPhone"
+        android:id="@+id/newPassword"
         android:layout_width="213dp"
         android:layout_height="45dp"
         android:layout_marginStart="88dp"

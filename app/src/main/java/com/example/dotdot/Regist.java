@@ -40,7 +40,7 @@ public class Regist extends AppCompatActivity {
         //確認輸入格式並跳轉到下一頁-----------------------------------------------------------------
         nextbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                inputphone = (EditText) findViewById(R.id.inputPhone);
+                inputphone = (EditText) findViewById(R.id.newPassword);
                 inputpassword = (EditText) findViewById(R.id.password);
                 inputpassagain = (EditText) findViewById(R.id.passagain);
                 inputname = (EditText) findViewById(R.id.inputName);

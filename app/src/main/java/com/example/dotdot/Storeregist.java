@@ -17,7 +17,7 @@ public class Storeregist extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("Store");
     EditText inputPhone = (EditText) findViewById(R.id.inputName);
-    EditText inputStore = (EditText) findViewById(R.id.inputPhone);
+    EditText inputStore = (EditText) findViewById(R.id.newPassword);
     EditText inputAddress = (EditText) findViewById(R.id.inputAddress);
     int allinput = 0;//所有欄位都已填寫
     int phonelen = 0;//密碼長度至少8個

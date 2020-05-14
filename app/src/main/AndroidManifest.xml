@@ -80,7 +80,6 @@
         <activity android:name=".QRcode.QrcodeScanner" />
         <activity android:name=".StoreCouponManager.StoreOverlookCoupon" />
         <activity android:name=".botnav" />
-        <activity android:name=".test" />
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
         <activity android:name=".Forgetpassword" />
@@ -88,8 +87,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Forgetpassword_2" />
-        <activity android:name=".Regist" />
-        <activity android:name=".Login" />
+
         <activity android:name=".TransactionRecord" />
         <activity android:name=".Collectioncard"/>
         <activity
@@ -102,8 +100,11 @@
             android:theme="@style/AppTheme.PopMe"/>
         <activity
             android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index">
-            <intent-filter>
+            android:label="@string/title_activity_store_index"/>
+        <activity android:name=".Regist"/>
+        <activity android:name=".RegistPart2"/>
+                <activity android:name=".Login" >
+                <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/inputPhone"
+        android:id="@+id/newPassword"
         android:layout_width="213dp"
         android:layout_height="45dp"
         android:layout_marginStart="97dp"
@@ -50,7 +50,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="15dp"
         android:text="@string/login_password"
-        app:layout_constraintTop_toBottomOf="@id/inputPhone"
+        app:layout_constraintTop_toBottomOf="@id/newPassword"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <EditText

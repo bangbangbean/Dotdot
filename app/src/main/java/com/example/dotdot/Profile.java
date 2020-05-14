@@ -40,7 +40,7 @@ public class Profile extends Fragment {
         view = inflater.inflate(R.layout.profile_fragment, container, false);
         showusername = (TextView)view.findViewById(R.id.inputName);
         showpassword = (TextView) view.findViewById(R.id.password);
-        showphone = (TextView) view.findViewById(R.id.inputPhone);
+        showphone = (TextView) view.findViewById(R.id.newPassword);
         button2 = (Button)view.findViewById(R.id.button2);
 
         //鎖定編輯
