@@ -95,13 +95,11 @@ public class member_storemode_record extends Activity {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Loyalty_card loyalty_card = documentSnapshot.toObject(Loyalty_card.class);
-                            TextView store1 = (TextView)findViewById(R.id.memberRecStoreName);
                             Button points_owned = (Button) findViewById(R.id.getDot);
                             button1 = (Button) findViewById(R.id.useDot);
                             button3 = (Button) findViewById(R.id.getCoupon);
                             button1.setText(loyalty_card.getDotUse());
                             button3.setText(loyalty_card.getCouponCount());
-                            store1.setText(loyalty_card.getStore());
                             points_owned.setText(loyalty_card.getPoints_owned());
                         }
                     }

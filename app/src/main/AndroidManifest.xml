@@ -89,7 +89,7 @@
         <activity android:name=".Forgetpassword_1" />
         <activity android:name=".Forgetpassword_2" />
 
-        <activity android:name=".TransactionRecord" />
+        <activity android:name=".Login" />
         <activity android:name=".Collectioncard"/>
         <activity
             android:name=".MemberIndex"
@@ -103,7 +103,7 @@
             android:label="@string/title_activity_store_index"/>
         <activity android:name=".Regist"/>
         <activity android:name=".RegistPart2"/>
-        <activity android:name=".Login">
+        <activity android:name=".TransactionRecord">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
