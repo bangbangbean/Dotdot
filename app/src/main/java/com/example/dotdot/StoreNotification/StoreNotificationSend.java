@@ -31,7 +31,13 @@ import com.yanzhenjie.recyclerview.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.SwipeRecyclerView;
 import com.yanzhenjie.recyclerview.widget.DefaultItemDecoration;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class StoreNotificationSend extends Fragment {
+
+    String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+            .getString("user_id", "沒會員登入");
+
 
     private View PrivateView;
     private SwipeRecyclerView notiList;
@@ -39,8 +45,8 @@ public class StoreNotificationSend extends Fragment {
     private Button btn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference notiRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("Notice");
+    private CollectionReference notiRef = db.collection("store");
+
 
     @Nullable
     @Override
@@ -64,7 +70,7 @@ public class StoreNotificationSend extends Fragment {
     }
 
     public void setUpRecyclerView(){
-        Query query = notiRef.orderBy("time", Query.Direction.DESCENDING);
+        Query query = notiRef.document(storeID).collection("Notice").orderBy("time", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note_store_noit> options = new FirestoreRecyclerOptions.Builder<Note_store_noit>()
                 .setQuery(query, Note_store_noit.class)

@@ -43,6 +43,9 @@ public class StoreNotiSending extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_noti_sending);
 
@@ -65,7 +68,7 @@ public class StoreNotiSending extends Activity {
         //固定Session(店家)---------------------------------------
         SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
         final SharedPreferences.Editor editor = session.edit();
-        editor.putString("user_id", "nQnT8AAt4NYIRYZFZfAR"); //椒麻雞大王
+        editor.putString("user_id", storeID); //椒麻雞大王
         editor.commit();
         who = session.getString("user_id","目前沒人登入");
 

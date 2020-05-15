@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,16 +23,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class StoreTransaction extends Fragment {
 
     private RecyclerView recyclerView;
     private Switch modeSwitch = null;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference storeref = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("giveDotRecord");
-    private CollectionReference storeref2 = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("couponBeenExchange");
+    private CollectionReference storeref = db.collection("store");
 
     private StorePointRecAdapter adapter;
     private StoreCouponRecordAdapter adapter2;
@@ -70,7 +70,10 @@ public class StoreTransaction extends Fragment {
 
 
     private void setUpRecyclerView() {
-        Query query = storeref;
+        String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
+        Query query = storeref.document(storeID).collection("giveDotRecord");
         FirestoreRecyclerOptions<StorePointRec> options = new FirestoreRecyclerOptions.Builder<StorePointRec>()
                 .setQuery(query, StorePointRec.class)
                 .build();
@@ -85,7 +88,9 @@ public class StoreTransaction extends Fragment {
     }
 
     private void setUpRecyclerView2() {
-        Query query = storeref2;
+        String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+        Query query = storeref.document(storeID).collection("couponBeenExchange");
         FirestoreRecyclerOptions<StoreCouponRecord> options = new FirestoreRecyclerOptions.Builder<StoreCouponRecord>()
                 .setQuery(query, StoreCouponRecord.class)
                 .build();

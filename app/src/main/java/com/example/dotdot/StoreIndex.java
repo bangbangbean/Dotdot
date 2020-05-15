@@ -3,6 +3,7 @@ package com.example.dotdot;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -67,6 +68,10 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_index);
+        SharedPreferences storeId = getSharedPreferences("save_storeId", MODE_PRIVATE);
+        storeId.edit()
+                .putString("user_id", "nQnT8AAt4NYIRYZFZfAR")
+                .apply();
 
 
 
@@ -89,7 +94,9 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         Storetitle = findViewById(R.id.storetitle);
         //記得改成session
-        memRef.document("nQnT8AAt4NYIRYZFZfAR").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+        memRef.document(storeID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
@@ -104,11 +111,8 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         //--------------------------------------------------------------------------------------
         //當月月份
         Mon = findViewById(R.id.mom);
-
         SimpleDateFormat sdf = new SimpleDateFormat("MM");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("YYYY-MM");
         String date = sdf.format(new java.util.Date());
-        String date1 = sdf1.format(new java.util.Date());
         Mon.setText(date + "月");
 
 
@@ -117,14 +121,16 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         a.setTime(new Date());
         int year = a.get(Calendar.YEAR);
         System.out.println(year);
+
         //當月月份
         Calendar b = Calendar.getInstance();
         b.setTime(new Date());
         int month = b.get(Calendar.MONTH);
+
         //判斷時間
         Date dt = new Date(year - 1900, month, 01);
 
-        //
+
         //點數總和
 
         note.whereGreaterThan("time", dt)
@@ -152,11 +158,6 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         memRef1.whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
-
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots1) {
-
-                }
-
                 coupongiven = findViewById(R.id.couponsgive);
                 coupongiven.setText(Integer.toString(queryDocumentSnapshots1.size()));
             }

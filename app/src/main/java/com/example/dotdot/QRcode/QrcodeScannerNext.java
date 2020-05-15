@@ -43,7 +43,7 @@ public class QrcodeScannerNext extends Activity {
 
     //FireStore---------------------------------------------------
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference storeRef = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR");
+
     private CollectionReference stoRef = db.collection("store");
     private CollectionReference memRef = db.collection("Member");
 
@@ -89,8 +89,9 @@ public class QrcodeScannerNext extends Activity {
     public void countPoint(){
         Bundle bundle66 =this.getIntent().getExtras();
         String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
-
-        storeRef.get()
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+        stoRef.document(storeID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {

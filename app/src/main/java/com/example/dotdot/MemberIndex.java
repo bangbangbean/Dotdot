@@ -10,6 +10,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.api.client.util.Data;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,10 +42,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
-import static android.widget.Toast.makeText;
 import static com.example.dotdot.App.CHANNEL_1_ID;
+import static android.widget.Toast.makeText;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -122,6 +125,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
             startActivity(r);
 
         } else {
+            addmarker();
             makeText(this, "登入成功", Toast.LENGTH_LONG).show();
 
         }
@@ -143,7 +147,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     ACCESS_FINE_LOCATION}, RESQUEST_PERMISSION_LOCATION);
         } else {
             getMyLocation();
-            makeText(this, "登入成功", Toast.LENGTH_LONG).show();
+
         }
 
         mMap.setMyLocationEnabled(true);
@@ -170,24 +174,12 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
                     mMap.addMarker(options);
 
-                    MarkerOptions options1 = new MarkerOptions();
-                    options1.title("崔舍");
-                    options1.snippet(point);
-                    options1.position(storerecord.loc1);
-                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-                    mMap.addMarker(options1);
-
-                    MarkerOptions options2 = new MarkerOptions();
-                    options2.title("蛋蛋早餐屋");
-                    options2.snippet(point);
-                    options2.position(storerecord.loc2);
-                    options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop3));
-                    mMap.addMarker(options2);
-
                 }
 
             }
         });
+
+
     }
 
 

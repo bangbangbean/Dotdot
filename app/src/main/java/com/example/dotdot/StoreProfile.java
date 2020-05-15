@@ -24,6 +24,8 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class StoreProfile extends Fragment {
     private TextView sname;
     private TextView saddress;
@@ -96,7 +98,10 @@ public class StoreProfile extends Fragment {
                 upData.put("name", name);
                 upData.put("address", address);
                 upData.put("phone", tele);
-                stoRef.document("nQnT8AAt4NYIRYZFZfAR").set(upData, SetOptions.merge());
+                String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                        .getString("user_id", "沒會員登入");
+
+                stoRef.document(storeID).set(upData, SetOptions.merge());
             }
         });
 

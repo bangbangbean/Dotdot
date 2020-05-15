@@ -23,14 +23,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class TransactionRecord extends Fragment {
+    String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+            .getString("user_id", "沒會員登入");
 
     private RecyclerView recyclerView;
     private Switch modeSwitch = null;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference memref = db.collection("Member").document(
-            "iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
+    private CollectionReference memref = db.collection("Member").document(memberId)
+            .collection("loyalty_card");
 
     private RecordAdapter adapter;
     private Loyalty_cardAdapter adapter2;
