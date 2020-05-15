@@ -27,7 +27,7 @@ public class Store_botnav extends AppCompatActivity{
                 selectedFragment = new StoreOverlookCoupon();
                 break;
             case R.id.consume:
-                selectedFragment = new frag2();
+                selectedFragment = new StoreTransaction();
                 break;
             case R.id.setting:
                 selectedFragment = new frag2();
