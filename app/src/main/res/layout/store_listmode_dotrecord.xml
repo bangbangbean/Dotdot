@@ -95,7 +95,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/border_record2"
                         android:gravity="center|right"
-                        android:textColor="@color/black"
+                        android:textColor="#3F54C9"
                         android:textSize="45sp" />
 
                     <TextView
