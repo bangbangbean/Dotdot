@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotdot.Coupon;
 import com.example.dotdot.R;
-import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,12 +30,12 @@ import java.util.Date;
 import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.AccessTokenManager.TAG;
 
+//OK
 public class MemberOverlookCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("store");
     private MemCouponAdapter adapter;
     private View view;
-
 
     @Nullable
     @Override
@@ -45,7 +44,7 @@ public class MemberOverlookCoupon extends Fragment {
         setUpRecyclerView();
 
         //跳轉頁到MemberCanExchangeCoupon
-        Button canExchangeBtn = (Button)view.findViewById(R.id.canExchangeBtn);
+        Button canExchangeBtn = (Button) view.findViewById(R.id.canExchangeBtn);
         canExchangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +56,7 @@ public class MemberOverlookCoupon extends Fragment {
             }
         });
         //跳轉頁到MemberOwnedCoupon
-        Button ownedCoupon = (Button)view.findViewById(R.id.ownedCoupon);
+        Button ownedCoupon = (Button) view.findViewById(R.id.ownedCoupon);
         ownedCoupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +80,7 @@ public class MemberOverlookCoupon extends Fragment {
         Date dt = new Date();
 
         Query query = storeRef.document(storeId).collection("coupon")
-                .whereGreaterThan("deadLine",dt)
+                .whereGreaterThan("deadLine", dt)
                 .orderBy("deadLine", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
@@ -100,38 +99,34 @@ public class MemberOverlookCoupon extends Fragment {
         //coupon的Id名稱
         SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
 
-
-        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener(){
+        adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                if(position != -1){
-                    smoothMoveToPosition(recyclerView , position);
+                if (position != -1) {
+                    smoothMoveToPosition(recyclerView, position);
                 }
 
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
-                        .commit();
+                        .apply();
                 couponIdpref.edit()
-                        .putString("coupon_id",documentSnapshot.getId())
-                        .commit();
+                        .putString("coupon_id", documentSnapshot.getId())
+                        .apply();
                 Intent intent = new Intent(getActivity(), MemCouponContent.class);
                 startActivity(intent);
-
-
-
             }
         });
 
     }
+
     private boolean mShouldScroll;
     private int mToPosition;
 
-    private void smoothMoveToPosition(RecyclerView recyclerView , final int position){
+    private void smoothMoveToPosition(RecyclerView recyclerView, final int position) {
 
         int firstItemPosition = -1;
         int lastItemPosition = -1;
-
 
         firstItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0));
         lastItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(recyclerView.getChildCount() - 1));
@@ -173,6 +168,7 @@ public class MemberOverlookCoupon extends Fragment {
         super.onStart();
         adapter.startListening();
     }
+
     @Override
     public void onStop() {
         super.onStop();

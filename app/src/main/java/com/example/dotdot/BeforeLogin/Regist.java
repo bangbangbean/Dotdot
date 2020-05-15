@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
+//ok
 public class Regist extends AppCompatActivity {
 
     private EditText inputphone;
@@ -31,6 +31,7 @@ public class Regist extends AppCompatActivity {
     int allinput = 0;//所有欄位都已填寫
     int passconfirm = 0;//密碼跟確認密碼輸入一致
     int passlen = 0;//密碼長度至少8個
+    int phonelen = 0;//電話號碼須為10
 
 
     @Override
@@ -71,16 +72,19 @@ public class Regist extends AppCompatActivity {
                 } else if (inputphone.length() == 0 || inputpassword.length() == 0 || inputpassagain.length() == 0
                         || inputname.length() == 0) {
                     allinput = 1;
-                    Toast.makeText(Regist.this, "註冊欄位不得為空 !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Regist.this, "註冊不得有欄位為空 !", Toast.LENGTH_LONG).show();
                 } else if (inputpassword.length() < 8) {
                     passlen = 1;
                     Toast.makeText(Regist.this, "密碼長度不得小於8個字元 !", Toast.LENGTH_LONG).show();
+                } else if (inputphone.length() != 10) {
+                    phonelen = 1;
+                    Toast.makeText(Regist.this, "電話號碼格式錯誤 !", Toast.LENGTH_LONG).show();
                 } else if (!inputpass.equals(inputpassag)) {
                     passconfirm = 1;
                     Toast.makeText(Regist.this, "密碼與確認密碼輸入不一致 !", Toast.LENGTH_LONG).show();
                 }
 
-                if (allinput == 0 && onlyacc == 0 && passlen == 0 && passconfirm == 0) {
+                if (allinput == 0 && onlyacc == 0 && passlen == 0 && passconfirm == 0 && phonelen == 0) {
                     //將資料儲存並傳到下一頁-----------------------------------------------------------
                     String phone = inputphone.getText().toString();
                     String password = inputpassword.getText().toString();
@@ -95,10 +99,6 @@ public class Regist extends AppCompatActivity {
                     Intent intent = new Intent(Regist.this, RegistPart2.class);
                     startActivity(intent);
                 }
-                onlyacc = 0;
-                allinput = 0;
-                passlen = 0;
-                passconfirm = 0;//重製變數
             }
         });
     }

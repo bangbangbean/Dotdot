@@ -21,13 +21,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
+//ok
 public class Login extends AppCompatActivity {
 
-    private static final String TAG = "";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
     int accountExist = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                    accountExist+=1;
+                                    accountExist += 1;
                                     Member mem = documentSnapshot.toObject(Member.class);
                                     String documentId = documentSnapshot.getId();
                                     String pass = mem.getPassword();
@@ -88,7 +88,7 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(Login.this, "登入失敗!", Toast.LENGTH_LONG).show();
                                     }
                                 }
-                                if(accountExist==0){
+                                if (accountExist == 0) {
                                     Toast.makeText(Login.this, "此帳號尚未被註冊!", Toast.LENGTH_LONG).show();
                                 }
                             }

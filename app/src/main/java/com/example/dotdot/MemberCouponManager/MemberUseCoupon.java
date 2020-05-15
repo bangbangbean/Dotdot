@@ -18,9 +18,11 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+//OK
 public class MemberUseCoupon extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    int countCoupon ;
+    int countCoupon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class MemberUseCoupon extends Activity {
         //loyalty_card的亂碼Id
         String loyalty_card_id = getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
                 .getString("loyalty_card_id", "沒選擇店家");
+
         //member的亂碼Id
         String memberId = getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
@@ -52,7 +55,7 @@ public class MemberUseCoupon extends Activity {
                 cancelBtn.setVisibility(View.INVISIBLE);
                 doubleCeckBtn2.setVisibility(View.VISIBLE);
 
-                //記得改成活的 新增資料到Coupon
+                //新增資料到Coupon
                 db.collection("Member").document(memberId)
                         .collection("loyalty_card").document(loyalty_card_id)
                         .collection("Owned_Coupon").document(ownedCouponId)
@@ -102,7 +105,7 @@ public class MemberUseCoupon extends Activity {
         params.gravity = Gravity.CENTER;
 
         params.x = 0;
-        params.y =-10;
+        params.y = -10;
 
         getWindow().setAttributes(params);
     }

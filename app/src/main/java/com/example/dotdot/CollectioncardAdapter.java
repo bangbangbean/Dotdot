@@ -364,12 +364,12 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         return new CollectioncardHolder(v);
     }
 
-    public void myLoveItem(int position) {
+    public void myLoveItem(int position ,String memberId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference memRef = db.collection("Member");
 
         String id = getSnapshots().getSnapshot(position).getId();
-        memRef.document("iICTR1JL4eAG4B3QBi1S")//須改活
+        memRef.document(memberId)//須改活
                 .collection("loyalty_card")
                 .document(id)
                 .get()
@@ -378,17 +378,18 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         LoyaltyCard loyaltyCard = documentSnapshot.toObject(LoyaltyCard.class);
                         Boolean f = loyaltyCard.getFavorite();
+
                         if (f.equals(false)) {
                             //False修改為True
                             Map<Object, Object> upData = new HashMap<>();
                             upData.put("favorite", true);
-                            memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                            memRef.document(memberId).collection("loyalty_card")
                                     .document(id).set(upData, SetOptions.merge());
                         } else {
                             //True修改為False
                             Map<Object, Object> Data = new HashMap<>();
                             Data.put("favorite", false);
-                            memRef.document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card")
+                            memRef.document(memberId).collection("loyalty_card")
                                     .document(id).set(Data, SetOptions.merge());
                         }
                     }

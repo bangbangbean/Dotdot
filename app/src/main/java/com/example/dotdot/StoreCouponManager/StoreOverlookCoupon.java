@@ -24,8 +24,8 @@ import com.google.firebase.firestore.Query;
 
 import static android.content.Context.MODE_PRIVATE;
 
+//OK
 public class StoreOverlookCoupon extends Fragment {
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("store")
             .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
@@ -62,11 +62,7 @@ public class StoreOverlookCoupon extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(adapter);
 
-
         SharedPreferences couponpref = this.getActivity().getSharedPreferences("save_coupon", MODE_PRIVATE);
-
-
-
 
         adapter.setOnItemClickListener(new CouponAdapter.OnItemClickListener() {
             @Override
@@ -75,7 +71,7 @@ public class StoreOverlookCoupon extends Fragment {
                 String title = coupon.getCouponTitle();
                 couponpref.edit()
                     .putString("coupon_title", title)
-                    .commit();
+                    .apply();
                 Intent intent = new Intent(getActivity(), CouponContent.class);
                 startActivity(intent);
             }

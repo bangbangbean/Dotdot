@@ -1,5 +1,7 @@
 package com.example.dotdot;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.dotdot.BeforeLogin.Login;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +30,6 @@ public class Profile extends Fragment {
     private TextView showusername;
     private TextView showpassword;
     private TextView showphone;
-    private Button button2;
     private Integer a = 1;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -41,7 +43,22 @@ public class Profile extends Fragment {
         showusername = (TextView)view.findViewById(R.id.inputName);
         showpassword = (TextView) view.findViewById(R.id.password);
         showphone = (TextView) view.findViewById(R.id.newPassword);
-        button2 = (Button)view.findViewById(R.id.button2);
+        Button editBtn = (Button)view.findViewById(R.id.editBtn);
+        Button logoutBtn = (Button)view.findViewById(R.id.logoutBtn);
+
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE);
+                memberId.edit()
+                        .clear()
+                        .apply();
+                Intent i = new Intent(getActivity(), Login.class);
+                startActivity(i);
+            }
+        });
+
 
         //鎖定編輯
         showusername.setFocusable(false);
@@ -52,7 +69,7 @@ public class Profile extends Fragment {
         showphone.setFocusableInTouchMode(false);
 
         //控制editText可否編輯
-        button2.setOnClickListener(new View.OnClickListener() {
+        editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(a == 1){

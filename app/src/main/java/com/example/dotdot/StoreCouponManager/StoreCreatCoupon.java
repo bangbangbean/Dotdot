@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+//OK
 public class StoreCreatCoupon extends Activity {
     private TextView et_startTime;
     private TextView et_endTime;
@@ -38,7 +39,7 @@ public class StoreCreatCoupon extends Activity {
     private Date endTime = new Date();
     private TimePickerView pvTime;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store");
+    private CollectionReference storeRef = db.collection("store");
     String beginning, ending;
     int tit = 1;//title
     int dot = 1;//need
@@ -66,27 +67,27 @@ public class StoreCreatCoupon extends Activity {
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
-                } else if (couponContent.length() == 0 ) {
+                } else if (couponContent.length() == 0) {
                     con = 0;
-                    Toast t =Toast.makeText(StoreCreatCoupon.this, "優惠券內容不得為空 !", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(StoreCreatCoupon.this, "優惠券內容不得為空 !", Toast.LENGTH_LONG);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
                 } else if (dotNeed.length() == 0) {
                     dot = 0;
-                    Toast t =Toast.makeText(StoreCreatCoupon.this, "點數需求不得為空 !", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(StoreCreatCoupon.this, "點數需求不得為空 !", Toast.LENGTH_LONG);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
                 } else if (beginning.length() == 0) {
                     Stime = 0;
-                    Toast t =Toast.makeText(StoreCreatCoupon.this, "請選擇開始時間 !", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(StoreCreatCoupon.this, "請選擇開始時間 !", Toast.LENGTH_LONG);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
-                }else if (ending.length() == 0) {
+                } else if (ending.length() == 0) {
                     Etime = 0;
-                    Toast t =Toast.makeText(StoreCreatCoupon.this, "請選擇結束時間 !", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(StoreCreatCoupon.this, "請選擇結束時間 !", Toast.LENGTH_LONG);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
@@ -94,7 +95,7 @@ public class StoreCreatCoupon extends Activity {
 
                 if (tit == 1 && dot == 1 && con == 1 && Stime == 1 && Etime == 1) {
                     creatCoupon();
-                    Toast t =Toast.makeText(StoreCreatCoupon.this, "新增成功 !", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(StoreCreatCoupon.this, "新增成功 !", Toast.LENGTH_LONG);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
@@ -260,7 +261,7 @@ public class StoreCreatCoupon extends Activity {
         String content = couponContent.getText().toString();
         Integer need = Integer.parseInt(dotNeed.getText().toString());
         Coupon coupon = new Coupon(getDateFromString(beginning), getDateFromString(ending), title, content, need);
-        couponRef.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
+        storeRef.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
                 .add(coupon);
 
     }

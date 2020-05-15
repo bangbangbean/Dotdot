@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+//OK
 public class ConfirmExchange extends Activity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -32,7 +33,6 @@ public class ConfirmExchange extends Activity {
     int storeDotNeed;
     int countCoupon;
     int countDot;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,6 @@ public class ConfirmExchange extends Activity {
         Button doubleCeckBtn2 = findViewById(R.id.doubleCheckBtn2);
 
         doubleCeckBtn2.setVisibility(View.INVISIBLE);
-
-
 
         //coupon的title名稱
         String whichCoupon = getSharedPreferences("save_coupon", MODE_PRIVATE)
@@ -77,6 +75,7 @@ public class ConfirmExchange extends Activity {
         //memberPointOwned
         int memberPointOwned = getSharedPreferences("save_memberPointOwned", MODE_PRIVATE)
                 .getInt("memberPointOwned", 123);
+
         memberPoint.setText(Integer.toString(memberPointOwned));
 
         storeRef.document(storeId).collection("coupon")
@@ -92,7 +91,6 @@ public class ConfirmExchange extends Activity {
                         }
                     }
                 });
-
 
         doubleCheckBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -156,6 +154,7 @@ public class ConfirmExchange extends Activity {
                                     }
                                 }
                             });
+
                     //新增資料到member的Loyalty的Record
                     String i = Integer.toString(storeDotNeed);
                     String use = "-" + i;

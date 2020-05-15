@@ -16,8 +16,8 @@ import com.example.dotdot.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+//ok
 public class RegistPart2 extends AppCompatActivity {
-
 
     EditText inputhintQuestion;
     EditText inputhintAnswer;
@@ -61,10 +61,10 @@ public class RegistPart2 extends AppCompatActivity {
 
                 if (hintQuestion.length() == 0) {
                     hintQuestionConfirm = 1;
-                    Toast.makeText(RegistPart2.this, "問題題目不得為空 !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistPart2.this, "請輸入問題題目 !", Toast.LENGTH_LONG).show();
                 } else if (hintAnswer.length() == 0) {
                     hintAnswerConfirm = 1;
-                    Toast.makeText(RegistPart2.this, "題目答案不得為空 !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistPart2.this, "請輸入題目答案 !", Toast.LENGTH_LONG).show();
                 }
 
                 if (hintAnswerConfirm == 0 && hintQuestionConfirm == 0) {

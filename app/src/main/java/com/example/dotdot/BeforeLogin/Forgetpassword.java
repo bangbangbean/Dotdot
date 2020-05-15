@@ -18,12 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
+//OK
 public class Forgetpassword extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
-    int haveAcc = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +46,12 @@ public class Forgetpassword extends AppCompatActivity {
                                     if (phone.equals(inputph)) {
                                         SharedPreferences forgetpasswordData = getSharedPreferences("save_forgetpasswordData", MODE_PRIVATE);
                                         forgetpasswordData.edit()
-                                                .putString("phone",phone)
+                                                .putString("phone", phone)
                                                 .apply();
                                         Intent intent = new Intent(Forgetpassword.this, Forgetpassword_1.class);
                                         startActivity(intent);
                                         Toast.makeText(Forgetpassword.this, "登入成功 !", Toast.LENGTH_SHORT).show();
-                                    } else if(!phone.equals(inputph)){
+                                    } else if (!phone.equals(inputph)) {
                                         Toast.makeText(Forgetpassword.this, "此手機號碼並未註冊過 !\n請確認輸入是否有誤", Toast.LENGTH_SHORT).show();
                                     }
                                 }

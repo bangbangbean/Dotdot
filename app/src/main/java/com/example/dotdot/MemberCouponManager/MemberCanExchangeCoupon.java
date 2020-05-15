@@ -19,18 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotdot.Coupon;
 import com.example.dotdot.R;
-import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.Collections;
-
 import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.AccessTokenManager.TAG;
 
+//OK
 public class MemberCanExchangeCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference storeRef = db.collection("store");
@@ -54,6 +52,7 @@ public class MemberCanExchangeCoupon extends Fragment {
                 ft.commit();
             }
         });
+
         //跳轉頁到MemberOwnedCoupon
         Button ownedCoupon = (Button) view.findViewById(R.id.ownedCoupon);
         ownedCoupon.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +65,8 @@ public class MemberCanExchangeCoupon extends Fragment {
                 ft.commit();
             }
         });
-        setUpRecyclerView();
 
+        setUpRecyclerView();
         return view;
     }
 
@@ -100,23 +99,21 @@ public class MemberCanExchangeCoupon extends Fragment {
         //coupon的Id名稱
         SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
 
-
         adapter.setOnItemClickListener(new MemCouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                if(position != -1){
-                    smoothMoveToPosition(recyclerView , position);
+                if (position != -1) {
+                    smoothMoveToPosition(recyclerView, position);
                 }
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
-                        .commit();
+                        .apply();
                 couponIdpref.edit()
                         .putString("coupon_id", documentSnapshot.getId())
-                        .commit();
+                        .apply();
                 Intent intent = new Intent(getActivity(), MemCouponContent.class);
                 startActivity(intent);
-
             }
         });
     }
@@ -124,11 +121,10 @@ public class MemberCanExchangeCoupon extends Fragment {
     private boolean mShouldScroll;
     private int mToPosition;
 
-    private void smoothMoveToPosition(RecyclerView recyclerView , final int position){
+    private void smoothMoveToPosition(RecyclerView recyclerView, final int position) {
 
         int firstItemPosition = -1;
         int lastItemPosition = -1;
-
 
         firstItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0));
         lastItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(recyclerView.getChildCount() - 1));
@@ -161,9 +157,7 @@ public class MemberCanExchangeCoupon extends Fragment {
                 }
             }
         });
-
     }
-
 
     @Override
     public void onStart() {

@@ -28,19 +28,18 @@ import com.google.firebase.firestore.Query;
 import static android.content.Context.MODE_PRIVATE;
 import static com.facebook.AccessTokenManager.TAG;
 
+//OK
 public class MemberOwnedCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("Member");
     private MemberOwnedCouponAdapter adapter;
     private View view;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_member_owned_coupon, container, false);
         setUpRecyclerView();
-
 
         //跳轉頁到MemberCanExchangeCoupon
         Button canExchangeBtn = (Button) view.findViewById(R.id.canExchangeBtn);
@@ -67,9 +66,6 @@ public class MemberOwnedCoupon extends Fragment {
             }
         });
 
-
-
-
         return view;
     }
 
@@ -80,8 +76,17 @@ public class MemberOwnedCoupon extends Fragment {
                 .getString("loyalty_card_id", "沒選擇店家");
 
         //member的亂碼Id
-        String memberId =this.getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+        String memberId = this.getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
+
+        //coupon的title名稱
+        SharedPreferences couponpref = this.getActivity().getSharedPreferences("save_coupon", MODE_PRIVATE);
+
+        //coupon的Id名稱
+        SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
+
+        //ownedcoupon的Id名稱
+        SharedPreferences ownedCouponIdpref = this.getActivity().getSharedPreferences("save_ownedCouponId", MODE_PRIVATE);
 
         Query query = memRef.document(memberId)
                 .collection("loyalty_card").document(loyalty_card_id)
@@ -98,46 +103,36 @@ public class MemberOwnedCoupon extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(adapter);
 
-
-        //coupon的title名稱
-        SharedPreferences couponpref = this.getActivity().getSharedPreferences("save_coupon", MODE_PRIVATE);
-
-        //coupon的Id名稱
-        SharedPreferences couponIdpref = this.getActivity().getSharedPreferences("save_couponId", MODE_PRIVATE);
-
-        //ownedcoupon的Id名稱
-        SharedPreferences ownedCouponIdpref = this.getActivity().getSharedPreferences("save_ownedCouponId", MODE_PRIVATE);
-
         adapter.setOnItemClickListener(new MemberOwnedCouponAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                if(position != -1) {
+                if (position != -1) {
                     smoothMoveToPosition(recyclerView, position);
                 }
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 ownedCouponIdpref.edit()
                         .putString("owned_coupon_id", documentSnapshot.getId())
-                        .commit();
+                        .apply();
                 couponpref.edit()
                         .putString("coupon_title", coupon.getCouponTitle())
-                        .commit();
+                        .apply();
                 couponIdpref.edit()
                         .putString("coupon_id", documentSnapshot.getId())
-                        .commit();
+                        .apply();
                 Intent intent = new Intent(getActivity(), MemberOwnedCouponContent.class);
                 startActivity(intent);
             }
         });
 
     }
+
     private boolean mShouldScroll;
     private int mToPosition;
 
-    private void smoothMoveToPosition(RecyclerView recyclerView , final int position){
+    private void smoothMoveToPosition(RecyclerView recyclerView, final int position) {
 
         int firstItemPosition = -1;
         int lastItemPosition = -1;
-
 
         firstItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0));
         lastItemPosition = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(recyclerView.getChildCount() - 1));
@@ -172,9 +167,6 @@ public class MemberOwnedCoupon extends Fragment {
         });
 
     }
-
-
-
 
     @Override
     public void onStart() {

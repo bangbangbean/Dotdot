@@ -1,29 +1,24 @@
 package com.example.dotdot.MemberCouponManager;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dotdot.Coupon;
 import com.example.dotdot.R;
-import com.example.dotdot.recycleritemanim.ExpandableViewHoldersUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 
+//OK
 public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCouponAdapter.MemCouponHolder> {
     private MemCouponAdapter.OnItemClickListener listener;
-    //private ExpandableViewHoldersUtil.KeepOneHolder<MemCouponHolder> keepOne;
 
     public MemCouponAdapter(@NonNull FirestoreRecyclerOptions<Coupon> options) {
         super(options);
@@ -35,7 +30,6 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
         memCouponHolder.couponTitle.setText(coupon.getCouponTitle());
         memCouponHolder.couponPoint.setText(Integer.toString(coupon.getDotNeed()));
         memCouponHolder.endTime.setText(sdf.format(coupon.getDeadLine()));
-
     }
 
     @NonNull
@@ -46,12 +40,10 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
         return new MemCouponAdapter.MemCouponHolder(v);
     }
 
-    public class MemCouponHolder extends RecyclerView.ViewHolder{
+    public class MemCouponHolder extends RecyclerView.ViewHolder {
         private TextView couponTitle;
         private TextView couponPoint;
         private TextView endTime;
-
-
 
         public MemCouponHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,10 +59,9 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
                     }
                 }
             });
-
         }
-
     }
+
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
@@ -78,5 +69,4 @@ public class MemCouponAdapter extends FirestoreRecyclerAdapter<Coupon, MemCoupon
     public void setOnItemClickListener(MemCouponAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
-
 }

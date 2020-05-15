@@ -10,7 +10,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,7 +32,6 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.api.client.util.Data;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,11 +40,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 
-import static com.example.dotdot.App.CHANNEL_1_ID;
 import static android.widget.Toast.makeText;
+import static com.example.dotdot.App.CHANNEL_1_ID;
 
 public class MemberIndex extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
@@ -54,11 +51,11 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference qq = db.collection("store");
+    private CollectionReference storeref = db.collection("store");
     private CollectionReference loy = db.collection("Member")
             .document("iICTR1JL4eAG4B3QBi1S").collection("loyalty_card");
     //記得改成session
-    private CollectionReference note = db.collection("Member");
+    private CollectionReference memref = db.collection("Member");
 
     private NotificationManagerCompat notificationManager;
     private String dot;
@@ -158,7 +155,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
         //member的亂碼Id
         String memberId = getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
-        note.document(memberId).collection("loyalty_card")
+        memref.document(memberId).collection("loyalty_card")
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -191,97 +188,6 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
             }
         });
-
-//        note.document(memberId).collection("loyalty_card")
-//                .document("BxskPfoZCfztCUSuDUOu")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()) {
-//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-//                            MarkerOptions options = new MarkerOptions();
-//                            String title = poi.getStore();
-//                            String point = poi.getPoints_owned();
-//                            String color = poi.getColor();
-//                            options.title("椒麻雞大王");
-//                            options.snippet(point);
-//                            options.position(storerecord.chicken);
-//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-//                            mMap.addMarker(options);
-//
-//                        }
-//
-//                    }
-//                });
-//        note.document(memberId).collection("loyalty_card")
-//                .document("11cbdffohVBW7MQ1lDh4")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()) {
-//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-//                            MarkerOptions options = new MarkerOptions();
-//                            String title = poi.getStore();
-//                            String point = poi.getPoints_owned();
-//                            options.title("椒麻雞大王");
-//                            options.snippet(point);
-//                            options.position(storerecord.chicken);
-//                            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-//                            mMap.addMarker(options);
-//
-//                        }
-//
-//                    }
-//                });
-//
-//
-//        note.document(memberId).collection("loyalty_card")
-//                .document("ZuzoCsJcH5kXvCjIpKfC")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()) {
-//                            Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-//                            MarkerOptions options1 = new MarkerOptions();
-//                            String title = poi.getStore();
-//                            String point = poi.getPoints_owned();
-//                            options1.title("崔舍");
-//                            options1.snippet(point);
-//                            options1.position(storerecord.loc1);
-//                            options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-//                            mMap.addMarker(options1);
-//
-//                        }
-//
-//                    }
-//                });
-//
-//        note.document(memberId).collection("loyalty_card")
-//                .document("IINi2hdusAGMTRUrszFr")
-//                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if (documentSnapshot.exists()) {
-//                    Loyalty_card poi = documentSnapshot.toObject(Loyalty_card.class);
-//                    MarkerOptions options1 = new MarkerOptions();
-//                    String title = poi.getStore();
-//                    String point = poi.getPoints_owned();
-//                    options1.title("崔舍");
-//                    options1.snippet(point);
-//                    options1.position(storerecord.loc1);
-//                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
-//                    mMap.addMarker(options1);
-//
-//                }
-//
-//            }
-//        });
-
-
     }
 
 
@@ -347,7 +253,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                                                     if (dot != null) {  //只抓取"得到點數"的紀錄
                                                         sto = m.getStoreId();
 
-                                                        qq.document(sto) //storeID轉換店名
+                                                        storeref.document(sto) //storeID轉換店名
                                                                 .get()
                                                                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                                                     @Override
@@ -366,7 +272,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                                                         if (dot != null) {  //只抓取得到點數的紀錄
                                                             sto = m.getStoreId();
 
-                                                            qq.document(sto) //storeID轉換店名
+                                                            storeref.document(sto) //storeID轉換店名
                                                                     .get()
                                                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                                                         @Override

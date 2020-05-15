@@ -21,17 +21,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
+//OK
 public class MemCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference storeRef = db.collection("store");
 
-    private CollectionReference couponRef = db.collection("store");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_mem_coupon_content);
 
-        Button confirmBtn = (Button)findViewById(R.id.confirmBtn);
+        Button confirmBtn = (Button) findViewById(R.id.confirmBtn);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,19 +49,18 @@ public class MemCouponContent extends Activity {
         String storeId = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("store_id", "沒選擇店家");
 
-
-        couponRef.document(storeId).collection("coupon")
-                .whereEqualTo("couponTitle",whichCoupon)
+        storeRef.document(storeId).collection("coupon")
+                .whereEqualTo("couponTitle", whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Coupon coupon = documentSnapshot.toObject(Coupon.class);
-                            TextView title = (TextView)findViewById(R.id.title);
-                            TextView point = (TextView)findViewById(R.id.point);
-                            TextView content = (TextView)findViewById(R.id.content);
-                            TextView deadLine = (TextView)findViewById(R.id.deadLine);
+                            TextView title = (TextView) findViewById(R.id.title);
+                            TextView point = (TextView) findViewById(R.id.point);
+                            TextView content = (TextView) findViewById(R.id.content);
+                            TextView deadLine = (TextView) findViewById(R.id.deadLine);
                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                             title.setText(coupon.getCouponTitle());
                             point.setText(Integer.toString(coupon.getDotNeed()));

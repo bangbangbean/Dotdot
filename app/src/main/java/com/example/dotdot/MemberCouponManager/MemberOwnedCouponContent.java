@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
+//OK
 public class MemberOwnedCouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
