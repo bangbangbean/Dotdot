@@ -261,7 +261,11 @@ public class StoreCreatCoupon extends Activity {
         String content = couponContent.getText().toString();
         Integer need = Integer.parseInt(dotNeed.getText().toString());
         Coupon coupon = new Coupon(getDateFromString(beginning), getDateFromString(ending), title, content, need);
-        storeRef.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
+        //店家ID
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
+        storeRef.document(storeID).collection("coupon")
                 .add(coupon);
 
     }

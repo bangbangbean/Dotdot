@@ -49,7 +49,8 @@ public class StoreOverlookCoupon extends Fragment {
     }
 
     private void setUpRecyclerView() {
-        String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+        //店家ID
+        String storeID = getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
 
         Query query = storeRef.document(storeID).collection("coupon")
@@ -72,8 +73,8 @@ public class StoreOverlookCoupon extends Fragment {
                 Coupon coupon = documentSnapshot.toObject(Coupon.class);
                 String title = coupon.getCouponTitle();
                 couponpref.edit()
-                    .putString("coupon_title", title)
-                    .apply();
+                        .putString("coupon_title", title)
+                        .apply();
                 Intent intent = new Intent(getActivity(), CouponContent.class);
                 startActivity(intent);
             }

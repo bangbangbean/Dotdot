@@ -29,6 +29,7 @@ public class StoreCreatLoyaltyCard extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText inputDollar;
     String Threshold;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,7 +65,8 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 dot7.setBackgroundDrawable(dot_green);
                 color = "green";
             }
-        });setBlue.setOnClickListener(new View.OnClickListener() {
+        });
+        setBlue.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Drawable dot_blue = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.blue_dot);
                 dot1.setBackgroundDrawable(dot_blue);
@@ -76,7 +78,8 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 dot7.setBackgroundDrawable(dot_blue);
                 color = "blue";
             }
-        });setRed.setOnClickListener(new View.OnClickListener() {
+        });
+        setRed.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Drawable dot_red = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.red_dot);
                 dot1.setBackgroundDrawable(dot_red);
@@ -88,7 +91,8 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 dot7.setBackgroundDrawable(dot_red);
                 color = "red";
             }
-        });setYellow.setOnClickListener(new View.OnClickListener() {
+        });
+        setYellow.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Drawable dot_yellow = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.yellow_dot);
                 dot1.setBackgroundDrawable(dot_yellow);
@@ -105,14 +109,16 @@ public class StoreCreatLoyaltyCard extends Fragment {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if(inputDollar.length() == 0){
+                if (inputDollar.length() == 0) {
                     Toast t = Toast.makeText(getContext(), "請輸入金錢點數比金額 !", Toast.LENGTH_SHORT);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
                     t.show();
-                }else{
-                    String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                } else {
+                    //店家ID
+                    String storeID = getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                             .getString("user_id", "沒會員登入");
+
                     String money = inputDollar.getText().toString();
                     Map<Object, Object> StoreCreatLoyaltyCard = new HashMap<>();
                     StoreCreatLoyaltyCard.put("color", color);
@@ -133,6 +139,6 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 }
             }
         });
-            return view;
+        return view;
     }
 }

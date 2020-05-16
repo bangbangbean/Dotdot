@@ -21,8 +21,7 @@ import java.text.SimpleDateFormat;
 //OK
 public class CouponContent extends Activity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference couponRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
+    private CollectionReference storeRef = db.collection("store");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,13 @@ public class CouponContent extends Activity {
         String whichCoupon = getSharedPreferences("save_coupon", MODE_PRIVATE)
                 .getString("coupon_title", "沒選到Coupon");
 
-        couponRef.whereEqualTo("couponTitle", whichCoupon)
+        //店家ID
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
+
+        storeRef.document(storeID).collection("coupon")
+                .whereEqualTo("couponTitle", whichCoupon)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
