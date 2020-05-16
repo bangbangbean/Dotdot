@@ -27,8 +27,7 @@ import static android.content.Context.MODE_PRIVATE;
 //OK
 public class StoreOverlookCoupon extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference storeRef = db.collection("store")
-            .document("nQnT8AAt4NYIRYZFZfAR").collection("coupon");
+    private CollectionReference storeRef = db.collection("store");
     private CouponAdapter adapter;
     private View view;
 
@@ -50,8 +49,11 @@ public class StoreOverlookCoupon extends Fragment {
     }
 
     private void setUpRecyclerView() {
+        String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
 
-        Query query = storeRef.orderBy("deadLine", Query.Direction.DESCENDING);
+        Query query = storeRef.document(storeID).collection("coupon")
+                .orderBy("deadLine", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)
                 .build();

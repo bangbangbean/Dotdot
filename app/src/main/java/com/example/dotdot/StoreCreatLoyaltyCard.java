@@ -16,18 +16,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class StoreCreatLoyaltyCard extends Fragment {
     private String color = "blue";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference SloyaltyCardRef = db.document("store/nQnT8AAt4NYIRYZFZfAR");
-    private DocumentReference SloyaltyCardRef1 = db.document("Member/iICTR1JL4eAG4B3QBi1S/loyalty_card/BxskPfoZCfztCUSuDUOu");
     EditText inputDollar;
     String Threshold;
     @Nullable
@@ -49,15 +48,7 @@ public class StoreCreatLoyaltyCard extends Fragment {
         TextView dot6 = view.findViewById(R.id.dot6);
         TextView dot7 = view.findViewById(R.id.dot7);
         inputDollar = view.findViewById(R.id.inputDollar);
-//
-//        SloyaltyCardRef
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        Threshold = (String) documentSnapshot.get("Threshold");
-//                    }
-//                });
+
 
         //選擇顏色---------------------------------------------------------------------------
         setGreen.setOnClickListener(new View.OnClickListener() {
@@ -120,12 +111,14 @@ public class StoreCreatLoyaltyCard extends Fragment {
                     tv.setTextSize(30);
                     t.show();
                 }else{
+                    String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                            .getString("user_id", "沒會員登入");
                     String money = inputDollar.getText().toString();
                     Map<Object, Object> StoreCreatLoyaltyCard = new HashMap<>();
                     StoreCreatLoyaltyCard.put("color", color);
                     StoreCreatLoyaltyCard.put("Threshold", money);
-                    SloyaltyCardRef.set(StoreCreatLoyaltyCard, SetOptions.merge());
-                    SloyaltyCardRef1.set(StoreCreatLoyaltyCard, SetOptions.merge());
+                    db.collection("store").document(storeID)
+                            .set(StoreCreatLoyaltyCard, SetOptions.merge());
                     Toast t = Toast.makeText(getContext(), "設定集點卡成功 !", Toast.LENGTH_SHORT);
                     TextView tv = (TextView) t.getView().findViewById(android.R.id.message);
                     tv.setTextSize(30);
@@ -140,66 +133,6 @@ public class StoreCreatLoyaltyCard extends Fragment {
                 }
             }
         });
-
-//        //如果已經設定過集點卡--------------------------------------------------------------------------
-//        View view1 = inflater.inflate(R.layout.store_loyalty_card_overlook, container, false);
-//
-//        TextView Title = view1.findViewById(R.id.Title);
-//        TextView Dot1 = view1.findViewById(R.id.Dot1);
-//        TextView Dot2 = view1.findViewById(R.id.Dot2);
-//        TextView Dot3 = view1.findViewById(R.id.Dot3);
-//        TextView Dot4 = view1.findViewById(R.id.Dot4);
-//        TextView Dot5 = view1.findViewById(R.id.Dot5);
-//        TextView Dot6 = view1.findViewById(R.id.Dot6);
-//        TextView Dot7 = view1.findViewById(R.id.Dot7);
-//        TextView coupon = view1.findViewById(R.id.coupon);
-//
-//        SloyaltyCardRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        Title.setText(Threshold);
-//                        String color = (String) documentSnapshot.get("color");
-//
-//                        if (color.equals("red")) {
-//                            Drawable dot_red = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.red_dot);
-//                            Dot1.setBackgroundDrawable(dot_red);
-//                            Dot2.setBackgroundDrawable(dot_red);
-//                            Dot3.setBackgroundDrawable(dot_red);
-//                            Dot4.setBackgroundDrawable(dot_red);
-//                            Dot5.setBackgroundDrawable(dot_red);
-//                            Dot6.setBackgroundDrawable(dot_red);
-//                            Dot7.setBackgroundDrawable(dot_red);
-//                        }else if(color.equals("green")){
-//                            Drawable dot_green = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.green_dot);
-//                            Dot1.setBackgroundDrawable(dot_green);
-//                            Dot2.setBackgroundDrawable(dot_green);
-//                            Dot3.setBackgroundDrawable(dot_green);
-//                            Dot4.setBackgroundDrawable(dot_green);
-//                            Dot5.setBackgroundDrawable(dot_green);
-//                            Dot6.setBackgroundDrawable(dot_green);
-//                            Dot7.setBackgroundDrawable(dot_green);
-//                        }else if(color.equals("blue")){
-//                            Drawable dot_blue = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.blue_dot);
-//                            Dot1.setBackgroundDrawable(dot_blue);
-//                            Dot2.setBackgroundDrawable(dot_blue);
-//                            Dot3.setBackgroundDrawable(dot_blue);
-//                            Dot4.setBackgroundDrawable(dot_blue);
-//                            Dot5.setBackgroundDrawable(dot_blue);
-//                            Dot6.setBackgroundDrawable(dot_blue);
-//                            Dot7.setBackgroundDrawable(dot_blue);
-//                        }else if(color.equals("yellow")){
-//                            Drawable dot_yellow = StoreCreatLoyaltyCard.this.getResources().getDrawable(R.drawable.yellow_dot);
-//                            Dot1.setBackgroundDrawable(dot_yellow);
-//                            Dot2.setBackgroundDrawable(dot_yellow);
-//                            Dot3.setBackgroundDrawable(dot_yellow);
-//                            Dot4.setBackgroundDrawable(dot_yellow);
-//                            Dot5.setBackgroundDrawable(dot_yellow);
-//                            Dot6.setBackgroundDrawable(dot_yellow);
-//                            Dot7.setBackgroundDrawable(dot_yellow);
-//                        }
-//                    }
-//                });
             return view;
     }
 }
