@@ -38,7 +38,9 @@ public class CouponAdapter extends FirestoreRecyclerAdapter<Coupon, CouponAdapte
         Date dt = new Date();
         String nowdt = sdf.format(dt);
         if (compareDate(nowdt, deadline) == false) {
-            couponHolder.listBackground.setBackgroundColor(Color.rgb(211, 210, 210));
+            couponHolder.listBackground.setBackgroundResource(R.drawable.bgg_cou2_used);
+            //couponHolder.listBackground.setBackgroundColor(Color.rgb(211, 210, 210));
+            couponHolder.couponPoint.setTextColor(Color.rgb(147,147,147));
         }
     }
 

@@ -1,14 +1,19 @@
-package com.example.dotdot;
+package com.example.dotdot.BotNav_mem;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.dotdot.Collectioncard;
+import com.example.dotdot.MemberCouponManager.MemberOverlookCoupon;
+import com.example.dotdot.Profile;
+import com.example.dotdot.R;
+import com.example.dotdot.TransactionRecord;
+import com.example.dotdot.frag2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class botnav extends AppCompatActivity{
-
+public class botnav4 extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -24,7 +29,7 @@ public class botnav extends AppCompatActivity{
                 selectedFragment = new Collectioncard();
                 break;
             case R.id.shipping:
-                selectedFragment = new frag2();
+                selectedFragment = new MemberOverlookCoupon();
                 break;
             case R.id.consume:
                 selectedFragment = new TransactionRecord();
@@ -45,6 +50,6 @@ public class botnav extends AppCompatActivity{
         bottomNavigationView.inflateMenu(R.menu.main_menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         bottomNavigationView.setItemIconTintList(null);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Profile()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TransactionRecord()).commit();
     }
 }

@@ -1,10 +1,16 @@
-package com.example.dotdot;
+package com.example.dotdot.BotNav_mem;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.dotdot.Collectioncard;
+import com.example.dotdot.MemberCouponManager.MemberOverlookCoupon;
+import com.example.dotdot.Profile;
+import com.example.dotdot.R;
+import com.example.dotdot.TransactionRecord;
+import com.example.dotdot.frag2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class botnav2 extends AppCompatActivity{
@@ -24,7 +30,7 @@ public class botnav2 extends AppCompatActivity{
                 selectedFragment = new Collectioncard();
                 break;
             case R.id.shipping:
-                selectedFragment = new frag2();
+                selectedFragment = new MemberOverlookCoupon();
                 break;
             case R.id.consume:
                 selectedFragment = new TransactionRecord();

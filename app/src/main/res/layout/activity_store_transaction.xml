@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/personal_bg"
     tools:context=".TransactionRecord">
 
     <LinearLayout
@@ -16,40 +17,34 @@
             android:id="@+id/recordTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="25dp"
             android:text="店家紀錄"
-            android:textColor="#0870D7"
-            android:textSize="60dp" />
+            android:textColor="#3F51B5"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
         <Switch
             android:id="@+id/modeSwitch"
-            android:layout_width="208dp"
-            android:layout_height="94dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="15dp"
             android:thumb="@drawable/thumb"
             android:track="@drawable/track" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/lightgray" />
-
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="625dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="651dp"
+            android:layout_gravity="center_horizontal"/>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
