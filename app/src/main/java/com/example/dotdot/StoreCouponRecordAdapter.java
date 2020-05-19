@@ -28,14 +28,13 @@ public class StoreCouponRecordAdapter extends FirestoreRecyclerAdapter<StoreCoup
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-        storecouponrecordHolder.store_couponId.setText(storeCouponRecord.getStore_couponId());
         storecouponrecordHolder.yearmonth.setText(sdf.format(storeCouponRecord.getTime()));
         storecouponrecordHolder.day.setText(sdf1.format(storeCouponRecord.getTime()));
         storecouponrecordHolder.time.setText(sdf2.format(storeCouponRecord.getTime()));
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference couponTitle = db.collection("store");
-        couponTitle.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
+        couponTitle.document("itNDANFxcx8moOGEg8JF").collection("coupon")
                 .document(storeCouponRecord.getStore_couponId())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

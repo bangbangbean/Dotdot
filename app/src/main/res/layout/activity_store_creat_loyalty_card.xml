@@ -209,20 +209,6 @@
         app:layout_constraintStart_toStartOf="@+id/listBg" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center"
-        android:text="椒麻雞大王"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="@+id/listBg"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/listBg" />
-
-    <TextView
         android:id="@+id/textView12"
         android:layout_width="212dp"
         android:layout_height="52dp"

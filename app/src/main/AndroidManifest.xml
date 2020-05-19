@@ -88,6 +88,7 @@
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
         <activity android:name=".BeforeLogin.Login">
+
         </activity>
         <activity android:name=".BeforeLogin.Forgetpassword" />
         <activity android:name=".BeforeLogin.Forgetpassword_1" />
@@ -113,8 +114,9 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".StoreTransaction"/>
         <activity android:name=".MemberIndex"
-            android:label="@string/title_activity_maps"/>
+            android:label="@string/title_activity_maps">
 
+        </activity>
     </application>
 
 </manifest>

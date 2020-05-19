@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,16 +32,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import io.opencensus.tags.Tag;
 
 public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -70,7 +65,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_store_index);
         SharedPreferences storeId = getSharedPreferences("save_storeId", MODE_PRIVATE);
         storeId.edit()
-                .putString("user_id", "nQnT8AAt4NYIRYZFZfAR")
+                .putString("user_id", "itNDANFxcx8moOGEg8JF")
                 .apply();
 
 
