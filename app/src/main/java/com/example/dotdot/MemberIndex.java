@@ -175,15 +175,15 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     MarkerOptions options1 = new MarkerOptions();
                     options1.title("正欣自助餐");
                     options1.snippet(point);
-                    options1.position(storerecord.chicken);
-                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    options1.position(storerecord.loc1);
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
                     mMap.addMarker(options1);
 
                     MarkerOptions options2 = new MarkerOptions();
-                    options2.title("普派大叔");
+                    options2.title("古米特");
                     options2.snippet(point);
-                    options2.position(storerecord.chicken);
-                    options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    options2.position(storerecord.loc2);
+                    options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop3));
                     mMap.addMarker(options2);
 
 
@@ -204,7 +204,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                 if (location != null) {
                     LatLng mylocation = new LatLng(location.getLatitude(), location.getLongitude());
                     //記得改成mylocation
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 17));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(storerecord.chicken, 19));
 
                 }
             }

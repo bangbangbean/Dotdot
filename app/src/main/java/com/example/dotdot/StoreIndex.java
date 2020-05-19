@@ -150,7 +150,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
                 });
 
         //coupon
-        memRef1.whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        memRef1.document(storeID).collection("couponBeenExchange").whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
                 coupongiven = findViewById(R.id.couponsgive);

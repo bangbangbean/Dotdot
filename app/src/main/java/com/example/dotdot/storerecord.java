@@ -9,9 +9,9 @@ import java.util.Date;
 
 public class storerecord {
 
-    public static final LatLng loc1 = new LatLng(25.032022, 121.432804);
+    public static final LatLng loc1 = new LatLng(25.034318, 121.431252);
     public static final LatLng chicken = new LatLng(25.034434, 121.430992);
-    public static final LatLng loc2 = new LatLng(25.034197, 121.431421);
+    public static final LatLng loc2 = new LatLng(25.033648, 121.432134);
 
     private Date time;
     private String point_given;
