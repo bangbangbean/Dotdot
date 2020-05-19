@@ -48,8 +48,8 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memRef = db.collection("store");
     //記得改成session
-    private CollectionReference memRef1 = db.collection("store").document("nQnT8AAt4NYIRYZFZfAR").collection("couponBeenExchange");
-    private CollectionReference note = db.collection("store/nQnT8AAt4NYIRYZFZfAR/giveDotRecord");
+    private CollectionReference memRef1 = db.collection("store");
+    private CollectionReference note = db.collection("store");
     private GoogleMap mMap;
     private static final int RESQUEST_PERMISSION_LOCATION = 1;
     // this variable get for the location in mobile
@@ -133,7 +133,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
 
         //點數總和
 
-        note.whereGreaterThan("time", dt)
+        note.document(storeID).collection("giveDotRecord").whereGreaterThan("time", dt)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

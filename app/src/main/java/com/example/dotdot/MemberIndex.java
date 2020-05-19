@@ -174,6 +174,21 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
                     options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
                     mMap.addMarker(options);
 
+                    MarkerOptions options1 = new MarkerOptions();
+                    options1.title("正欣自助餐");
+                    options1.snippet(point);
+                    options1.position(storerecord.chicken);
+                    options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    mMap.addMarker(options1);
+
+                    MarkerOptions options2 = new MarkerOptions();
+                    options2.title("普派大叔");
+                    options2.snippet(point);
+                    options2.position(storerecord.chicken);
+                    options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+                    mMap.addMarker(options2);
+
+
                 }
 
             }
