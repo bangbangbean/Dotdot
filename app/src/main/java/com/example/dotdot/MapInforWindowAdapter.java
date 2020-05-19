@@ -52,75 +52,75 @@ public class MapInforWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         if (points == 1) {
 
-            dot1.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
         } else if (points == 2) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
         } else if (points == 3) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
         } else if (points == 4) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
 
         } else if (points == 5) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
 
         } else if (points == 6) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
-            dot6.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
+            dot6.setBackgroundResource(R.drawable.blue_dot);
         } else if (points == 7) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
-            dot6.setBackgroundResource(R.drawable.pink_dot);
-            dot7.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
+            dot6.setBackgroundResource(R.drawable.blue_dot);
+            dot7.setBackgroundResource(R.drawable.blue_dot);
         } else if (points == 8) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
-            dot6.setBackgroundResource(R.drawable.pink_dot);
-            dot7.setBackgroundResource(R.drawable.pink_dot);
-            dot8.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
+            dot6.setBackgroundResource(R.drawable.blue_dot);
+            dot7.setBackgroundResource(R.drawable.blue_dot);
+            dot8.setBackgroundResource(R.drawable.blue_dot);
 
         } else if (points == 9) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
-            dot6.setBackgroundResource(R.drawable.pink_dot);
-            dot7.setBackgroundResource(R.drawable.pink_dot);
-            dot8.setBackgroundResource(R.drawable.pink_dot);
-            dot9.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
+            dot6.setBackgroundResource(R.drawable.blue_dot);
+            dot7.setBackgroundResource(R.drawable.blue_dot);
+            dot8.setBackgroundResource(R.drawable.blue_dot);
+            dot9.setBackgroundResource(R.drawable.blue_dot);
 
 
         } else if (points >= 10) {
-            dot1.setBackgroundResource(R.drawable.pink_dot);
-            dot2.setBackgroundResource(R.drawable.pink_dot);
-            dot3.setBackgroundResource(R.drawable.pink_dot);
-            dot4.setBackgroundResource(R.drawable.pink_dot);
-            dot5.setBackgroundResource(R.drawable.pink_dot);
-            dot6.setBackgroundResource(R.drawable.pink_dot);
-            dot7.setBackgroundResource(R.drawable.pink_dot);
-            dot8.setBackgroundResource(R.drawable.pink_dot);
-            dot9.setBackgroundResource(R.drawable.pink_dot);
-            dot0.setBackgroundResource(R.drawable.pink_dot);
+            dot1.setBackgroundResource(R.drawable.blue_dot);
+            dot2.setBackgroundResource(R.drawable.blue_dot);
+            dot3.setBackgroundResource(R.drawable.blue_dot);
+            dot4.setBackgroundResource(R.drawable.blue_dot);
+            dot5.setBackgroundResource(R.drawable.blue_dot);
+            dot6.setBackgroundResource(R.drawable.blue_dot);
+            dot7.setBackgroundResource(R.drawable.blue_dot);
+            dot8.setBackgroundResource(R.drawable.blue_dot);
+            dot9.setBackgroundResource(R.drawable.blue_dot);
+            dot0.setBackgroundResource(R.drawable.blue_dot);
 
         }
 
