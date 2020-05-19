@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -130,12 +128,6 @@ public class StoreCreatLoyaltyCard extends Fragment {
                     tv.setTextSize(30);
                     t.show();
 
-                    //跳轉頁到StoreCreatLoyaltyCard
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    StoreCreatLoyaltyCard llf = new StoreCreatLoyaltyCard();
-                    ft.replace(R.id.fragment_container, llf);
-                    ft.commit();
                 }
             }
         });

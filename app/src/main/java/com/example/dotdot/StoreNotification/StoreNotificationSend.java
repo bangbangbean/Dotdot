@@ -35,8 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class StoreNotificationSend extends Fragment {
 
-    String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
-            .getString("user_id", "沒會員登入");
+
 
 
     private View PrivateView;
@@ -70,6 +69,9 @@ public class StoreNotificationSend extends Fragment {
     }
 
     public void setUpRecyclerView(){
+        String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+
         Query query = notiRef.document(storeID).collection("Notice").orderBy("time", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note_store_noit> options = new FirestoreRecyclerOptions.Builder<Note_store_noit>()

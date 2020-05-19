@@ -1,8 +1,5 @@
 package com.example.dotdot;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +9,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.dotdot.BotNav_mem.botnav;
+import com.example.dotdot.BotNav_mem.botnav2;
+import com.example.dotdot.BotNav_mem.botnav3;
+import com.example.dotdot.BotNav_mem.botnav4;
+
 public class PopActivity extends Activity {
 
 
     Button btn_profile;
     Button btn_dot;
+    Button btn_card;
+    Button btn_record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class PopActivity extends Activity {
         card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent p = new Intent(PopActivity.this,botnav.class);
+                Intent p = new Intent(PopActivity.this, botnav.class);
                 startActivity(p);
             }
         });
@@ -63,6 +67,24 @@ public class PopActivity extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(PopActivity.this , botnav2.class);
                 startActivity(i);
+            }
+        });
+
+        btn_card = findViewById(R.id.card);
+        btn_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent n = new Intent(PopActivity.this , botnav3.class);
+                startActivity(n);
+            }
+        });
+
+        btn_record = findViewById(R.id.record);
+        btn_record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent v = new Intent(PopActivity.this , botnav4.class);
+                startActivity(v);
             }
         });
 
