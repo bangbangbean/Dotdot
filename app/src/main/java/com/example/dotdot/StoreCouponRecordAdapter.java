@@ -34,7 +34,7 @@ public class StoreCouponRecordAdapter extends FirestoreRecyclerAdapter<StoreCoup
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference couponTitle = db.collection("store");
-        couponTitle.document("itNDANFxcx8moOGEg8JF").collection("coupon")
+        couponTitle.document("nQnT8AAt4NYIRYZFZfAR").collection("coupon")
                 .document(storeCouponRecord.getStore_couponId())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

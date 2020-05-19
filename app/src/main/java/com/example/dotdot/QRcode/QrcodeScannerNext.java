@@ -11,8 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
-
 import com.example.dotdot.LoyaltyCard;
 import com.example.dotdot.MemberPointRec;
 import com.example.dotdot.R;
@@ -20,11 +18,8 @@ import com.example.dotdot.Store;
 import com.example.dotdot.StorePointRec;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
@@ -88,7 +83,6 @@ public class QrcodeScannerNext extends Activity {
 
     public void countPoint(){
         Bundle bundle66 =this.getIntent().getExtras();
-        String whoData = bundle66.getString("whoData");//QRScanner 得到的會員資料
         String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
         stoRef.document(storeID).get()

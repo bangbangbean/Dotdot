@@ -65,7 +65,7 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_store_index);
         SharedPreferences storeId = getSharedPreferences("save_storeId", MODE_PRIVATE);
         storeId.edit()
-                .putString("user_id", "itNDANFxcx8moOGEg8JF")
+                .putString("user_id", "nQnT8AAt4NYIRYZFZfAR")
                 .apply();
 
 
