@@ -71,13 +71,15 @@ public class TransactionRecord extends Fragment {
 
     private void setUpRecyclerView() {
 
-        String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+        String memberId = getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
+        String loyalty_card_id = getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
+                .getString("loyalty_card_id", "沒選擇店家");
 
 
         Query query = memref.document(memberId)
                 .collection("loyalty_card")
-                .document("BxskPfoZCfztCUSuDUOu")
+                .document(loyalty_card_id)    //BUG
                 .collection("Record");
 
         FirestoreRecyclerOptions<Record> options = new FirestoreRecyclerOptions.Builder<Record>()
