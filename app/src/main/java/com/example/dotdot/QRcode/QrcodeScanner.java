@@ -126,6 +126,11 @@ public class QrcodeScanner extends Activity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initialiseDetectorsAndSources();
+    }
 
     @Override
     protected void onPause() {
