@@ -28,13 +28,13 @@ public class DotUseAdapter extends FirestoreRecyclerAdapter<DotUse, DotUseAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull DotUseHolder dotUseHolder, int i, @NonNull DotUse dotUse) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy / MM / dd");
+        //SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
         dotUseHolder.point_use.setText(dotUse.getPoint_use());
         dotUseHolder.store_couponId.setText(dotUse.getCouponTitle());
         dotUseHolder.yearmonth.setText(sdf.format(dotUse.getTime()));
-        dotUseHolder.day.setText(sdf1.format(dotUse.getTime()));
+        //dotUseHolder.day.setText(sdf1.format(dotUse.getTime()));
         dotUseHolder.time.setText(sdf2.format(dotUse.getTime()));
         dotUseHolder.storeId.setText("獲得優惠券");
     }
@@ -52,7 +52,7 @@ public class DotUseAdapter extends FirestoreRecyclerAdapter<DotUse, DotUseAdapte
         TextView storeId;
         TextView store_couponId;
         TextView yearmonth;
-        TextView day;
+        //TextView day;
         TextView time;
 
         public DotUseHolder(@NonNull View itemView) {
@@ -61,7 +61,7 @@ public class DotUseAdapter extends FirestoreRecyclerAdapter<DotUse, DotUseAdapte
             storeId = itemView.findViewById(R.id.storeName);
             store_couponId = itemView.findViewById(R.id.obj);
             yearmonth = itemView.findViewById(R.id.yearmonth);
-            day = itemView.findViewById(R.id.day);
+            //day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);
         }
     }

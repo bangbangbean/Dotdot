@@ -23,6 +23,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.text.SimpleDateFormat;
+
 import static android.content.Context.MODE_PRIVATE;
 
 public class TransactionRecord extends Fragment {
@@ -106,6 +108,8 @@ public class TransactionRecord extends Fragment {
                 .build();
 
         adapter2 = new Loyalty_cardAdapter(options);
+
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);

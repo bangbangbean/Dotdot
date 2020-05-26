@@ -80,8 +80,7 @@ public class MemberOverlookCoupon extends Fragment {
         Date dt = new Date();
 
         Query query = storeRef.document(storeId).collection("coupon")
-                .whereGreaterThan("deadLine", dt)
-                .orderBy("deadLine", Query.Direction.ASCENDING);
+                .whereGreaterThan("deadLine", dt);
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)

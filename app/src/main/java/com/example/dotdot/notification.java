@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class notification extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private notificationAdapter viewPagerAdapter;
+    //TabLayout標籤
+    private String[] titles=new String[]{"我的最愛","一般"};
+    private List<Fragment> fragments=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +67,7 @@ public class notification extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private notificationAdapter viewPagerAdapter;
-    //TabLayout標籤
-    private String[] titles=new String[]{"我的最愛","一般"};
-    private List<Fragment> fragments=new ArrayList<>();
+
 
 
     @Override

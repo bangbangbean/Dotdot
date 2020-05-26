@@ -90,7 +90,8 @@ public class MemberOwnedCoupon extends Fragment {
 
         Query query = memRef.document(memberId)
                 .collection("loyalty_card").document(loyalty_card_id)
-                .collection("Owned_Coupon");
+                .collection("Owned_Coupon")
+                .orderBy("deadLine", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<Coupon> options = new FirestoreRecyclerOptions.Builder<Coupon>()
                 .setQuery(query, Coupon.class)

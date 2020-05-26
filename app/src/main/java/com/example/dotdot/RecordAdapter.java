@@ -26,15 +26,23 @@ public class RecordAdapter extends FirestoreRecyclerAdapter<Record, RecordAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull RecordHolder recordHolder, int i, @NonNull Record record) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy / MM / dd");
         SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH：mm");
         recordHolder.point_use.setText(record.getPoint_use());
         recordHolder.point_get.setText(record.getPoint_get());
         recordHolder.store_couponId.setText(record.getCouponTitle());
         recordHolder.yearmonth.setText(sdf.format(record.getTime()));
-        recordHolder.day.setText(sdf1.format(record.getTime()));
+        //recordHolder.day.setText(sdf1.format(record.getTime()));
         recordHolder.time.setText(sdf2.format(record.getTime()));
+        if(record.getCouponTitle() ==null){
+            recordHolder.getpoint.setVisibility(View.VISIBLE);
+        }else{
+            recordHolder.getpoint.setVisibility(View.INVISIBLE);
+        }
+
+
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference storeRef = db.collection("store");
@@ -63,8 +71,9 @@ public class RecordAdapter extends FirestoreRecyclerAdapter<Record, RecordAdapte
         private TextView storeId;
         private TextView store_couponId;
         private TextView yearmonth;
-        private TextView day;
+        //private TextView day;
         private TextView time;
+        private TextView getpoint;
 
         public RecordHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,8 +82,9 @@ public class RecordAdapter extends FirestoreRecyclerAdapter<Record, RecordAdapte
             storeId = itemView.findViewById(R.id.storeName);
             store_couponId = itemView.findViewById(R.id.obj);
             yearmonth = itemView.findViewById(R.id.yearmonth);
-            day = itemView.findViewById(R.id.day);
+            //day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);
+            getpoint = itemView.findViewById(R.id.obj2);
         }
     }
 }

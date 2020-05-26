@@ -27,13 +27,15 @@ public class DotGetAdapter extends FirestoreRecyclerAdapter<DotGet, DotGetAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull DotGetHolder dotGetHolder, int i, @NonNull DotGet dotGet) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy / MM / dd");
+        //SimpleDateFormat sdf1 = new SimpleDateFormat("dd");
         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
         dotGetHolder.point_get.setText(dotGet.getPoint_get());
         dotGetHolder.yearmonth.setText(sdf.format(dotGet.getTime()));
-        dotGetHolder.day.setText(sdf1.format(dotGet.getTime()));
+        //dotGetHolder.day.setText(sdf1.format(dotGet.getTime()));
         dotGetHolder.time.setText(sdf2.format(dotGet.getTime()));
+        dotGetHolder.getpoint.setVisibility(View.VISIBLE);
+
 
 
 
@@ -69,16 +71,18 @@ public class DotGetAdapter extends FirestoreRecyclerAdapter<DotGet, DotGetAdapte
         TextView point_get;
         TextView storeId;
         TextView yearmonth;
-        TextView day;
+        //TextView day;
         TextView time;
+        TextView getpoint;
 
         public DotGetHolder(@NonNull View itemView) {
             super(itemView);
             point_get = itemView.findViewById(R.id.situation2);
             storeId = itemView.findViewById(R.id.storeName);
             yearmonth = itemView.findViewById(R.id.yearmonth);
-            day = itemView.findViewById(R.id.day);
+            //day = itemView.findViewById(R.id.day);
             time = itemView.findViewById(R.id.time);
+            getpoint = itemView.findViewById(R.id.obj2);
         }
     }
 }

@@ -32,30 +32,30 @@
                 android:layout_width="225dp"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:textColor="@color/black"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
+            android:orientation="horizontal"
+            android:id="@+id/lay">
             <TextView
                 android:id="@+id/use"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+               android:layout_marginRight="85dp"
                 android:text="@string/use"
                 android:textColor="#FB0303"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/get"/>
             <TextView
                 android:id="@+id/get"
                 android:layout_width="wrap_content"
@@ -65,90 +65,117 @@
                 android:text="@string/get"
                 android:textColor="#3F51B5"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/coupon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginLeft="85dp"
                 android:text="@string/coupon"
                 android:textColor="#FF9800"
                 android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/get"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="79dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
-
+            android:layout_height="79dp">
 
             <TextView
                 android:id="@+id/useDot"
-                android:layout_width="59dp"
-                android:layout_height="57dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="50"
                 android:gravity="center"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/textView22"/>
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="90dp"
                 android:text="@string/dodo"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
 
             <TextView
                 android:id="@+id/getDot"
-                android:layout_width="59dp"
-                android:layout_height="57dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="55"
                 android:background="@drawable/border_record"
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/textView24"/>
 
             <TextView
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
-                android:layout_height="33dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="55dp"
                 android:text="@string/dodo"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
             <TextView
                 android:id="@+id/getCoupon"
-                android:layout_width="59dp"
-                android:layout_height="57dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/border_record"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="55"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/textView26"/>
 
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="25dp"
                 android:gravity="center"
                 android:text="@string/zhang"
-                android:textColor="@color/black"/>
-        </LinearLayout>
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
