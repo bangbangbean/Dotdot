@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.dotdot.LoyaltyCard;
 import com.example.dotdot.MemberPointRec;
@@ -35,6 +36,7 @@ public class QrcodeScannerNext extends Activity {
     private String points_given;
     private String who;
     private Boolean favorite;
+    private TextView storeSet;
 
     //FireStore---------------------------------------------------
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -63,14 +65,23 @@ public class QrcodeScannerNext extends Activity {
         getWindow().setAttributes(params);
 
         //固定Session(店家)---------------------------------------
-        SharedPreferences session = getSharedPreferences("save_useraccount", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = session.edit();
-        editor.putString("user_id", "nQnT8AAt4NYIRYZFZfAR"); //椒麻雞大王
-        editor.commit();
-        who = session.getString("user_id","目前沒人登入");
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
+        who = storeID;
 
         //------------------------------------------------------------
+        storeSet = findViewById(R.id.storeSet);//店家設定的金額
+        stoRef.document(storeID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Store store = documentSnapshot.toObject(Store.class);
+                        storeSet.setText(store.getThreshold() + "元為一點");
+                    }
+                });
 
+        //------------------------------------------------------------
         consume = (EditText)findViewById(R.id.consume);//消費金額
         btn = (Button)findViewById(R.id.confirmbtn);
         btn.setOnClickListener(new View.OnClickListener() {
