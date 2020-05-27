@@ -42,7 +42,7 @@ public class DotUseAdapter extends FirestoreRecyclerAdapter<DotUse, DotUseAdapte
     @NonNull
     @Override
     public DotUseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_listmode_list,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_listmode_list2,
                 parent, false);
         return new DotUseHolder (v);
     }

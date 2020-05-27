@@ -62,7 +62,7 @@ public class DotGetAdapter extends FirestoreRecyclerAdapter<DotGet, DotGetAdapte
     @NonNull
     @Override
     public DotGetHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_listmode_list,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.member_listmode_list2,
                 parent, false);
         return new DotGetHolder(v);
     }
