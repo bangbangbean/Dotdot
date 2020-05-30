@@ -197,7 +197,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
 
 
     }
-
+////////
 
     @SuppressLint("MissingPermission")
     private void getMyLocation() {
