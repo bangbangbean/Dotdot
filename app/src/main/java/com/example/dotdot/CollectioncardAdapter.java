@@ -39,7 +39,6 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
 
                 Store store = documentSnapshot.toObject(Store.class);
                 collectioncardHolder.Title.setText(store.getName());
-                System.out.println(store.getName());
 
             }
         });
@@ -364,10 +363,9 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
         return new CollectioncardHolder(v);
     }
 
-    public void myLoveItem(int position ,String memberId) {
+    public void myLoveItem(int position, String memberId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference memRef = db.collection("Member");
-
         String id = getSnapshots().getSnapshot(position).getId();
         memRef.document(memberId)//須改活
                 .collection("loyalty_card")
@@ -441,8 +439,8 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
     }
 
     public interface OnItemClickListener {
-    void onItemClick(DocumentSnapshot documentSnapshot, int position);
-}
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;

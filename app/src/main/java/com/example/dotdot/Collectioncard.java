@@ -54,7 +54,7 @@ public class Collectioncard extends Fragment {
         swipeRecyclerView.setOnItemMenuClickListener(mItemMenuClickListener);
 
         //member的亂碼Id
-        String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+        String memberId = getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
 
         Query query = memRef.document(memberId).collection("loyalty_card");
@@ -121,9 +121,10 @@ public class Collectioncard extends Fragment {
     private OnItemMenuClickListener mItemMenuClickListener = new OnItemMenuClickListener() {
         @Override
         public void onItemClick(SwipeMenuBridge menuBridge, int position) {
+            String memberId = getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
+                    .getString("user_id", "沒會員登入");
             menuBridge.closeMenu();
-
-            adapter.myLoveItem(position,memberId);
+            adapter.myLoveItem(position, memberId);
             Toast.makeText(getContext(), "更改成功!", Toast.LENGTH_SHORT).show();
         }
     };
