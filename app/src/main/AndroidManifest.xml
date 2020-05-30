@@ -114,8 +114,12 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".StoreTransaction"/>
         <activity android:name=".MemberIndex"
-            android:label="@string/title_activity_maps"/>
-
+            android:label="@string/title_activity_maps">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
