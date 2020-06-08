@@ -389,7 +389,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
                             Data.put("favorite", false);
                             memRef.document(memberId).collection("loyalty_card")
                                     .document(id).set(Data, SetOptions.merge());
-                            //
+                            
                         }
                     }
                 });

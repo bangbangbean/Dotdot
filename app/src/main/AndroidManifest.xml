@@ -88,7 +88,6 @@
         <activity android:name=".StoreCreatLoyaltyCard" />
         <activity android:name=".Verification" />
         <activity android:name=".BeforeLogin.Login">
-
         </activity>
         <activity android:name=".BeforeLogin.Forgetpassword" />
         <activity android:name=".BeforeLogin.Forgetpassword_1" />
@@ -101,17 +100,17 @@
             android:theme="@style/AppTheme.Pop" />
         <activity android:name=".TransactionRecord"/>
         <activity android:name=".Collectioncard" />
-        <activity
-            android:name=".StoreIndex"
-            android:label="@string/title_activity_store_index">
+        <activity android:name=".MemberIndex"
+            android:label="@string/title_activity_maps"
+            >
 
         </activity>
         <activity
             android:name=".QRcode.QrcodeScannerNext"
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".StoreTransaction"/>
-        <activity android:name=".MemberIndex"
-            android:label="@string/title_activity_maps">
+        <activity android:name=".StoreIndex"
+            android:label="@string/title_activity_store_index">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

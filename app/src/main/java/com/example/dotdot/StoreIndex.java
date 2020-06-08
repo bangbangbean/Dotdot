@@ -65,9 +65,8 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_store_index);
         SharedPreferences storeId = getSharedPreferences("save_storeId", MODE_PRIVATE);
         storeId.edit()
-                .putString("user_id", "nQnT8AAt4NYIRYZFZfAR")
+                .putString("user_id", "f9HPkNg3QRsgUcjwbgzo")
                 .apply();
-
 
 
         //------------------------action-----------------------------------------------------------
@@ -91,18 +90,20 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         //記得改成session
         String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
-        memRef.document(storeID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    Store mem = documentSnapshot.toObject(Store.class);
-                    String name = mem.getName();
-                    Storetitle.setText(name);
+        memRef.document(storeID)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            Store mem = documentSnapshot.toObject(Store.class);
+                            String name = mem.getName();
+                            Storetitle.setText(name);
 
 
-                }
-            }
-        });
+                        }
+                    }
+                });
         //--------------------------------------------------------------------------------------
         //當月月份
         Mon = findViewById(R.id.mom);
@@ -129,28 +130,29 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         //點數總和
 
         note.document(storeID).collection("giveDotRecord").whereGreaterThan("time", dt)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        int points1sum = 0;
-                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                            storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
-                            String point = rec.getPoint_given();
-                            int point1 = Integer.valueOf(point);
-                            points1sum += point1;
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int points1sum = 0;
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    storerecord rec = queryDocumentSnapshot.toObject(storerecord.class);
+                    String point = rec.getPoint_given();
+                    int point1 = Integer.valueOf(point);
+                    points1sum += point1;
 
 
-                        }
+                }
 
-                        Pointsgives = findViewById(R.id.pointsgive);
-                        Pointsgives.setText(Integer.toString(points1sum));
+                Pointsgives = findViewById(R.id.pointsgive);
+                Pointsgives.setText(Integer.toString(points1sum));
 
-                    }
-                });
+            }
+        });
 
         //coupon
-        memRef1.document(storeID).collection("couponBeenExchange").whereGreaterThanOrEqualTo("time",dt).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        memRef1.document(storeID).collection("couponBeenExchange")
+                .whereGreaterThanOrEqualTo("time", dt)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
                 coupongiven = findViewById(R.id.couponsgive);
@@ -197,17 +199,30 @@ public class StoreIndex extends FragmentActivity implements OnMapReadyCallback {
         }
 
         mMap.setMyLocationEnabled(true);
-       
+
     }
 
 
     public void addmarker() {
+        String storeID = getSharedPreferences("save_storeId", MODE_PRIVATE)
+                .getString("user_id", "沒會員登入");
 
-        MarkerOptions options = new MarkerOptions();
-        options.position(storerecord.chicken);
-        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
-        mMap.addMarker(options);
-
+        if (storeID.equals("nQnT8AAt4NYIRYZFZfAR")) {
+            MarkerOptions options = new MarkerOptions();
+            options.position(storerecord.chicken);
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop1));
+            mMap.addMarker(options);
+        } else if (storeID.equals("itNDANFxcx8moOGEg8JF")) {
+            MarkerOptions options1 = new MarkerOptions();
+            options1.position(storerecord.loc1);
+            options1.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop2));
+            mMap.addMarker(options1);
+        } else if (storeID.equals("f9HPkNg3QRsgUcjwbgzo")) {
+            MarkerOptions options2 = new MarkerOptions();
+            options2.position(storerecord.loc2);
+            options2.icon(BitmapDescriptorFactory.fromResource(R.drawable.shop3));
+            mMap.addMarker(options2);
+        }
     }
 
     @SuppressLint("MissingPermission")
