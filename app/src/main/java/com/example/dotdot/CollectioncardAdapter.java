@@ -38,7 +38,7 @@ public class CollectioncardAdapter extends FirestoreRecyclerAdapter<Loyalty_card
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                 Store store = documentSnapshot.toObject(Store.class);
-                collectioncardHolder.Title.setText(store.getName());
+                collectioncardHolder.Title.setText(store.getName() + "(" + store.getThreshold() + "元為一點" + ")");
 
             }
         });

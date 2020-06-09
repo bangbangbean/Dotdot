@@ -116,10 +116,9 @@ public class QrcodeScannerNext extends Activity {
                         h.putExtras(bundle);
 
                         startActivity(h);
-
-                        addStoreRecord(); //新增店家點數紀錄
-                        addMemberRec(); //新增會員點數紀錄
                         addCardPoint();//增加集點卡點數
+
+
                         }
                 });
     }
@@ -156,9 +155,13 @@ public class QrcodeScannerNext extends Activity {
                                                     .document(oo).collection("Record").add(rec);
                                             memRef.document(whoData).collection("loyalty_card")
                                                     .document(oo).collection("DotGet").add(rec);
+
                                         }
                     }
                 });
+
+                        db.collection("Record").document(whoData)
+                                .collection("record").add(rec);
     }
 
     public void addCardPoint(){
@@ -189,14 +192,16 @@ public class QrcodeScannerNext extends Activity {
                                 int b = Integer.parseInt(points_owned);
                                 String pointsFinal = "" + (a + b);
 
-                                LoyaltyCard rec = new LoyaltyCard(pointsFinal, who, favorite);
+                                LoyaltyCard rec = new LoyaltyCard(pointsFinal, who, favorite, pointsFinal);
                                 memRef.document(whoData).collection("loyalty_card").document(docID)
                                         .set(rec, SetOptions.merge());
+                                addStoreRecord(); //新增店家點數紀錄
+                                addMemberRec(); //新增會員點數紀錄
                                 g += 1;
+
 
                                 break;
                             }
-
                         }
                         if(g == 1){ //如果此會員沒有這店家集點卡，則新增
                             stoRef.document(who)
@@ -207,17 +212,23 @@ public class QrcodeScannerNext extends Activity {
 
                                             String color = documentSnapshot.getString("color");
                                             String Threshold = documentSnapshot.getString("Threshold");
-
+                                            String couponCount="0";
+                                            String dotUse="0";
                                             favorite = false;
                                             Map<Object, Object> rec = new HashMap<>();
                                             rec.put("store", who);
                                             rec.put("favorite", favorite);
                                             rec.put("points_owned", points_get);
+                                            rec.put("dotGet", points_get);
                                             rec.put("color", color);
                                             rec.put("Threshold", Threshold);
-                                            rec.put("couponCount",0);
+                                            rec.put("couponCount",couponCount);
+                                            rec.put("dotUse",dotUse);
 
                                             memRef.document(whoData).collection("loyalty_card").add(rec);
+                                            addStoreRecord(); //新增店家點數紀錄
+                                            addMemberRec(); //新增會員點數紀錄
+
                                         }
                                     });
                         }

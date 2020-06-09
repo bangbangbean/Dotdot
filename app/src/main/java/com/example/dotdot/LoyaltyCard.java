@@ -6,16 +6,18 @@ public class LoyaltyCard {
     private String points_owned;
     private String store;
     private Boolean favorite;
+    private String dotGet;
     LoyaltyCard loyaltyCard;
 
     public LoyaltyCard(){
 
     }
 
-    public LoyaltyCard(String points_owned, String store, Boolean favorite){
+    public LoyaltyCard(String points_owned, String store, Boolean favorite, String dotGet){
         this.points_owned = points_owned;
         this.store = store;
         this.favorite = favorite;
+        this.dotGet = dotGet;
     }
 
     public Boolean getFavorite() {
@@ -40,5 +42,13 @@ public class LoyaltyCard {
 
     public void setStore(String store) {
         this.store = store;
+    }
+
+    public String getDotGet() {
+        return dotGet;
+    }
+
+    public void setDotGet(String dotGet) {
+        this.dotGet = dotGet;
     }
 }

@@ -73,7 +73,7 @@ public class StoreTransaction extends Fragment {
         String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
 
-        Query query = storeref.document(storeID).collection("giveDotRecord");
+        Query query = storeref.document(storeID).collection("giveDotRecord").orderBy("time", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<StorePointRec> options = new FirestoreRecyclerOptions.Builder<StorePointRec>()
                 .setQuery(query, StorePointRec.class)
                 .build();
@@ -90,7 +90,7 @@ public class StoreTransaction extends Fragment {
     private void setUpRecyclerView2() {
         String storeID =getActivity().getSharedPreferences("save_storeId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
-        Query query = storeref.document(storeID).collection("couponBeenExchange");
+        Query query = storeref.document(storeID).collection("couponBeenExchange").orderBy("time", Query.Direction.DESCENDING);;
         FirestoreRecyclerOptions<StoreCouponRecord> options = new FirestoreRecyclerOptions.Builder<StoreCouponRecord>()
                 .setQuery(query, StoreCouponRecord.class)
                 .build();

@@ -20,7 +20,8 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.dotdot.BotNav_mem.botnav;
+
+import com.example.dotdot.BotNav_mem.botnav2;
 import com.example.dotdot.QRcode.QrcodeCreate;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -232,7 +233,7 @@ public class MemberIndex extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onInfoWindowClick(Marker marker) {
 
-        Intent intent = new Intent(MemberIndex.this, botnav.class);
+        Intent intent = new Intent(MemberIndex.this, botnav2.class);
         startActivity(intent);
 
     }

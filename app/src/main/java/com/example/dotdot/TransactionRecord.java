@@ -18,25 +18,23 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class TransactionRecord extends Fragment {
-    /*String memberId =getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
-            .getString("user_id", "沒會員登入");*/
     private RecyclerView recyclerView;
     private Switch modeSwitch = null;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memref = db.collection("Member");
-    /*.document(memberId)
-            .collection("loyalty_card");*/
 
     private RecordAdapter adapter;
     private Loyalty_cardAdapter adapter2;
@@ -75,14 +73,10 @@ public class TransactionRecord extends Fragment {
 
         String memberId = getActivity().getSharedPreferences("save_memberId", MODE_PRIVATE)
                 .getString("user_id", "沒會員登入");
-        String loyalty_card_id = getActivity().getSharedPreferences("save_loyalty_card_id", MODE_PRIVATE)
-                .getString("loyalty_card_id", "沒選擇店家");
 
 
-        Query query = memref.document(memberId)
-                .collection("loyalty_card")
-                .document(loyalty_card_id)    //BUG
-                .collection("Record");
+
+        Query query = db.collection("Record").document(memberId).collection("record").orderBy("time", Query.Direction.DESCENDING);;
 
         FirestoreRecyclerOptions<Record> options = new FirestoreRecyclerOptions.Builder<Record>()
                 .setQuery(query, Record.class)

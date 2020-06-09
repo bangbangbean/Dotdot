@@ -172,6 +172,8 @@ public class ConfirmExchange extends Activity {
                             .document(loyalty_card_id).collection("DotUse")
                             .add(dotUseRecord);
 
+
+                    db.collection("Record").document(memberId).collection("record").add(dotUseRecord);
                     //新增資料到店家紀錄
                     Map<Object, Object> couponBeenExchange = new HashMap<>();
                     couponBeenExchange.put("store_couponId", CouponId);
