@@ -11,7 +11,7 @@ public class storerecord {
 
     public static final LatLng loc1 = new LatLng(25.034318, 121.431252);
     public static final LatLng chicken = new LatLng(25.034434, 121.430992);
-    public static final LatLng loc2 = new LatLng(25.033648, 121.432134);
+    public static final LatLng loc2 = new LatLng(25.033628, 121.432123);
 
     private Date time;
     private String point_given;
